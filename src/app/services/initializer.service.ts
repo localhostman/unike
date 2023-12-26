@@ -49,7 +49,6 @@ export class InitializerService {
     protected langExt: LangExtension,
     private searchExt: SearchExtension,
     public envExt: EnvExtension,
-    private titleService: Title,
     protected events: EventsService,
     private ajaxService: AjaxService,
     private deliveryMethodService: DeliveryMethodService,
@@ -145,10 +144,8 @@ export class InitializerService {
           const {
             App,
             IsLogin,
-            SupportWxPay,
             Me,
             ShopInfo,
-            HotSearches,
             Carts,
             Setting,
             ProductProps,
@@ -171,7 +168,7 @@ export class InitializerService {
           if (IsLogin)
             this.envExt.me = Me;
 
-          this.searchExt.init(HotSearches);
+          this.searchExt.init([]);
           this.productPropService.setData(ProductProps);
           this.deliveryMethodService.setData(DeliveryMethods);
           this.paymentMethodService.setData(PaymentMethods);
@@ -184,7 +181,6 @@ export class InitializerService {
           this.envExt.shop = ShopInfo;
           this.envExt.app = App;
           this.envExt.exchangeRate = Setting[SHOP_SETTING.EXCHANGE_RATE];
-          this.envExt.supportWxPay = SupportWxPay;
           this.envExt.maxOrderProductCount = ShopInfo.MaxOrderProductCount;
 
           this.envExt.loginMethods = LoginMethods;
@@ -201,7 +197,6 @@ export class InitializerService {
           this.envExt.eventsHuodong = Events[PROMO_TYPE.HUO_DONG] ?? [];
           this.envExt.eventsShoudan = Events[PROMO_TYPE.SHOU_DAN] ?? [];
 
-          this.titleService.setTitle(ShopInfo.Name);
           this.document.getElementById("favicon")!.setAttribute("href", ShopInfo.LogoUrl);
           this.document.documentElement.style.cssText = themeToString(JSON.parse(ShopInfo.Theme)) + "--pro-height: " + ProductImageRatio * 100 + "%;";
 

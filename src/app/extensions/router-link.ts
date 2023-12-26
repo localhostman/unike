@@ -166,16 +166,16 @@ export class RouterLinkExtension {
     }
 
     generateSEO(seo: ISEO, noindex: boolean, resevedParams: any[] = []) {
-        this.generateSEOMeta(seo);
+        this.generateSEOMeta(seo.title, seo.description);
         this.generateSEOLink(noindex, resevedParams, seo?.slug ?? "", seo?.slugs ?? {});
     }
 
-    generateSEOMeta(seo: ISEO) {
-        let title = seo?.title ?? "";
-        let desc = seo?.description ?? "";
+    generateSEOMeta(title: string, desc: string) {
+        if (title)
+            this._titleService.setTitle(title);
 
-        this._titleService.setTitle(title);
-        this._metaService.updateTag({ name: "description", content: desc });
+        if (desc)
+            this._metaService.updateTag({ name: "description", content: desc });
     }
 
     generateSEOLink(noindex: boolean, resevedParams: any[] = [], slug: string = "", slugRef: any = {}) {
@@ -243,7 +243,8 @@ export class RouterLinkExtension {
         search = o.map(item => `${item.key}=${item.value}`).join("&");
 
         link = head.querySelector("link[rel=canonical]");
-        renderer.setAttribute(link, "href", url = `${protocol}//${hostname}${pathname}${search ? "?" + search : ""}`);
+        if (link) 
+            renderer.setAttribute(link, "href", url = `${protocol}//${hostname}${pathname}${search ? "?" + search : ""}`);
     }
 
     generateRobots(noindex: boolean) {

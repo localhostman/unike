@@ -81,8 +81,6 @@ export function HttpLoaderFactory(http: HttpClient) {
             deps: [InitializerService],
             multi: true
         },
-        CanActivateWhenLoginGuard,
-        CanActivateWhenUnloginGuard,
         {
             provide: 'SocialAuthServiceConfig',
             useValue: {

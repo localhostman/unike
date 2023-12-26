@@ -6,7 +6,9 @@ import { EventsService } from '../fw/dynamics/events.service';
 import { RouterLinkExtension } from '../extensions/router-link';
 import { TranslateService } from '@ngx-translate/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CanActivateWhenLoginGuard {
   constructor(
     public routerLinkExt: RouterLinkExtension,

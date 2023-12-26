@@ -24,7 +24,6 @@ export class EnvExtension {
     votes: { [key: string]: number } = {};
     maxOrderProductCount!: number;
     exitAlertDelay: number = 1000;
-    supportWxPay!: boolean;
     exchangeRate!: number;
 
     loginMethods: any;

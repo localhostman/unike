@@ -1,3 +1,4 @@
+import { SeoGuard } from '../guards/seo.guard';
 import { ITranslateRoute } from './route';
 
 export function getRoutes(mobile: boolean): ITranslateRoute[] {
@@ -15,6 +16,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "profilo",
       routes: [{
         path: 'it/profilo',
+        data: {
+          title: "Gestione del profilo | fasunidy.com",
+          index: false
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/profile/profile.module').then(m => m.ProfilePageModule)
       }]
     },
@@ -23,6 +29,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "ordini",
       routes: [{
         path: 'it/ordini',
+        data: {
+          title: "Gestione degli ordini | fasunidy.com",
+          index: false
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/order/order.module').then(m => m.OrderPageModule)
       }]
     },
@@ -31,6 +42,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "indirizzi",
       routes: [{
         path: 'it/indirizzi',
+        data: {
+          title: "Gestione degli indirizzi | fasunidy.com",
+          index: false
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/address/address.module').then(m => m.AddressPageModule)
       }]
     },
@@ -39,6 +55,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "coupons",
       routes: [{
         path: 'it/coupons',
+        data: {
+          title: "Gestione dei coupons | fasunidy.com",
+          index: false
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/coupon/coupon.module').then(m => m.CouponPageModule)
       }]
     },
@@ -55,6 +76,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "ricerchi",
       routes: [{
         path: 'it/ricerchi',
+        data: {
+          title: "Risultati di ricerca | fasunidy.com",
+          index: false
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/product/product.module').then(m => m.ProductPageModule)
       }]
     },
@@ -63,6 +89,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "prodotti",
       routes: [{
         path: 'it/prodotti/:categoryIdno',
+        data: {
+          refererId: "category",
+          refererQueryParam: "category"
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/product/product.module').then(m => m.ProductPageModule)
       }]
     },
@@ -79,6 +110,10 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "omaggi",
       routes: [{
         path: 'it/omaggi',
+        data: {
+          title: "Elenco degli omaggi | fasunidy.com"
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/gift/gift.module').then(m => m.GiftPageModule)
       }]
     },
@@ -87,6 +122,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "prodotto",
       routes: [{
         path: 'it/prodotto/:id/:idno',
+        data: {
+          refererId: "product",
+          refererParam: "id"
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/product-detail/product-detail.module').then(m => m.ProductDetailPageModule)
       }]
     },
@@ -95,6 +135,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "ricerca",
       routes: [{
         path: 'it/ricerca',
+        data: {
+          title: "Ricerca dei prodotti | fasunidy.com",
+          index: false
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/search/search.module').then(m => m.SearchPageModule)
       }]
     },
@@ -104,6 +149,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "carrello",
       routes: [{
         path: 'it/carrello',
+        data: {
+          title: "Carrello | fasunidy.com",
+          index: false
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/cart/cart.module').then(m => m.CartPageModule)
       }]
     },
@@ -112,6 +162,10 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "tutorial",
       routes: [{
         path: 'it/tutorial',
+        data: {
+          title: "Video tutorial e istruzioni | fasunidy.com"
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/tutorial/tutorial.module').then(m => m.TutorialPageModule)
       }]
     },
@@ -120,6 +174,10 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "chi-siamo",
       routes: [{
         path: 'it/chi-siamo',
+        data: {
+          title: "Chi siamo | fasunidy.com"
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/about-us/about-us.module').then(m => m.AboutUsPageModule)
       }]
     },
@@ -128,6 +186,10 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "contattateci",
       routes: [{
         path: 'it/contattateci',
+        data: {
+          title: "Contattateci | fasunidy.com"
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/contact/contact.module').then(m => m.ContactPageModule)
       }]
     },
@@ -136,6 +198,10 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "faq",
       routes: [{
         path: 'it/faq',
+        data: {
+          title: "FAQ | fasunidy.com",
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/faq/faq.module').then(m => m.FaqPageModule)
       }]
     },
@@ -144,6 +210,10 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "regola-di-spedizione",
       routes: [{
         path: 'it/regola-di-spedizione',
+        data: {
+          title: "Shipping info | fasunidy.com",
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/shipping-rule/shipping-rule.module').then(m => m.ShippingRulePageModule)
       }]
     },
@@ -152,6 +222,10 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "ordine-e-reso",
       routes: [{
         path: 'it/ordine-e-reso',
+        data: {
+          title: "Ordine e reso | fasunidy.com",
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/return-rule/return-rule.module').then(m => m.ReturnRulePageModule)
       }]
     },
@@ -160,6 +234,10 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "condizione-di-vendita",
       routes: [{
         path: 'it/condizione-di-vendita',
+        data: {
+          title: "Condizione di vendita | fasunidy.com",
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/sale-condition/sale-condition.module').then(m => m.SaleConditionPageModule)
       }]
     },

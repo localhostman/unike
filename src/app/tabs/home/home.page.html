@@ -94,7 +94,7 @@
         <div class="t1">{{'Follow us on Instagram' | translate | uppercase}}</div>
         <div class="m1s">
           <div class="m1" *ngFor="let item of insMedias;">
-            <a class="m1-n" [href]="item?.permalink" target="_blank">
+            <a class="m1-n" [href]="item?.permalink" target="_blank" rel="nofollow">
               <ng-container *ngIf="item; else m1ElseTempl">
                 <img [src]="item.thumbnail_url ?? item.media_url">
                 <ng-container [ngSwitch]="item.media_type">

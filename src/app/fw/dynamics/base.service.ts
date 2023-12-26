@@ -17,7 +17,7 @@ export class BaseService {
 
   protected controllerName!: string;
   protected needLogin: boolean = false;
-  protected lang!: string;
+  protected language!: string;
   protected userIdno?: string;
   protected data: any;
 
@@ -33,12 +33,12 @@ export class BaseService {
     this.eventsService = injector.get(EventsService);
   }
   hasData() {
-    return this.data && this.envExt.language == this.lang && (!this.needLogin || this.envExt.userIdno == this.userIdno);
+    return this.data && this.envExt.language == this.language && (!this.needLogin || this.envExt.userIdno == this.userIdno);
   }
 
   setData(data: any) {
     this.data = data;
-    this.lang = this.envExt.language!;
+    this.language = this.envExt.language!;
     this.userIdno = this.envExt.userIdno!;
     this.reset$.next(data);
   }
@@ -46,7 +46,7 @@ export class BaseService {
     if (!this.hasData()) {
       const res = await this.getAll(null, opt);
       if (res) {
-        this.lang = this.envExt.language;
+        this.language = this.envExt.language;
         this.userIdno = this.envExt.userIdno;
         this.data = res.topics;
       }
