@@ -1,0 +1,25 @@
+.s1s {
+    display: block;
+    align-self: center;
+    display: flex;
+    width: auto;
+    height: 44px;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.s1 {
+    --ripple-color: transparent;
+    --color-checked: var(--ion-color-dark);
+    --indicator-color: var(--ion-color-dark);
+    --background-hover: transparent;
+    --border-width: 0;
+    --padding-start: 0;
+    --padding-end: 0;
+    letter-spacing: 0;
+    min-width: auto;
+    min-height: 44px;
+    font-size: var(--wzz-font-size-lg);
+    text-transform: none;
+    margin: 0 var(--wzz-spacing-4xl) 0 0;
+}

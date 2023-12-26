@@ -1,0 +1,98 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-title mode="ios">{{'Dettagli di ordine' | translate | uppercase}}</ion-title>
+    <ion-buttons slot="end">
+      <button class="modal-back-btn" (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section class="host" *ngIf="visible">
+    <div class="p1c">
+      <div class="t1">{{'Stato ordine' | translate}}</div>
+      <div class="p1s">
+        <div class="p1">
+          <div class="p1-label">{{'Stato' | translate}}:</div>
+          <div class="p1-value danger">{{data.StateName}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'N. ordine' | translate}}:</div>
+          <div class="p1-value">{{data.idno}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Data ordine' | translate}}:</div>
+          <div class="p1-value">{{data.CTime | date: 'short'}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Metodo di pagamento' | translate}}:</div>
+          <div class="p1-value warning">{{data.PaymentMethodName | translate}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="p1c">
+      <div class="t1">{{'Indirizzo di spedizioni' | translate}}</div>
+      <div class="p1s">
+        <div class="p1">
+          <div class="p1-value a">
+            <div class="a-p" style="font-weight: 500;">{{address.NameCn}}</div>
+            <div class="a-p" *ngIf="address.Phone as phone">{{phone}}</div>
+            <div class="a-p" *ngIf="!!address.PIva">
+              <span class="a-p-label">P.IVA: </span>{{address.PIva}}
+            </div>
+            <div class="a-p" *ngIf="!!address.CF">
+              <span class="a-p-label">C.F.: </span>{{address.CF}}
+            </div>
+            <div class="a-p" style="color: var(--ion-color-medium);" *ngIf="!!address.City">
+              {{address.Address+", "+address.City+" "+address.Zip+" "+address.Province}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p1c">
+      <div class="t1">{{'Riepilogo' | translate}}</div>
+      <div class="p1s">
+        <div class="p1">
+          <div class="p1-label">{{'Prezzo originale' | translate}}:</div>
+          <div class="p1-value">{{data.Amount | currency: 'EUR'}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Sconto' | translate}}:</div>
+          <div class="p1-value warning">- {{data.Discount | currency: 'EUR'}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Spedizione' | translate}}:</div>
+          <div class="p1-value">{{data.TransportFare | currency: 'EUR'}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Totale' | translate}}:</div>
+          <div class="p1-value bold">{{data.AmountToPay | currency: 'EUR'}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="p1c">
+      <div class="t1">{{'Dettagli articoli' | translate}}</div>
+      <div class="p2s">
+        <div class="p2" *ngFor="let item of products;">
+          <img class="p2-image-el" [src]="item.ImgPath">
+          <div class="p2-c1">
+            <div class="p2-name">{{item.Name}}</div>
+            <div class="p2-note" *ngIf="item.CNote as note">[ {{note}} ]</div>
+            <div class="p2-props">
+              <div class="p2-prop">{{(item.Price*(1-item.Discount)) | currency: 'EUR'}}</div>
+              <div class="p2-prop">{{'Quantità' | translate}}: {{item.Quantity}}</div>
+              <div class="p2-prop">{{'Totale' | translate}}: {{item.Total | currency: 'EUR'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>
+<ion-footer mode="ios">
+  <footer class="footer">
+    <button class="btn shipping">{{'Tracciare' | translate}}</button>
+    <button class="btn return" (click)="onCreateReturn()">{{'Restituire articolo' | translate}}</button>
+  </footer>
+</ion-footer>

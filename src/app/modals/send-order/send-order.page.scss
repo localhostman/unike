@@ -1,0 +1,99 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_container";
+@import "src/app/fw/styles/_image";
+
+@import "./_sum";
+
+@import "./_radio";
+@import "./_address";
+@import "./_product";
+@import "./_gift";
+@import "./_coupon";
+@import "./_footer";
+// @import "./pay";
+
+ion-header {
+  border-bottom: 1px solid var(--ion-color-light-shader);
+}
+
+ion-toolbar {
+  @media (min-width: #{$wzz-max-width}) {
+    --padding-start: calc(50% - var(--wzz-max-width) / 2 - var(--scrollbar-width) / 2);
+    --padding-end: calc(50% - var(--wzz-max-width) / 2 + var(--scrollbar-width) / 2);
+  }
+}
+
+ion-title {
+  font-weight: 500;
+  font-family: "trajan", sans-serif;
+
+  @media (min-width: #{$wzz-max-width}) {
+    font-size: 21px;
+    padding: var(--wzz-spacing-3xl) var(--wzz-spacing-3-4xl);
+  }
+  @media (max-width: #{$wzz-max-width}) {
+    font-size: 18px;
+    padding: var(--wzz-spacing-xl) var(--wzz-spacing-xxl);
+  }
+}
+
+.host {
+  user-select: none;
+  &-inner {
+    @include container;
+    align-items: flex-start;
+    padding: 0 var(--wzz-spacing-3-4xl) var(--wzz-spacing-7-8xl);
+  }
+
+  &-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  &-right {
+    position: sticky;
+    margin-left: var(--wzz-spacing-5-6xl);
+    padding: var(--wzz-spacing-3-4xl) 0;
+    top: 0;
+  }
+}
+
+.b1 {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: var(--wzz-spacing-3-4xl) 0;
+  border-bottom: 1px solid var(--ion-color-light-shade);
+  &:last-child {
+    border-bottom-style: none;
+  }
+}
+
+.t1 {
+  font-size: var(--wzz-font-size-xl);
+  font-weight: 500;
+}
+
+.t2 {
+  font-weight: 500;
+  margin-bottom: var(--wzz-spacing-md);
+}
+
+.n1 {
+  &-el {
+    margin-top: var(--wzz-spacing-x-xxl);
+    background: var(--ion-color-light-tint);
+    resize: none;
+    border-style: none;
+    padding: var(--wzz-spacing-xxl) var(--wzz-spacing-x-xxl);
+    height: 80px;
+  }
+}
+
+.checkout-btn {
+  line-height: 40px;
+  color: #fff;
+  background: var(--ion-color-dark);
+  padding: 0 var(--wzz-spacing-3-4xl);
+  margin: var(--wzz-spacing-xxl) 0 var(--wzz-spacing-lg);
+}

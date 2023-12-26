@@ -1,0 +1,19 @@
+.a1 {
+    display: flex;
+    align-items: center;
+    padding: 20px var(--wzz-spacing-xxl);
+    background: var(--ion-color-light);
+    &-avatar-el {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+    &-n {
+        margin-left: var(--wzz-spacing-xxl);
+    }
+    &-email {
+        font-size: var(--wzz-font-size-md);
+        color: var(--ion-color-medium);
+        margin-top: var(--wzz-spacing-xl);
+    }
+}

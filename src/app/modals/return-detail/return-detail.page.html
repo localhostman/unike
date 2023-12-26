@@ -1,0 +1,129 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-title mode="ios">{{'Dettagli reso' | translate | uppercase}}</ion-title>
+    <ion-buttons slot="end">
+      <button class="modal-back-btn" (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section class="host" *ngIf="visible">
+    <div class="t1">{{'return_text_1' | translate}}</div>
+    <div class="t2" (click)="showShippingModal=true;">{{'Aggiungi il numero di tracciabilità del reso' | translate}}
+    </div>
+    <div class="p1c">
+      <div class="p1c-t">{{'Stato ordine' | translate}}</div>
+      <div class="p1s">
+        <div class="p1">
+          <div class="p1-label">{{'Stato reso' | translate}}: </div>
+          <div class="p1-value {{return.State}}">{{return.State | translate}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'N. ordine' | translate}}: </div>
+          <div class="p1-value">{{data.idno | translate}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Data richiesto' | translate}}: </div>
+          <div class="p1-value">{{return.CTime | translate}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Metodo del rimborso' | translate}}: </div>
+          <div class="p1-value">{{'Conto di pagamento originale' | translate}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="p1c">
+      <div class="p1c-t">{{'Riepilogo' | translate}}</div>
+      <div class="p1s">
+        <div class="p1">
+          <div class="p1-label">{{'Rimborso richiesto' | translate}}: </div>
+          <div class="p1-value danger">{{data.RefundAmount | currency: 'EUR'}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Rimborso effettuata' | translate}}: </div>
+          <div class="p1-value success">{{return.AcceptedAmount | currency: 'EUR'}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="p1c">
+      <div class="p1c-t">{{'Motivazione di reso' | translate}}</div>
+      <div class="p1s">
+        <div class="p1">
+          <div class="p1-label">{{'Motivazione' | translate}}: </div>
+          <div class="p1-value">{{return.Reason | translate}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Nota' | translate}}: </div>
+          <div class="p1-value">{{return.Note || '--' }}</div>
+        </div>
+        <div class="p1" *ngIf="return.Images as images;">
+          <div class="p1-label">{{'Foto' | translate}}: </div>
+          <div class="i1s">
+            <img class="i1-el" [src]="item.ImgPath" *ngFor="let item of images;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p1c">
+      <div class="p1c-t">{{'Elenco degli articoli restituiti' | translate}}</div>
+      <div class="p2s">
+        <div class="p2" *ngFor="let item of products;">
+          <img class="p2-image-el" [src]="item.ImgPath">
+          <div class="p2-c1">
+            <div>{{item.Name}}</div>
+            <div class="p2-note" *ngIf="item.Note as note">[ {{note}} ]</div>
+            <div>{{(item.Price*(1-item.Discount)) | currency: 'EUR'}}</div>
+            <div>
+              {{'Quantità Richiesto'}}: <span class="danger">{{item.RefundQuantity}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>
+
+<ion-modal [isOpen]="showShippingModal" cssClass="modal-t1" (ionModalWillDismiss)="showShippingModal=false;">
+  <ng-template>
+    <ion-header mode="ios">
+      <ion-toolbar>
+        <ion-title mode="ios">{{'numero di tracciabilità del reso' | translate | uppercase}}</ion-title>
+        <ion-buttons slot="end">
+          <button class="modal-back-btn" (click)="onClose()">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <div class="form" [formGroup]="form">
+        <div class="prop">
+          <div class="select">
+            <div class="select-label required">{{'Azienda di logistica' | translate}}</div>
+            <ion-select class="select-el" interface="popover" [interfaceOptions]="{cssClass: 'popover-t1'}"
+              formControlName="ShippingMethod">
+              <ion-select-option value="ALP">ALP</ion-select-option>
+              <ion-select-option value="DHL">DHL</ion-select-option>
+              <ion-select-option value="FEDEX">FEDEX</ion-select-option>
+              <ion-select-option value="SDA">SDA</ion-select-option>
+              <ion-select-option value="UPS">UPS</ion-select-option>
+            </ion-select>
+          </div>
+        </div>
+        <div class="prop">
+          <div class="input">
+            <div class="input-label required">{{'Numero di tracciamento' | translate}}</div>
+            <input class="input-el" formControlName="ShippingTrackingNumber">
+          </div>
+        </div>
+      </div>
+    </ion-content>
+    <ion-footer mode="ios">
+      <footer class="footer">
+        <button class="submit-btn" (click)="onSubmitShipping()">{{'Conferma' | translate}}</button>
+      </footer>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,48 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_container";
+@import "src/app/fw/styles/_image";
+
+@import "./_contact";
+@import "./_email";
+
+.host {
+    &-inner {
+        @include container;
+        flex-direction: column;
+        padding: 0 0 var(--wzz-spacing-7-8xl);
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 27vw;
+        min-height: 160px;
+        background-image: url(/assets/imgs/pages/contact/header.jpg);
+        background-size: cover;
+        background-position: center;
+
+        @media (min-width: #{$wzz-width-lg}) {
+            margin: var(--wzz-spacing-5-6xl) var(--wzz-spacing-3-4xl) 0;
+        }
+        @media (max-width: #{$wzz-width-lg}) {
+        }
+    }
+}
+
+.t1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-family: "trajan", sans-serif;
+    font-size: 40px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+
+    @media (max-width: #{$wzz-width-md}) {
+        display: none;
+    }
+}

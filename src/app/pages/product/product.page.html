@@ -1,0 +1,119 @@
+<ion-header mode="ios" collapse="fade">
+  <wzz-header [title]="title" [defaultHref]="[language, 'category'] | routerLink"></wzz-header>
+</ion-header>
+
+<ion-content #content [id]="contentId" class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <header class="host-header">
+      <div class="t1">{{title}}</div>
+    </header>
+    <div class="host-inner" [class.full]="q">
+      <aside class="host-left" *ngIf="resizeExt.isLG">
+        <ng-container *ngTemplateOutlet="categoryTempl;">
+        </ng-container>
+      </aside>
+      <main class="host-right">
+        <div class="p1c">
+          <div class="p1c-h">
+            <div class="num" translate="N Prodotti trovati" [translateParams]="{n: count}"></div>
+            <button class="f2" (click)="onOpenMenu(filterMenuId)">
+              <ion-icon name="pro-filter"></ion-icon>
+              <div class="f2-label">{{'Filtri' | translate}}</div>
+            </button>
+            <ion-select class="s1-el" [(ngModel)]="sort" mode="md" interface="popover"
+              [interfaceOptions]="{cssClass: 'popover-t1'}" [label]="('Ordina' | translate)+': '">
+              <ion-select-option *ngFor="let item of sorts;" [value]="item">{{item.Name}}</ion-select-option>
+            </ion-select>
+          </div>
+          <div class="p1s" *ngIf="data?.length; else emptyTempl;">
+            <product class="p1" *ngFor="let item of data;" [data]="item" [ltime]="item.LTime"></product>
+          </div>
+        </div>
+        <page [count]="count" [page]="page" [pageSize]="pageSize" (change)="onChangePage($event.page, true)"
+          *ngIf="count>pageSize"></page>
+      </main>
+    </div>
+    <wzz-footer></wzz-footer>
+  </section>
+</ion-content>
+
+<ion-menu side="start" [menuId]="filterMenuId" [contentId]="contentId" [swipeGesture]="false">
+  <ion-header class="fm-header">
+    <ion-toolbar>
+      <ion-title mode="md">{{'Filtri' | translate}}</ion-title>
+      <ion-buttons slot="end">
+        <button class="modal-back-btn" (click)="onCloseMenu(filterMenuId)">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div style="height: 20px;"></div>
+    <ng-container *ngTemplateOutlet="categoryTempl;">
+    </ng-container>
+  </ion-content>
+</ion-menu>
+
+<ng-template #categoryTempl>
+  <div class="f1">
+    <div class="c1c">
+      <div class="c1c-t">{{'Categoria' | translate}}</div>
+      <div class="c1s">
+        <div class="c1" *ngIf="promoId" [class.selected]="!categoryIdno " (click)="onSelectCategory('')">
+          {{'Tutti prodotti' | translate | uppercase}}
+        </div>
+        <ng-container *ngFor="let c1 of categories;">
+          <ng-container *ngIf="relativeCategoryRef[c1.idno]">
+            <div class="c1" *ngIf="!c1.Children.length" [class.selected]="c1.idno==categoryIdno"
+              (click)="onSelectCategory(c1.idno)">
+              {{c1.Name | uppercase}}
+            </div>
+            <ng-container *ngFor="let c2 of c1.Children;">
+              <ng-container *ngIf="relativeCategoryRef[c2.idno]">
+                <div class="c1" *ngIf="!c2.Children.length" [class.selected]="c2.idno==categoryIdno"
+                  (click)="onSelectCategory(c2.idno)">
+                  {{c2.Name | uppercase}}
+                </div>
+                <ng-container *ngFor="let c3 of c2.Children;">
+                  <div class="c1" [class.selected]="c3.idno==categoryIdno" (click)="onSelectCategory(c3.idno)">
+                    {{c3.Name | uppercase}}</div>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="p2c" *ngIf="minPrice!=maxPrice">
+      <div class="p2c-t">{{'Prezzo' | translate}}</div>
+      <div class="p2">
+        <div class="p2-labels">
+          <div class="p2-label">€{{priceRange.lower | number: '0.2-2'}}</div>
+          <div class="p2-label">€{{priceRange.upper | number: '0.2-2'}}</div>
+        </div>
+        <ion-range color="dark" class="p2-el" mode="ios" [min]="minPrice" [max]="maxPrice" [pin]="true"
+          [pinFormatter]="pricePinFormatter" dualKnobs [(ngModel)]="priceRange" step="0.1"
+          (ionChange)="onChangePriceRange($event)">
+        </ion-range>
+      </div>
+    </div>
+    <div class="p3c" *ngIf="props?.length">
+      <div class="p3s" *ngFor="let p1 of props;">
+        <div class="p3s-t">{{p1.Name | uppercase}}</div>
+        <div class="p3s-n">
+          <div class="p3 ion-activatable" *ngFor="let p2 of p1.Children;"
+            [class.selected]="propIdnoRef[p2.idno]" (click)="onClickProp(p2.idno)">
+            <ion-ripple-effect></ion-ripple-effect>
+            {{p2.Name}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #emptyTempl>
+  <empty></empty>
+</ng-template>

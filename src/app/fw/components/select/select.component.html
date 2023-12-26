@@ -1,0 +1,9 @@
+<div class="select-text" part="text" *ngIf="selectedItem; else placeholderTempl">{{selectedItem.text}}</div>
+<ng-template #placeholderTempl>
+    <div class="select-placeholder" part="placeholder">{{placeholder}}</div>
+</ng-template>
+<div class="select-icon" part="icon">
+    <div class="select-icon-inner"></div>
+</div>
+
+<ng-content></ng-content>

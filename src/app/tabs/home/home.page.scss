@@ -1,0 +1,80 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_image";
+@import "src/app/fw/styles/_container";
+@import "src/app/fw/styles/_hover";
+
+@import "./_banner";
+@import "./_category";
+@import "./_product";
+@import "./_video";
+@import "./_media";
+
+.host {
+    font-size: var(--wzz-font-size-lg);
+    color: var(--ion-color-dark);
+
+    &-header {
+        margin-bottom: var(--wzz-spacing-3-4xl);
+    }
+
+    &-main {
+        @include container;
+        flex-direction: column;
+        padding-bottom: var(--wzz-spacing-6-7xl);
+    }
+
+    &-footer {
+        background: var(--ion-color-dark);
+        &-inner {
+            display: flex;
+            width: var(--wzz-max-width);
+            margin: 0 auto;
+            padding: var(--wzz-spacing-lg);
+        }
+        &-item {
+            color: var(--ion-color-medium-tint);
+            padding: var(--wzz-spacing-lg);
+            cursor: pointer;
+            text-decoration: none;
+            @include hover {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.r1 {
+    position: relative;
+    padding: var(--wzz-spacing-6-7xl) 0 0; 
+} 
+
+.t1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "trajan", sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 0 var(--wzz-spacing-3-4xl) var(--wzz-spacing-lg);
+
+    @media (min-width: #{$wzz-width-md}) {
+        font-size: 28px;
+    }
+    @media (max-width: #{$wzz-width-sm}) and (max-width: #{$wzz-width-md}) {
+        font-size: 24px;
+    }
+    @media (max-width: #{$wzz-width-sm}) {
+        font-size: 18px;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 0;
+        border-top: 1px solid;
+        margin: 0 var(--wzz-spacing-xxl);
+    }
+}

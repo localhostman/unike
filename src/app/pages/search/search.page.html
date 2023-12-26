@@ -1,0 +1,27 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <div class="s1">
+      <div class="s1-n1">
+        <ion-icon name="search" class="s1-icon"></ion-icon>
+        <input class="s1-el" [(ngModel)]="q" (keyup.ENTER)="onSearch(q)"
+          [placeholder]="'Inserisci le parole chiave' | translate">
+      </div>
+      <ion-back-button color="medium" class="s1-close" icon="close" [defaultHref]="[language, 'home'] | routerLink">
+      </ion-back-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="host" *ngIf="visible">
+    <div class="s2c" *ngIf="histories?.length">
+      <div class="s2c-h">
+        <div class="s2c-t">{{'Cronologia delle ricerche' | translate}}</div>
+        <button class="clear-btn" (click)="onClearHistory()">{{'Cancella' | translate}}</button>
+      </div>
+      <div class="s2s">
+        <button class="s2" *ngFor="let item of histories;" (click)="onSearch(item)">{{item}}</button>
+      </div>
+    </div>
+  </section>
+</ion-content>

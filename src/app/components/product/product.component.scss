@@ -1,0 +1,57 @@
+@import "src/app/fw/styles/_image";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.image {
+    @extend %image;
+    --height: 100%;
+}
+
+.sale {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    color: #fff;
+    padding: 5px 10px;
+    background: var(--ion-color-danger);
+}
+
+.inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    margin-top: var(--wzz-spacing-xxl);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.price {
+    margin-top: var(--wzz-spacing-xl);
+}
+
+.new {
+    color: var(--ion-color-danger);
+    font-size: var(--wzz-font-size-xl);
+}
+
+.old {
+    color: var(--ion-color-medium);
+    text-decoration: line-through;
+    margin-left: var(--wzz-spacing-xl);
+}
+
+.discount {
+    margin-top: var(--wzz-spacing-xl);
+    color: var(--ion-color-warning);
+    text-transform: uppercase;
+}

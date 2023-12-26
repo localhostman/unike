@@ -1,0 +1,61 @@
+<ng-container *ngIf="!tabMode; else hostTempl;">
+  <ion-header mode="ios">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="dark"  icon="back" [defaultHref]="[language, 'me', 'profile'] | routerLink">
+        </ion-back-button>
+      </ion-buttons>
+      <ion-title mode="ios">{{'Gestione profilo' | translate}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ng-container *ngTemplateOutlet="hostTempl;">
+    </ng-container>
+  </ion-content>
+  <ion-footer mode="ios">
+    <footer class="wzz-footer">
+      <button class="wzz-footer-btn" (click)="onSubmit()">{{'Salva modifica' | translate}}</button>
+    </footer>
+  </ion-footer>
+</ng-container>
+
+<ng-template #hostTempl>
+  <section class="host" *ngIf="visible">
+    <header class="host-header">
+      <div class="t1">{{'Benvenuto, N' | translate: {n: me?.NickName} }}</div>
+      <button class="submit-btn" (click)="onSubmit()">{{'Salva modifica' | translate}}</button>
+    </header>
+    <div class="form" [formGroup]="form">
+      <div class="prop">
+        <div class="input">
+          <div class="input-label required">{{'Nome' | translate}}</div>
+          <input class="input-el" formControlName="FirstName">
+        </div>
+      </div>
+      <div class="prop">
+        <div class="input">
+          <div class="input-label required">{{'Cognome' | translate}}</div>
+          <input class="input-el" formControlName="LastName">
+        </div>
+      </div>
+      <div class="prop">
+        <div class="input">
+          <div class="input-label">{{'Email' | translate}}</div>
+          <input class="input-el" formControlName="Email">
+        </div>
+      </div>
+      <div class="prop">
+        <div class="input">
+          <div class="input-label">{{'Numero di telefono' | translate}}</div>
+          <input class="input-el" formControlName="Phone">
+        </div>
+      </div>
+      <div class="prop">
+        <div class="input">
+          <div class="input-label">{{'Data di nascita' | translate}}</div>
+          <input class="input-el" formControlName="Birthday">
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>

@@ -1,0 +1,135 @@
+<ng-container *ngIf="!tabMode; else hostTempl;">
+  <ion-header mode="ios">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="dark" icon="back" [defaultHref]="[language, 'me', 'profile'] | routerLink">
+        </ion-back-button>
+      </ion-buttons>
+      <ion-title mode="ios">{{'Gestione ordine' | translate}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ng-container *ngTemplateOutlet="hostTempl;">
+    </ng-container>
+  </ion-content>
+</ng-container>
+
+<ng-template #hostTempl>
+  <section class="host" *ngIf="visible">
+    <header class="host-header">
+      <ion-segment mode="md" class="s1s" [ngModel]="state" (ionChange)="onChangeState($event)">
+        <ion-segment-button class="s1" [value]="all">
+          {{'Tutti ordini' | translate}}
+        </ion-segment-button>
+        <ion-segment-button class="s1" [value]="states.INVIATO">
+          {{'Da spedire' | translate}}
+        </ion-segment-button>
+        <ion-segment-button class="s1" [value]="states.SPEDITO">
+          {{'In spedizione' | translate}}
+        </ion-segment-button>
+        <ion-segment-button class="s1" [value]="states.COMPLETATO">
+          {{'Ricevuto' | translate}}
+        </ion-segment-button>
+        <ion-segment-button class="s1" [value]="states.RESO">
+          {{'Reso' | translate}}
+        </ion-segment-button>
+        <ion-segment-button class="s1" [value]="states.ANNULLATO">
+          {{'Annullato' | translate}}
+        </ion-segment-button>
+      </ion-segment>
+    </header>
+    <main class="host-main">
+      <div class="o1s" *ngIf="data?.length; else emptyTempl;">
+        <ng-container *ngFor="let item of data;">
+          <ng-container [ngSwitch]="state">
+            <ng-container *ngSwitchCase="states.RESO">
+              <ng-container *ngTemplateOutlet="returnTempl; context: {$implicit: item}">
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <ng-container *ngTemplateOutlet="orderTempl; context: {$implicit: item}">
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </main>
+  </section>
+</ng-template>
+
+<ng-template #orderTempl let-item>
+  <div class="o1">
+    <div class="o1-n1">
+      <div class="o1-idno">N.{{item.idno}}</div>
+      <div class="o-ctime">{{item.CTime | date: 'short'}}</div>
+    </div>
+    <div class="o1-n2">
+      <img class="o1-image-el" [src]="item.ImgPath">
+      <div class="o1-c1">
+        <div class="o1-product-name">
+          {{item.ProductName}} ({{'N prodotti' | translate: {n: item.TotalQuantity} }})
+        </div>
+        <div class="o1-amount">{{'Totale' | translate}}: {{item.AmountToPay | currency: 'EUR'}}</div>
+        <div class="o1-tags">
+          <div class="o1-tag">{{item.StateName | translate}}</div>
+          <div class="o1-tag">{{item.PaymentMethodName | translate}}</div>
+        </div>
+      </div>
+      <button class="o1-detail-btn ion-activatable" (click)="onDetail(item)">
+        <ion-ripple-effect></ion-ripple-effect>
+        {{'Visualizza' | translate}}
+      </button>
+    </div>
+    <div class="o1-oprs">
+      <button class="o1-opr ion-activatable">
+        <ion-ripple-effect></ion-ripple-effect>
+        {{'Tracciare' | translate}}
+      </button>
+      <button class="o1-opr ion-activatable" (click)="onCreateReturn(item)"
+        *ngIf="!item.RefundAmount; else refundedTempl;">
+        <ion-ripple-effect></ion-ripple-effect>
+        {{'Restituire articolo' | translate}}
+      </button>
+      <ng-template #refundedTempl>
+        <button class="o1-opr ion-activatable" (click)="onReturnDetail(item)">
+          <ion-ripple-effect></ion-ripple-effect>
+          {{'Dettagli reso' | translate}}
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #returnTempl let-item>
+  <div class="o1">
+    <div class="o1-n1">
+      <div class="o1-idno">N.{{item.idno}}</div>
+      <div class="o-ctime">{{item.ReturnTime | date: 'short'}}</div>
+    </div>
+    <div class="o1-n2">
+      <img class="o1-image-el" [src]="item.ImgPath">
+      <div class="o1-c1">
+        <div class="o1-product-name">
+          {{item.ProductName}}
+        </div>
+        <div class="o1-amount">
+          {{'Importo rimborsato' | translate}}: {{item.RefundAmount | currency: 'EUR'}}
+        </div>
+        <div class="o1-state">
+          {{'Stato reso' | translate}}:
+          <span class="{{item.ReturnState}}">
+            {{item.ReturnState | translate}}
+          </span>
+        </div>
+      </div>
+      <button class="o1-detail-btn ion-activatable" (click)="onDetail(item)">
+        <ion-ripple-effect></ion-ripple-effect>
+        {{'Visualizza' | translate}}
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #emptyTempl>
+  <empty></empty>
+</ng-template>

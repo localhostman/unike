@@ -1,0 +1,43 @@
+.c1s {
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--wzz-spacing-x-xxl);
+}
+
+.c1 {
+    flex: 0 0 50%;
+    padding: var(--wzz-spacing-x-xxl);
+    &-n {
+        @extend %image;
+        cursor: pointer;
+        @media (min-width: #{$wzz-width-md}) {
+            --height: 56%;
+        }
+        @media (max-width: #{$wzz-width-md}) {
+            --height: 100%;
+        }
+    }
+    &-name {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &-n {
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.8);
+            @media (min-width: #{$wzz-width-md}) {
+                padding: 16px 36px;
+            }
+            @media (max-width: #{$wzz-width-md}) {
+                font-size: var(--wzz-font-size-md-l);
+                padding: 7px 12px;
+            }
+        }
+    }
+}

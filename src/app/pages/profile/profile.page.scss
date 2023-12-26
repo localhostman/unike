@@ -1,0 +1,42 @@
+@import "src/app/styles/_wzz-footer-t1";
+@import "src/app/styles/_form-t1";
+
+.host {
+    &-header {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.t1 {
+    font-size: var(--wzz-font-size-xl);
+}
+
+.submit-btn {
+    color: var(--ion-color-dark);
+    background: transparent;
+    border: 1px solid var(--ion-color-dark);
+    padding: 0 var(--wzz-spacing-xl);
+    height: 32px;
+    margin: var(--wzz-spacing-xxl) 0;
+}
+
+:host {
+    &.tab {
+        .host {
+            &-header {
+                display: flex;
+            }
+        }
+
+        .form {
+            min-height: 480px;
+            border: 1px solid var(--ion-color-light-shade);
+        }
+
+        .prop {
+            flex: 0 0 50%;
+        }
+    }
+}

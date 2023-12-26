@@ -1,0 +1,15 @@
+<div class="icon">
+  <svg class="icon-el" width="24px" height="24px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="查找备份" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="编组-2">
+        <rect id="矩形" x="0" y="0" width="64" height="64"></rect>
+        <path
+          d="M29,11 C38.9411255,11 47,19.0588745 47,29 C47,33.4084907 45.4151684,37.4468241 42.7841645,40.5763408 L53.3880415,51.1808626 L51.2667211,53.302183 L40.6696039,42.7052187 C37.5272518,45.383433 33.4524106,47 29,47 C19.0588745,47 11,38.9411255 11,29 C11,19.0588745 19.0588745,11 29,11 Z M29,14 C20.7157288,14 14,20.7157288 14,29 C14,37.2842712 20.7157288,44 29,44 C32.4830525,44 35.7753012,42.8123397 38.4212135,40.6730417 L38.7236169,40.4219898 L39.678,39.608 L40.4878486,38.6458141 C42.6607398,36.0612115 43.9056133,32.8310763 43.9948455,29.3971067 L44,29 C44,20.7157288 37.2842712,14 29,14 Z"
+          id="形状结合" fill="#808080" fill-rule="nonzero"></path>
+      </g>
+    </g>
+  </svg>
+</div>
+<input #inputEl type="search" autocapitalize="none" class="el" [ngModel]="q"
+  [placeholder]="placeholder | translate" (keydown.ENTER)="onSearch($event)">

@@ -1,0 +1,17 @@
+@import "src/app/fw/styles/_image";
+
+@import "./_product";
+@import "./_opr";
+
+.header {
+    display: flex;
+    padding: var(--wzz-spacing-xxl);
+    border-bottom: 1px solid var(--ion-color-light);
+}
+
+.host {
+    padding: var(--wzz-spacing-xxl) var(--wzz-spacing-xxl);
+    font-size: var(--wzz-font-size-lg);
+    min-height: 100%;
+}
+

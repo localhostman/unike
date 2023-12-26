@@ -1,1 +1,50 @@
+.on {
+    display: none;
+}
 
+.off {
+    display: block;
+}
+
+ion-tab-bar {
+    --border: 1px solid var(--ion-color-light);
+}
+
+ion-tab-button {
+    --color-selected: var(--ion-color-dark);
+}
+
+.tab-selected {
+    .on {
+        display: block;
+    }
+
+    .off {
+        display: none;
+    }
+}
+
+ion-icon {
+    font-size: 26px;
+}
+
+.tab {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 240px;
+    font-size: 10px;
+    color: #999;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--ion-color-primary);
+    }
+
+    > ion-icon {
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+}

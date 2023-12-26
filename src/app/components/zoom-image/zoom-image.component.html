@@ -1,0 +1,10 @@
+<figure class="full" #el (mouseenter)="onMouseEnter()" (mousemove)="onMouseMove($event)"
+  (mouseleave)="onMouseLeave()" *ngIf="visible && image">
+  <img class="zoom" [src]="image" [ngStyle]="{
+  'width': (zoom*100)+'%', 
+  'height': (zoom*100)+'%', 
+  'z-index': zIndex,
+  'transition': zooming ? 'all 0.2s' : 'none',
+  'transform': 'translate3d(-'+x+'px, -'+y+'px, 1px)'}">
+  <img [src]="image">
+</figure>

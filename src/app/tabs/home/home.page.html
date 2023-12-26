@@ -1,0 +1,131 @@
+<ion-content class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <figure class="host-header" *ngIf="banners?.length">
+      <swiper-container #b1SwiperRef class="b1s" [pagination]="{clickable: true}">
+        <swiper-slide class="b1" *ngFor="let item of banners;">
+          <img [src]="item.ImgPath">
+          <div class="b1-n">
+            <div class="b1-text">{{item.Text | uppercase}}</div>
+            <button class="b1-btn">{{'vedi di più' | translate}}</button>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </figure>
+    <main class="host-main">
+      <div class="r1" *ngIf="collectionCategories?.length">
+        <div class="t1">{{'La nostra collezione' | translate}}</div>
+        <div class="c1s">
+          <div class="c1" *ngFor="let item of collectionCategories;"
+            [routerLink]="[language, 'product', collectionIdno] | routerLink" [queryParams]="{category: item.idno}">
+            <figure class="c1-n">
+              <img [src]="item.ImgPath">
+              <div class="c1-name">
+                <div class="c1-name-n">{{item.Name | uppercase}}</div>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="r1" *ngIf="materialProducts?.length">
+        <div class="t1">{{'Accessori' | translate}}</div>
+        <div class="p1c">
+          <swiper-container #p1SwiperRef class="p1s" [slidesPerView]="4" [spaceBetween]="20"
+            [breakpoints]="pSwiperBreakpoints">
+            <swiper-slide class="p1" *ngFor="let item of materialProducts;">
+              <product [data]="item" [ltime]="item.LTime"></product>
+            </swiper-slide>
+          </swiper-container>
+          <button class="p1-more-btn ion-activatable" [routerLink]="[language, 'product', materialIdno] | routerLink"
+            [queryParams]="{category: materialIdno}">
+            <ion-ripple-effect></ion-ripple-effect>
+            {{'vedi di più' | translate | uppercase}}
+          </button>
+        </div>
+        <button class="p1-dir-btn prev" *ngIf="p1SwiperEls[0]?.allowSlidePrev" (click)="p1SwiperEls[0].slidePrev();">
+          <ion-icon name="arrow-left"></ion-icon>
+        </button>
+        <button class="p1-dir-btn next" *ngIf="p1SwiperEls[0]?.allowSlideNext" (click)="p1SwiperEls[0].slideNext();">
+          <ion-icon name="arrow-right"></ion-icon>
+        </button>
+      </div>
+      <ng-container *ngFor="let event of events; let index=index;">
+        <ng-container *ngIf="promoProductRef[event.id] as products">
+          <div class="r1" *ngIf="products?.length">
+            <div class="t1">{{event.Name}}</div>
+            <div class="p1c">
+              <swiper-container #p1SwiperRef class="p1s" [slidesPerView]="4" [spaceBetween]="20"
+                [breakpoints]="pSwiperBreakpoints">
+                <swiper-slide class="p1" *ngFor="let item of products;">
+                  <product [data]="item" [ltime]="item.LTime"></product>
+                </swiper-slide>
+              </swiper-container>
+              <button class="p1-more-btn ion-activatable">
+                <ion-ripple-effect></ion-ripple-effect>
+                {{'vedi di più' | translate | uppercase}}
+              </button>
+            </div>
+            <button class="p1-dir-btn prev" *ngIf="p1SwiperEls[index+1]?.allowSlidePrev"
+              (click)="p1SwiperEls[index+1].slidePrev();">
+              <ion-icon name="arrow-left"></ion-icon>
+            </button>
+            <button class="p1-dir-btn next" *ngIf="p1SwiperEls[index+1]?.allowSlideNext"
+              (click)="p1SwiperEls[index+1].slideNext();">
+              <ion-icon name="arrow-right"></ion-icon>
+            </button>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div class="r1">
+        <div class="t1">{{'Video tutorial' | translate | uppercase}}</div>
+        <div class="v1">
+          <div class="v1-n">
+            <video [controls]="!v1VideoEl?.paused" #v1VideoRef>
+              <source src="assets/sources/tutorial.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="v1-btn" (click)="v1VideoEl?.play(); cdRef.detectChanges();" *ngIf="v1VideoEl?.paused">
+              <ion-icon name="video-play"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="r1" *ngIf="insMedias?.length">
+        <div class="t1">{{'Follow us on Instagram' | translate | uppercase}}</div>
+        <div class="m1s">
+          <div class="m1" *ngFor="let item of insMedias;">
+            <a class="m1-n" [href]="item?.permalink" target="_blank">
+              <ng-container *ngIf="item; else m1ElseTempl">
+                <img [src]="item.thumbnail_url ?? item.media_url">
+                <ng-container [ngSwitch]="item.media_type">
+                  <ion-icon *ngSwitchCase="insMediaTypes.VIDEO" name="video-play"
+                    style="font-size: 60px; left: 0; bottom: 0;"></ion-icon>
+                  <ion-icon *ngSwitchCase="insMediaTypes.CAROUSEL_ALBUM" name="album"
+                    style="font-size: 30px;"></ion-icon>
+                </ng-container>
+              </ng-container>
+              <ng-template #m1ElseTempl>
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+              </ng-template>
+            </a>
+          </div>
+        </div>
+        <div class="m1oprs">
+          <button class="m1opr ion-activatable" style="background: var(--ion-color-dark-tint);"
+            *ngIf="insMediaCursorAfter" (click)="onLoadInsMedias()">
+            <ion-ripple-effect></ion-ripple-effect>
+            <div class="m1opr-label" [ngStyle]="{opacity: insMediaInloading ? 0 : 1}">
+              {{'Carica altro' | translate}}
+            </div>
+            <ion-spinner name="circular" [ngStyle]="{opacity: insMediaInloading ? 1 : 0}"></ion-spinner>
+          </button>
+          <button class="m1opr ion-activatable" style="background: #3880CB;">
+            <ion-ripple-effect></ion-ripple-effect>
+            <ion-icon name="ins"></ion-icon>
+            {{'Segui su Instagram' | translate}}</button>
+        </div>
+      </div>
+    </main>
+    <wzz-footer></wzz-footer>
+  </section>
+</ion-content>

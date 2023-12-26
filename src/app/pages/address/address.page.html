@@ -1,0 +1,68 @@
+<ng-container *ngIf="!tabMode; else hostTempl;">
+  <ion-header mode="ios">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="dark" icon="back" [defaultHref]="[language, 'me', 'profile'] | routerLink"
+          *ngIf="!modalMode">
+        </ion-back-button>
+      </ion-buttons>
+      <ion-title mode="ios">{{'Gestione indirizzo' | translate}}</ion-title>
+      <ion-buttons slot="end">
+        <button class="modal-back-btn" (click)="onClose()" *ngIf="modalMode">
+          <ion-icon name="close"></ion-icon>
+        </button>
+        <button class="modal-back-btn" (click)="onDetail()" *ngIf="!modalMode">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ng-container *ngTemplateOutlet="hostTempl;">
+    </ng-container>
+  </ion-content>
+  <ion-footer mode="ios" *ngIf="modalMode">
+    <footer class="wzz-footer">
+      <button class="wzz-footer-btn" (click)="onDetail()">{{'Aggiungi indirizzo' | translate}}</button>
+    </footer>
+  </ion-footer>
+</ng-container>
+
+<ng-template #hostTempl>
+  <section class="host" *ngIf="visible">
+    <header class="host-header">
+      <div class="t1">{{'Gestione indirizzo' | translate}}</div>
+      <button class="new-btn" (click)="onDetail()">{{'Aggiungi indirizzo' | translate}}</button>
+    </header>
+    <main class="host-main">
+      <ion-radio-group class="a1s" [(ngModel)]="defaultId" *ngIf="data?.length; else emptyTempl;">
+        <div class="a1" *ngFor="let item of data; let index=index;" (click)="onClick(item)">
+          <div class="a1-n1">
+            <div class="a1-name">{{item.NameCn}}</div>
+            <div *ngIf="item.Phone as phone">{{phone}}</div>
+            <div *ngIf="item.Email as email">{{email}}</div>
+            <div class="a1-address" *ngIf="!!item.City">
+              {{item.Address+", "+item.City+" "+item.Zip+" "+item.Province}}
+            </div>
+          </div>
+          <div class="a1-n2">
+            <div class="a1-radio" (click)="$event.stopPropagation(); onChangeDefault(item.id)">
+              <ion-radio mode="md" color="dark" [value]="item.id"></ion-radio>
+              <div class="a1-radio-label">{{'Indirizzo predefinito' | translate}}</div>
+            </div>
+            <div class="a1-oprs">
+              <button class="a1-opr remove" (click)="$event.stopPropagation(); onRemove(item, index)">{{'Rimuove' |
+                translate}}</button>
+              <button class="a1-opr edit" (click)="$event.stopPropagation(); onDetail(item)">{{'Modifica' |
+                translate}}</button>
+            </div>
+          </div>
+        </div>
+      </ion-radio-group>
+    </main>
+  </section>
+</ng-template>
+
+<ng-template #emptyTempl>
+  <empty></empty>
+</ng-template>

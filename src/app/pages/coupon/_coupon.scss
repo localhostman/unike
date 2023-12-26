@@ -1,0 +1,99 @@
+.c1s {
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--wzz-spacing-x-xxl) 0 var(--wzz-spacing-x-xxl) 0;
+    margin-right: calc(var(--wzz-spacing-3-4xl) * -1);
+}
+
+.c1 {
+    --border-color: rgba(255, 54, 54, 0.3);
+
+    padding: var(--wzz-spacing-x-xxl) var(--wzz-spacing-3-4xl) var(--wzz-spacing-x-xxl) 0;
+
+    @media (min-width: #{$wzz-width-md}) {
+        flex: 0 0 33.33%;
+    }
+
+    @media (min-width: #{$wzz-width-sm}) and (max-width: #{$wzz-width-md}) {
+        flex: 0 0 50%;
+    }
+
+    @media (max-width: #{$wzz-width-sm}) {
+        flex: 0 0 100%;
+    }
+
+    &.expired {
+        filter: grayscale(1);
+    }
+
+    &.selected {
+        --border-color: var(--ion-color-danger);
+    }
+
+    &-n1 {
+        position: relative;
+        min-height: 120px;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 100%;
+            padding-top: 42%;
+        }
+    }
+
+    &-n2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: var(--wzz-spacing-xxl) var(--wzz-spacing-3xl);
+        background: #fff6f4;
+        border: 1px solid var(--border-color);
+    }
+
+    &-bonus {
+        font-size: 21px;
+        font-weight: 500;
+        color: var(--ion-color-danger);
+    }
+
+    &-moa {
+        color: var(--ion-color-danger);
+        margin-top: 4px;
+        font-size: 12px;
+    }
+
+    &-date {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        color: var(--ion-color-dark-tint);
+        font-size: 12px;
+    }
+
+    &-circle {
+        --size: 14px;
+        position: absolute;
+        top: calc(var(--size) * 2);
+        bottom: 0;
+        margin: auto 0;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        border: 1px solid var(--border-color);
+        z-index: 1;
+        background: #fff;
+
+        &.start {
+            left: calc(var(--size) * -0.5);
+        }
+        &.end {
+            right: calc(var(--size) * -0.5);
+        }
+    }
+}

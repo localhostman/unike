@@ -1,0 +1,15 @@
+.i1s {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-top: calc(var(--wzz-spacing-xxl) * -1);
+}
+
+.i1 {
+    &-el {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        margin: var(--wzz-spacing-xxl) 0 0 var(--wzz-spacing-xxl);
+    }
+}

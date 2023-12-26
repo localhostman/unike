@@ -1,0 +1,33 @@
+@import "src/app/fw/styles/_image";
+@import "./_product";
+@import "./_opr";
+
+ion-toolbar {
+    --min-height: 60px;
+}
+
+product-prop {
+    border-top: 1px solid var(--ion-color-light-shade);
+    padding-top: var(--wzz-spacing-3-4xl);
+    margin-top: var(--wzz-spacing-3-4xl);
+}
+
+.header {
+    display: flex;
+    border-bottom: 1px solid var(--ion-color-light);
+}
+
+.host {
+    padding: 0 var(--wzz-spacing-3-4xl);
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    font-size: var(--wzz-font-size-lg);
+    padding: var(--wzz-spacing-xxl) var(--wzz-spacing-3-4xl);
+}
+
+.sum {
+    margin-right: var(--wzz-spacing-3-4xl);
+}

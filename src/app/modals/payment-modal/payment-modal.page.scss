@@ -1,0 +1,32 @@
+:host {
+    @import "src/app/fw/styles/_container";
+    @import "src/app/fw/styles/_hover";
+
+    font-size: var(--wzz-font-size-lg);
+    --wzz-max-width: 330px;
+
+    @import "./payment";
+
+    #paypal-btn {
+        width: 100%;
+        margin-top: var(--wzz-spacing-4xl);
+    }
+    #wxpay-btn {
+        width: 100%;
+        margin: var(--wzz-spacing-4xl) 0 0 0;
+        height: 44px;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: 500;
+        background: #00c800;
+        @include hover {
+            background-color: #00a300;
+        }
+    }
+
+    .qrcode-el {
+        width: 256px;
+        height: 256px;
+        margin: 4px;
+    }
+}

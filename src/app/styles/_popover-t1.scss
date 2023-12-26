@@ -1,0 +1,19 @@
+.popover-t1 {
+    --width: 220px;
+    --ion-item-border-color: var(--ion-color-light);
+    --ion-color-step-100: transparent;
+    font-size: 14px;
+
+    ion-item {
+        --background-focused: #fff;
+        --background-hover: #fff;
+        ion-radio {
+            border-bottom: 1px solid var(--ion-color-light-shader);
+        }
+        &:last-of-type {
+            ion-radio {
+                border-bottom-style: none;
+            }
+        }
+    }
+}

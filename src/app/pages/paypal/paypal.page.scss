@@ -1,0 +1,14 @@
+:host {
+    @import "src/app/fw/styles/_container";
+    @import "src/app/fw/styles/_hover";
+
+    font-size: var(--wzz-font-size-lg);
+    --wzz-max-width: 330px;
+
+    @import "./payment";
+
+    #paypal-btn {
+        width: 100%;
+        margin-top: var(--wzz-spacing-4xl);
+    }
+}

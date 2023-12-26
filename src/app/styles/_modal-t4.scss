@@ -1,0 +1,9 @@
+.modal-t4 {
+    @extend %modal;
+
+    --width: 100%;
+    --max-width: 600px;
+    --height: 75vh;
+    --max-height: 480px;
+    --backdrop-opacity: 0.3 !important;
+}

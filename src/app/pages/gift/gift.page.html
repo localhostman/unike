@@ -1,0 +1,17 @@
+<ion-header mode="ios" collapse="fade">
+  <wzz-header [title]="'Omaggi' | translate" [defaultHref]="[language, 'home'] | routerLink"></wzz-header>
+</ion-header>
+<ion-content #content class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <div class="host-inner">
+      <header class="host-header">
+        <div class="t1">{{'Elenco degli omaggi' | translate}}</div>
+      </header>
+      <div class="p1s">
+        <product class="p1" *ngFor="let item of data;" [data]="item" [ltime]="item.LTime" [asGift]="true"></product>
+      </div>
+    </div>
+    <wzz-footer></wzz-footer>
+  </section>
+</ion-content>

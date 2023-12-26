@@ -1,0 +1,40 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <header class="header">
+      <div class="header-text" *ngIf="header">{{header}}</div>
+      <search class="search-el" [placeholder]="searchPlaceholder | translate" (wzzSearch)="onSearch($event)"></search>
+    </header>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <cdk-virtual-scroll-viewport appendOnly class="ion-content-scroll-host" [itemSize]="itemHeight" [minBufferPx]="itemHeight*10"
+    [maxBufferPx]="itemHeight*14"> 
+    <div class="item" *cdkVirtualFor="let option of filteredOptions; let index=index; trackBy: trackByFn"
+      (click)="onSelect(option)" [class.checked]="option.value==selectedItem?.value" [ngStyle]="{height: itemHeight+'px'}">
+      <div class="item-inner">
+        <div class="item-label">{{option.text}}</div>
+        <div class="item-icon">
+          <div class="item-icon-inner"></div>
+        </div>
+      </div>
+    </div>
+  </cdk-virtual-scroll-viewport>
+  <!-- <ul class="list">
+      <li class="item" *ngFor="let item of filteredData;" (click)="onSelect(item)"
+        [class.checked]="item.value==selectedItem?.value">
+        <div class="item-inner">
+          <div class="item-label">{{item.text}}</div>
+          <div class="item-icon">
+            <div class="item-icon-inner"></div>
+          </div>
+        </div>
+      </li>
+    </ul> -->
+</ion-content>
+<ion-footer mode="ios">
+  <footer class="button-group">
+    <button class="button" (click)="onCancel()">{{cancelText}}</button>
+    <button class="button" (click)="onSubmit()">{{okText}}</button>
+  </footer>
+</ion-footer>

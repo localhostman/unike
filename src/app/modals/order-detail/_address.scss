@@ -1,0 +1,14 @@
+.a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: calc(var(--wzz-spacing-lg) * -1);
+
+    &-p {
+        margin-bottom: var(--wzz-spacing-lg);
+    }
+    &-e {
+        margin-top: var(--wzz-spacing-xl);
+        font-weight: 500;
+    }
+}

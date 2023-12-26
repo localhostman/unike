@@ -1,0 +1,44 @@
+* {
+    outline: none;
+}
+
+:host {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    padding: 0 var(--wzz-spacing-xxl);
+    background: #f0f0f0;
+    cursor: text;
+}
+
+.icon {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-right: var(--wzz-spacing-md);
+}
+.el {
+    border-style: none;
+    font-size: 14px;
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+    }
+    &::placeholder {
+        color: #999;
+    }
+    &:focus {
+        &::placeholder {
+            color: transparent !important;
+        }
+    }
+}

@@ -1,0 +1,7 @@
+@mixin hover {
+    .plt-desktop & {
+        &:hover {
+            @content;
+        }
+    }
+}

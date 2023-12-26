@@ -1,0 +1,182 @@
+<ion-header mode="ios" collapse="fade">
+  <wzz-header [title]="'Carrello' | translate" [defaultHref]="[language, 'home'] | routerLink"
+    [topLevel]="true"></wzz-header>
+</ion-header>
+<ion-content #content class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <div class="host-inner">
+      <div class="t1">{{'il mio carrello' | translate | uppercase}}</div>
+      <div class="t2"
+        [innerHTML]="'Aggiungi M per sbloccare la spedizione gratuita' | translate: {m: (dExt.diffAmount>0 ? dExt.diffAmount : 0)  | currency: 'EUR'}">
+      </div>
+      <div class="host-main">
+        <ng-container *ngIf="data?.length; else emptyTempl;">
+          <ng-container *ngIf="resizeExt.isLG; else ltLGCartsTempl;">
+            <ng-container *ngTemplateOutlet="gtLGCartsTempl;">
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <aside class=" host-right" *ngIf="resizeExt.isLG">
+          <div class="t3">{{'Riepilogo' | translate}}</div>
+          <div class="s1c">
+            <div class="s1s">
+              <div class="s1">
+                <div class="s1-label">{{'Quantità' | translate}}</div>
+                <div class="s1-value">{{dExt.totalQuantity | number}}</div>
+              </div>
+              <div class="s1">
+                <div class="s1-label">{{'Subtotale' | translate}}</div>
+                <div class="s1-value">{{dExt.oAmount | currency: 'EUR'}}</div>
+              </div>
+            </div>
+            <div class="s1" style="font-size: var(--wzz-font-size-xl); font-weight: 500;">
+              <div class="s1-label">{{'Totale' | translate}}</div>
+              <div class="s1-value">{{dExt.amount | currency: 'EUR'}}</div>
+            </div>
+            <div class="s1" style="color: var(--ion-color-warning);">
+              <div class="s1-label">{{'Risparmi' | translate}}</div>
+              <div class="s1-value">{{(dExt.oAmount-dExt.amount) | currency: 'EUR'}}</div>
+            </div>
+            <div style="flex: 1;"></div>
+            <button class="checkout-btn ion-activatable" (click)="onCheckout()">
+              <ion-ripple-effect></ion-ripple-effect>
+              {{'Checkout' | translate | uppercase}}
+            </button>
+          </div>
+          <div class="p1c">
+            <div class="p1c-t">{{'Accettiamo' | translate}}</div>
+            <div class="p1s">
+              <img class="p1" src="assets/imgs/mastercard.png">
+              <img class="p1" src="assets/imgs/visa.png">
+              <img class="p1" src="assets/imgs/paypal.png">
+              <img class="p1" src="assets/imgs/postepay.png">
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</ion-content>
+<ion-footer mode="ios" *ngIf="!resizeExt.isLG">
+  <footer class="footer">
+    <div class="footer-c1">
+      <div>
+        <span style="margin-right: 12px;">{{'Quantità' | translate}}: {{dExt.totalQuantity | number}}</span>
+        <span>{{'Subtotale' | translate}}: {{dExt.oAmount | currency: 'EUR'}}</span>
+      </div>
+      <div style="margin-top: 4px;">
+        <span style="font-size: var(--wzz-font-size-lg); font-weight: 500; margin-right: 6px;">
+          {{'Totale' | translate}}: {{dExt.amount | currency: 'EUR'}}
+        </span>
+        <span style="color: var(--ion-color-warning);">
+          {{'Risparmi' | translate}}: {{(dExt.oAmount-dExt.amount) | currency: 'EUR'}}
+        </span>
+      </div>
+    </div>
+    <button class="footer-btn ion-activatable" (click)="onCheckout()">
+      <ion-ripple-effect></ion-ripple-effect>
+      {{'Checkout' | translate | uppercase}}
+    </button>
+  </footer>
+</ion-footer>
+
+<ng-template #emptyTempl>
+  <empty></empty>
+</ng-template>
+
+<ng-template #gtLGCartsTempl>
+  <table class="c1s">
+    <thead>
+      <tr>
+        <th style="width: var(--image-size);">{{'Prodotto' | translate}}</th>
+        <th></th>
+        <th>{{'Prezzo' | translate}}</th>
+        <th>{{'Quantità' | translate}}</th>
+        <th style="width: 140px;">{{'Totale' | translate}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="c1" *ngFor="let item of data;">
+        <td>
+          <img class="c1-image-el" [src]="item.ImgPath">
+        </td>
+        <td style="width: 30%;">
+          <div class="c1-c1">
+            <div class="c1-name">{{item.Name}}</div>
+            <div class="c1-note" *ngIf="item.Note as val">[ {{val}} ]</div>
+            <button class="c1-remove" (click)="onRemove(item)">
+              <ion-icon name="remove"></ion-icon>
+              {{'Rimuove' | translate}}
+            </button>
+          </div>
+        </td>
+        <td>
+          <div class="c1-price">
+            <span class="new">
+              {{(item.Discount ? (1-item.Discount)*item.Price : item.Price) | currency : 'EUR'}}
+              <span class="um">/ {{item.UM | translate}}</span>
+            </span>
+            <span class="old" *ngIf="item.Discount">{{item.Price | currency: 'EUR'}}</span>
+          </div>
+        </td>
+        <td>
+          <div class="c1-qt">
+            <div class="c1-qt-n">
+              <ion-icon name="cart-remove" (click)="onChangeQuantity(item, -item.PackQuantity)"></ion-icon>
+              <div class="c1-qt-input" (click)="onInsertQuantity(item)">{{item.Quantity | number}}</div>
+              <ion-icon name="cart-add" (click)="onChangeQuantity(item, item.PackQuantity)"></ion-icon>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="c1-price">
+            <span class="new">
+              {{item.Total | currency : 'EUR'}}
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #ltLGCartsTempl>
+  <div class="c1s">
+    <div class="c1" *ngFor="let item of data;">
+      <div class="c1-n1">
+        <img class="c1-image-el" [src]="item.ImgPath">
+        <div class="c1-c1">
+          <div class="c1-name">{{item.Name}}</div>
+          <div class="c1-note" *ngIf="item.Note as val">[ {{val}} ]</div>
+          <div class="c1-price">
+            <span class="new">
+              {{(item.Discount ? (1-item.Discount)*item.Price : item.Price) | currency : 'EUR'}}
+              <span class="um">/ {{item.UM | translate}}</span>
+            </span>
+            <span class="old" *ngIf="item.Discount">{{item.Price | currency: 'EUR'}}</span>
+          </div>
+          <button class="c1-remove" (click)="onRemove(item)">
+            <ion-icon name="remove"></ion-icon>
+            {{'Rimuove' | translate}}
+          </button>
+        </div>
+      </div>
+      <div class="c1-n2">
+        <div class="c1-price">
+          {{'Totale' | translate}}:
+          <span class="new">
+            {{item.Total | currency : 'EUR'}}
+          </span>
+        </div>
+        <div class="c1-qt">
+          <div class="c1-qt-n">
+            <ion-icon name="cart-remove" (click)="onChangeQuantity(item, -item.PackQuantity)"></ion-icon>
+            <div class="c1-qt-input" (click)="onInsertQuantity(item)">{{item.Quantity | number}}</div>
+            <ion-icon name="cart-add" (click)="onChangeQuantity(item, item.PackQuantity)"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

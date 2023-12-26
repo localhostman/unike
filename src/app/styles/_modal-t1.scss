@@ -1,0 +1,9 @@
+.modal-t1 {
+    @extend %modal;
+
+    --width: 100%;
+    --max-width: 600px;
+    --height: 75vh;
+    --max-height: 740px;
+    --backdrop-opacity: 0.3 !important;
+}

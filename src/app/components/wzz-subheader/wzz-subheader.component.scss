@@ -1,0 +1,13 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_container";
+
+.r1 {
+    font-size: var(--wzz-font-size-lg);
+    color: #fff;
+    background: var(--ion-color-dark);
+    &-n {
+        @include container;
+        justify-content: center;
+        padding: var(--wzz-spacing-xxl) var(--wzz-spacing-xxl);
+    }
+}

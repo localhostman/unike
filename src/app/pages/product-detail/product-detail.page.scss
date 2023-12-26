@@ -1,0 +1,35 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_image";
+@import "src/app/fw/styles/_container";
+
+@import "./_open-app";
+@import "./_cur-product";
+@import "./_product";
+@import "./_quantity";
+@import "./_opr";
+@import "./_gift";
+@import "./_payment";
+@import "./_shipping";
+@import "./_description";
+
+.host {
+    font-size: var(--wzz-font-size-lg);
+    color: var(--ion-color-dark);
+    &-inner {
+        @include container;
+        flex-direction: column;
+
+        @media (min-width: #{$wzz-width-lg}) {
+            padding: var(--wzz-spacing-3-4xl) 0 var(--wzz-spacing-6-7xl);
+        }
+        @media (max-width: #{$wzz-width-lg}) {
+            padding: 0 0 var(--wzz-spacing-6-7xl);
+        }
+    }
+}
+
+product-prop {
+    border-top: 1px solid var(--ion-color-light-shade);
+    margin-top: var(--wzz-spacing-5xl);
+    padding-top: var(--wzz-spacing-5xl);
+}

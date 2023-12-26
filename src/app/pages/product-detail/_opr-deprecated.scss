@@ -1,0 +1,88 @@
+.opr {
+    display: flex;
+    align-items: center;
+
+    height: 38px;
+
+    @media (min-width: #{$wzz-width-sm+1}) {
+        width: 340px;
+    }
+    @media (max-width: #{$wzz-width-sm}) {
+        width: 100%;
+    }
+
+    &-inner {
+        display: inline-flex;
+    }
+    &-label {
+        flex: 1;
+        font-weight: 500;
+        margin-right: var(--wzz-spacing-xxl);
+    }
+    &-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+
+        &.add {
+            color: #fff;
+            background: var(--ion-color-dark);
+        }
+
+        &.remove {
+            color: var(--ion-color-dark);
+            background: var(--ion-color-light-shade);
+        }
+
+        > ion-icon {
+            font-size: 21px;
+        }
+    }
+    &-input {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 60px;
+        font-size: var(--wzz-font-size-lg);
+        font-weight: 500;
+        padding: 0 var(--wzz-spacing-xl);
+        border-style: none;
+        background: var(--ion-color-light);
+        cursor: pointer;
+    }
+    &-tocart,
+    &-toaudit,
+    &-unmailable {
+        flex: 1;
+        height: 100%;
+        color: #fff;
+        user-select: none;
+    }
+    &-tocart {
+        background: var(--ion-color-dark);
+    }
+    &-toaudit {
+        background: var(--ion-color-danger);
+    }
+    &-unmailable {
+        pointer-events: none;
+        background: var(--ion-color-medium);
+    }
+    &-view-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        margin-left: var(--wzz-spacing-xxl);
+        border: 1px solid var(--ion-color-light-shade);
+        color: var(--ion-color-medium-shade);
+        background: var(--ion-color-light-tint);
+        > ion-icon {
+            font-size: 26px;
+        }
+    }
+}

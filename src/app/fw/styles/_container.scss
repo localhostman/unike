@@ -1,0 +1,6 @@
+@mixin container($marginTop: 0, $marginBottom: 0) {
+  display: flex;
+  width: var(--wzz-max-width);
+  max-width: 100%;
+  margin: $marginTop auto $marginBottom;
+}

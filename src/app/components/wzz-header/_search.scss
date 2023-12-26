@@ -1,0 +1,31 @@
+.s1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    &-n {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 0 var(--wzz-spacing-xxl);
+        background: var(--ion-color-light);
+    }
+    &-icon {
+        font-size: 24px;
+    }
+    &-el {
+        flex: 1;
+        height: 40px;
+        padding: 0 var(--wzz-spacing-xxl);
+        border-style: none;
+        background: transparent;
+    }
+    &-close {
+        color: var(--ion-color-medium);
+        font-size: 20px;
+        padding: var(--wzz-spacing-xxl);
+        cursor: pointer;
+    }
+}

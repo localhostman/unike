@@ -1,0 +1,98 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start" [ngStyle]="{opacity: b1SwiperEl?.activeIndex ? 1 : 0}">
+      <button class="modal-back-btn" (click)="onSwipeTo(0)">
+        <ion-icon name="arrow-left"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">{{'Creazione reso' | translate | uppercase}}</ion-title>
+    <ion-buttons slot="end">
+      <button class="modal-back-btn" (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section class="host" *ngIf="visible">
+    <swiper-container #b1SwiperRef> 
+      <swiper-slide>
+        <div class="t1">{{'create_return_text_1' | translate}}</div>
+        <div class="p2s">
+          <div class="p2" *ngFor="let item of products;">
+            <img class="p2-image-el" [src]="item.ImgPath">
+            <div class="p2-c1">
+              <div>{{item.Name}}</div>
+              <div class="p2-note" *ngIf="item.Note as note">[ {{note}} ]</div>
+              <div>{{(item.Price*(1-item.Discount)) | currency: 'EUR'}}</div>
+              <div>{{'Quantità' | translate}}: {{item.Quantity}}</div>
+            </div>
+            <div class="p2-qt">
+              <div class="p2-qt-label">{{'Quantità reso' | translate}}: </div>
+              <input type="number" class="p2-qt-el" [ngModel]="item.RefundQuantity"
+                (change)="onChangeRefundQuantity($event, item)">
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="form" [formGroup]="form">
+          <div class="t2">{{'create_return_text_2' | translate}}</div>
+          <div class="prop">
+            <div class="select">
+              <div class="select-label required">{{'Motivazione' | translate}}:</div>
+              <ion-select class="select-el" formControlName="Reason" interface="popover"
+                [interfaceOptions]="{cssClass: 'popover-t1'}" [placeholder]="'Seleziona un motivo' | translate">
+                <ion-select-option value="return_reason_1">
+                  {{'return_reason_1' | translate}}
+                </ion-select-option>
+                <ion-select-option value="return_reason_2">
+                  {{'return_reason_2' | translate}}
+                </ion-select-option>
+                <ion-select-option value="return_reason_3">
+                  {{'return_reason_3' | translate}}
+                </ion-select-option>
+              </ion-select>
+            </div>
+          </div>
+          <div class="prop">
+            <div class="textarea">
+              <div class="textarea-label">{{'Nota' | translate}}:</div>
+              <textarea class="textarea-el" formControlName="Note"
+                [placeholder]="'Scrive la nota' | translate"></textarea>
+            </div>
+          </div>
+          <div class="prop">
+            <div class="files-label required">{{'Foto da allegare' | translate}}:</div>
+            <div class="files">
+              <div class="file" *ngFor="let item of images; let index=index;" (click)="onDoImage(index)">
+                <figure class="file-image">
+                  <img [src]="item.ImgPath">
+                </figure>
+              </div>
+              <div class="file">
+                <figure class="file-image">
+                  <img src="assets/imgs/upload-image.jpg">
+                  <input type="file" multiple="multiple" accept="image/jpeg" (change)="onAddImage($event)" />
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </section>
+</ion-content>
+<ion-footer mode="ios">
+  <footer class="footer">
+    <div class="sums">
+      <div>{{'Prodotti' | translate}}: {{num}}</div>
+      <div>{{'Quantità' | translate}}: {{quantity}}</div>
+      <div>{{'Valore Totale' | translate}}: {{amount | currency: 'EUR'}}</div>
+    </div>
+    <ng-container [ngSwitch]="b1SwiperEl?.activeIndex">
+      <button class="submit-btn" (click)="onSwipeTo(1)" *ngSwitchDefault>{{'Procedi' | translate}}</button>
+      <button class="submit-btn" (click)="onSubmit()" *ngSwitchCase="1">{{'Invia richiesta' | translate}}</button>
+    </ng-container>
+  </footer>
+</ion-footer>

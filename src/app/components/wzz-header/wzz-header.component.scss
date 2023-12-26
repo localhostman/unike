@@ -1,0 +1,59 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_container";
+
+@import "./_media";
+@import "./_contact";
+@import "./_link";
+@import "./_opr";
+@import "./_category";
+@import "./_search";
+
+:host {
+    display: block;
+    background: #fff;
+}
+
+.r1 {
+    font-size: var(--wzz-font-size-md);
+    background: var(--ion-color-light-shader);
+    &-n {
+        @include container;
+        position: relative;
+        align-items: center;
+        height: 32px;
+        padding: 0 var(--wzz-spacing-3-4xl);
+
+        @media (min-width: #{$wzz-max-width}) {
+            left: calc(var(--scrollbar-width) / -2);
+        }
+    }
+}
+
+.t1 {
+    flex: 1;
+    text-align: center;
+    margin: 0 var(--wzz-spacing-xxl);
+}
+
+.r2 {
+    font-size: var(--wzz-font-size-lg);
+    &-n {
+        @include container;
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 var(--wzz-spacing-3-4xl);
+
+        @media (min-width: #{$wzz-max-width}) {
+            left: calc(var(--scrollbar-width) / -2);
+        }
+
+        @media (min-width: #{$wzz-width-md}) {
+            height: 80px;
+        }
+        @media (max-width: #{$wzz-width-md}) {
+            height: 64px;
+        }
+    }
+}

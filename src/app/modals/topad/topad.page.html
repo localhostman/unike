@@ -1,0 +1,30 @@
+<ion-content>
+  <button class="close-btn" (click)="onClose()">
+    <ion-icon name="close"></ion-icon>
+  </button>
+  <div class="a">
+    <div class="a-r1">
+      <img src="assets/imgs/ad-header.jpg">
+    </div>
+    <div class="a-r2">{{'Ciao, benvenuti nel sito fasunidy' | translate}}</div>
+    <div class="a-ps">
+      <div class="a-p" *ngIf="event">
+        <div class="a-p-title">
+          {{'Sconto D' | translate: {d:
+          (event.Bonus>=1 ?
+          (event.Bonus | currency: 'EUR') :
+          (event.Bonus | percent)
+          ) } }}
+        </div>
+        <div class="a-p-text">{{'topad_event_text_1' | translate}}</div>
+      </div>
+      <div class="a-p" *ngIf="d">
+        <div class="a-p-title">
+          {{'Spedizione gratuito' | translate}}
+        </div>
+        <div class="a-p-text">{{'topad_ship_text_1' | translate: {a: d.MinimumOrderAmount | currency: 'EUR'} }}</div>
+      </div>
+    </div>
+    <button class="a-btn" (click)="onSubmit()">{{'Registra ora' | translate | uppercase}}</button>
+  </div>
+</ion-content>

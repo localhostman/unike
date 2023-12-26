@@ -1,0 +1,35 @@
+.p1c {
+    &-h {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--wzz-spacing-3-4xl);
+        height: 42px;
+    }
+}
+
+.p1s {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: #{$wzz-width-lg}) {
+        padding: var(--wzz-spacing-xxl);
+    }
+    @media (max-width: #{$wzz-width-lg}) {
+        padding: var(--wzz-spacing-lg) var(--wzz-spacing-lg);
+    }
+}
+
+.p1 {
+    flex: 0 0 var(--pro-flex-basis);
+    @media (min-width: #{$wzz-width-lg}) {
+        padding: var(--wzz-spacing-xxl) var(--wzz-spacing-x-xxl);
+    }
+    @media (max-width: #{$wzz-width-lg}) {
+        padding: var(--wzz-spacing-lg);
+    }
+}

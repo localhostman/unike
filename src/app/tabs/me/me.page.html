@@ -1,0 +1,61 @@
+<ion-content #content class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <div class="host-inner">
+      <ng-container *ngIf="resizeExt.isLG; else ltLGTempl;">
+        <aside class="host-left">
+          <div class="m1c">
+            <div class="m1c-t">{{'Mio Account' | translate | uppercase}}</div>
+            <div class="m1s">
+              <div class="m1" [routerLink]="[language, 'me', 'profile'] | routerLink" routerLinkActive="active">
+                {{'Mio profilo' | translate}}</div>
+              <div class="m1" [routerLink]="[language, 'me', 'order'] | routerLink" routerLinkActive="active">
+                {{'Gestione ordine' | translate}}</div>
+              <div class="m1" [routerLink]="[language, 'me', 'address'] | routerLink" routerLinkActive="active">
+                {{'Gestione indirizzo' | translate}}
+              </div>
+              <div class="m1" [routerLink]="[language, 'me', 'coupon'] | routerLink" routerLinkActive="active">
+                {{'Gestione coupon' | translate}}</div>
+              <!-- <div class="m1">{{'Cambia password' | translate}}</div> -->
+              <div class="m1" (click)="onLogout()">{{'Logout' | translate}}</div>
+            </div>
+          </div>
+        </aside>
+        <div class="host-main">
+          <ion-router-outlet [animated]="false"></ion-router-outlet>
+        </div>
+      </ng-container>
+    </div>
+  </section>
+</ion-content>
+
+<ng-template #ltLGTempl>
+  <aside class="host-menu">
+    <div class="a1">
+      <img class="a1-avatar-el" [src]="me?.Logo ?? defaultAvatar" (error)="onImgError($event)">
+      <div class="a1-n">
+        <div class="a1-name">{{'Benvenuto, N' | translate: {n: me?.NickName} }}</div>
+        <div class="a1-email" *ngIf="me?.Email as email">{{email}}</div>
+      </div>
+    </div>
+    <div class="m2c">
+      <div class="m2c-t">{{'Mio Account' | translate | uppercase}}</div>
+      <div class="m2s">
+        <div class="m2" [routerLink]="[language, 'profile'] | routerLink">
+          {{'Mio profilo' | translate}}
+        </div>
+        <div class="m2" [routerLink]="[language, 'order'] | routerLink">
+          {{'Gestione ordine' | translate}}
+        </div>
+        <div class="m2" [routerLink]="[language, 'address'] | routerLink">
+          {{'Gestione indirizzo' | translate}}
+        </div>
+        <div class="m2" [routerLink]="[language, 'coupon'] | routerLink">
+          {{'Gestione coupon' | translate}}
+        </div>
+        <!-- <div class="m1">{{'Cambia password' | translate}}</div> -->
+        <div class="m2" (click)="onLogout()">{{'Logout' | translate}}</div>
+      </div>
+    </div>
+  </aside>
+</ng-template>

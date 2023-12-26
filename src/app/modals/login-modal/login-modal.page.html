@@ -1,0 +1,71 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-title>
+      <div class="t1">{{'Accedi/Registrati' | translate | uppercase}}</div>
+      <div class="t2" *ngIf="event">{{'-D da M d\'acquisto sul primo ordine' | translate: {
+        m: event.Moa | currency: 'EUR',
+        d: (event.Bonus>=1 ?
+        (event.Bonus | currency: 'EUR') :
+        (event.Bonus | percent)
+        ) } }}</div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <button class="modal-back-btn" (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="host" *ngIf="visible">
+    <div class="form" [formGroup]="form">
+      <div class="prop">
+        <div class="input">
+          <div class="input-label">{{'Indirizzo email' | translate}}</div>
+          <input class="input-el" formControlName="Email">
+        </div>
+      </div>
+      <div class="prop">
+        <div class="input">
+          <div class="input-label">{{'Codice di verifica' | translate}}</div>
+          <div class="input-el">
+            <input type="number" formControlName="VerifyCode">
+            <button class="input-btn" (click)="onSendVerifyCode()">
+              {{ vcInterval ? vcInterval+'s' : ('Invia codice' | translate)}}
+            </button>
+          </div>
+        </div>
+      </div>
+      <button class="submit-btn" (click)="onLogin()">{{'Continua' | translate | uppercase}}</button>
+    </div>
+    <div class="t1c">
+      <div class="t1c-t">{{'Oppure accedi con' | translate}}</div>
+      <div class="t1s">
+        <img class="t1-el" src="assets/imgs/gg-login.png" (click)="onGGLogin()" *ngIf="loginMethods.GG">
+        <img class="t1-el" src="assets/imgs/fb-login.png" (click)="onFBLogin()" *ngIf="loginMethods.FB">
+      </div>
+    </div>
+  </section>
+  <!-- <section class="login" *ngIf="visible">
+    <figure class="login-image">
+      <img class="login-image-el" [src]="shop.LogoUrl">
+    </figure>
+    <div class="login-title" [translate]="'欢迎使用S'" [translateParams]="{s: shop.Name}"></div>
+    <div class="login-sub-title">{{'点击下方按钮可以进行授权' |translate}}</div>
+    <ng-container *ngIf="!wechat">
+      <ion-button class="login-btn google" shape="round" (click)="onGGLogin()" *ngIf="loginMethods.GG">
+        <img slot="start" class="login-btn-icon" src="assets/imgs/gg.png">
+        <div class="login-btn-inner">{{'谷歌登录' | translate}}</div>
+      </ion-button>
+      <ion-button class="login-btn facebook" shape="round" (click)="onFBLogin()" *ngIf="loginMethods.FB">
+        <img class="login-btn-icon" src="assets/imgs/fb.png">
+        <div class="login-btn-inner">{{'Facebook登录' | translate}}</div>
+      </ion-button>
+    </ng-container>
+    <ion-button class="login-btn wechat" shape="round" (click)="onWXLogin()" *ngIf="loginMethods.WX">
+      <img class="login-btn-icon" src="assets/imgs/wc.png">
+      <div class="login-btn-inner">{{'微信登录' | translate}}</div>
+    </ion-button>
+  </section> -->
+</ion-content>

@@ -1,0 +1,70 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_container";
+@import "src/app/fw/styles/_image";
+@import "./_product";
+
+.host {
+    &-inner {
+        @include container;
+        flex-direction: column;
+
+        @media (min-width: #{$wzz-max-width}) {
+            padding: var(--wzz-spacing-xxl) 0 var(--wzz-spacing-6xl);
+        }
+
+        @media (max-width: #{$wzz-max-width}) {
+            padding: 0 0 var(--wzz-spacing-6xl);
+        }
+    }
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-image: url(/assets/imgs/pages/gift/header.jpg);
+        background-size: cover;
+
+        @media (min-width: #{$wzz-max-width}) {
+            margin: var(--wzz-spacing-4xl) var(--wzz-spacing-3-4xl) var(--wzz-spacing-xxl);
+        }
+
+        @media (max-width: #{$wzz-max-width}) {
+            margin: 0 0 var(--wzz-spacing-xxl);
+        }
+
+        @media (min-width: #{$wzz-width-lg}) {
+            height: 280px;
+        }
+
+        @media (max-width: #{$wzz-width-lg}) {
+            height: 160px;
+        }
+    }
+}
+
+.t1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "trajan", sans-serif;
+    font-weight: 500;
+
+    padding: 0 40px;
+    background: rgba(255, 255, 255, 0.7);
+
+    @media (min-width: #{$wzz-width-lg}) {
+        font-size: 24px;
+        line-height: 70px;
+    }
+
+    @media (min-width: #{$wzz-width-md}) and (max-width: #{$wzz-width-lg}) {
+        font-size: 20px;
+        line-height: 60px;
+    }
+
+    @media (max-width: #{$wzz-width-md}) {
+        font-size: 16px;
+        line-height: 60px;
+    }
+}

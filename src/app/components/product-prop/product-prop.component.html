@@ -1,0 +1,29 @@
+<ng-container *ngIf="visible">
+  <ng-container *ngFor="let group of product.Props;let groupIndex=index;">
+    <div class="i1">
+      <div class="i1-name">{{props[group.idno].Name | uppercase}}</div>
+      <div class="i2s">
+        <ng-container *ngFor="let item of group.Children;">
+          <ng-container *ngIf="props[item.idno] as prop">
+            <button class="i2 ion-activatable" [class.selected]="item.idno==lastPropGroup[groupIndex].idno"
+              (click)="onSelectProp(groupIndex, item)" [ngSwitch]="prop.Type">
+              <ng-container *ngSwitchCase="propTypes.COLOR">
+                <i class="i2-color" style="--background: {{prop.Value}}"></i>
+                <div class="i2-name">
+                  {{prop.Name | uppercase}} {{showPropPrice && !!item.Price ? '+'+(item.Price | currency: 'EUR') : ''}}
+                </div>
+                <ion-ripple-effect [ngStyle]="{color: prop.Value}"></ion-ripple-effect>
+              </ng-container>
+              <ng-container *ngSwitchCase="propTypes.COMMON">
+                <div class="i2-name">
+                  {{prop.Name | uppercase}} {{showPropPrice && !!item.Price ? '+'+(item.Price | currency: 'EUR') : ''}}
+                </div>
+                <ion-ripple-effect></ion-ripple-effect>
+              </ng-container>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

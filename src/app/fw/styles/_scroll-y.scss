@@ -1,0 +1,10 @@
+%scroll-y{
+  overflow-x: hidden;
+  overflow-y: auto;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+  -ms-scroll-chaining: none;
+  overscroll-behavior: contain;
+}
+

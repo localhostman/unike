@@ -1,0 +1,58 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_container";
+@import "src/app/fw/styles/_image";
+@import "./_product";
+
+ion-toolbar {
+    @media (min-width: #{$wzz-width-lg}) {
+        --min-height: 86px;
+    }
+    @media (max-width: #{$wzz-width-lg}) {
+        --min-height: 64px;
+    }
+}
+
+ion-title {
+    padding: 0;
+}
+
+.host {
+    &-inner {
+        @include container;
+        flex-direction: column;
+    }
+}
+
+.t1 {
+    font-size: var(--wzz-font-size-xl);
+    font-weight: 500;
+    font-family: "trajan", sans-serif;
+}
+
+.t2 {
+    font-size: var(--wzz-font-size-lg);
+    font-weight: 400;
+    margin-top: 8px;
+    ::ng-deep {
+        .success {
+            color: var(--ion-color-success);
+            font-weight: 500;
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--wzz-font-size-lg);
+    padding: var(--wzz-spacing-xxl) var(--wzz-spacing-3-4xl);
+    border-top: 1px solid var(--ion-color-light-shade);
+    user-select: none;
+}
+
+.submit-btn {
+    padding: var(--wzz-spacing-xxl) var(--wzz-spacing-3-4xl);
+    color: #fff;
+    background: var(--ion-color-dark);
+}

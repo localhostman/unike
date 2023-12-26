@@ -1,0 +1,26 @@
+.t1c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wzz-spacing-5-6xl);
+
+    &-t {
+    }
+}
+
+.t1s {
+    display: flex;
+    align-items: center;
+    padding: var(--wzz-spacing-lg);
+    margin-bottom: calc(var(--wzz-spacing-xxl) * -1);
+}
+
+.t1-el {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: var(--wzz-spacing-lg);
+    cursor: pointer;
+}

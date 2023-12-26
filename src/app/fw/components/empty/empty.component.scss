@@ -1,0 +1,42 @@
+@import "src/app/fw/styles/_image";
+
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--ion-color-medium);
+  padding: var(--wzz-spacing-8xl) 0;
+}
+
+.image {
+  @extend %image;
+  --height: 100%;
+  width: 76%;
+  max-width: 320px;
+}
+
+.text {
+  margin: var(--wzz-spacing-xxl) var(--wzz-spacing-xxl) 0;
+}
+
+.q {
+  color: #ff8000;
+}
+
+.tip {
+  margin: 0 var(--wzz-spacing-xxl) var(--wzz-spacing-xxl);
+  &-inner {
+    margin-bottom: var(--wzz-spacing-xl);
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.circle-style {
+      display: list-item;
+      list-style-position: inside;
+      list-style-type: circle;
+    }
+  }
+}

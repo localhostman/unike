@@ -1,0 +1,229 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-title mode="md">{{'Checkout' | translate | uppercase}}</ion-title>
+    <ion-buttons slot="end">
+      <button class="modal-back-btn" (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="root-content">
+  <section class="host" *ngIf="visible">
+    <div class="host-inner">
+      <main class="host-main">
+        <div class="b1">
+          <div class="t1">{{'Indirizzo di spedizione' | translate}}</div>
+          <ng-container *ngIf="dExt.needAddress; else else2Templ;">
+            <nav class="a" (click)="onGotoAddress()">
+              <ng-container *ngIf="address; else elseTempl;">
+                <ion-icon class="a-icon" name="location"></ion-icon>
+                <div class="a-n1">
+                  <div class="a-p" style="font-weight: 500;">{{address.NameCn}}</div>
+                  <div class="a-p" *ngIf="address.Phone as phone">{{phone}}</div>
+                  <div class="a-p" *ngIf="!!address.PIva">
+                    <span class="a-p-label">P.IVA: </span>{{address.PIva}}
+                  </div>
+                  <div class="a-p" *ngIf="!!address.CF">
+                    <span class="a-p-label">C.F.: </span>{{address.CF}}
+                  </div>
+                  <div class="a-p" style="color: var(--ion-color-medium);" *ngIf="!!address.City">
+                    {{address.Address+", "+address.City+" "+address.Zip+" "+address.Province}}
+                  </div>
+                </div>
+                <div class="a-arrow">
+                  {{'Modifica' | translate}}
+                  <ion-icon name="arrow-right"></ion-icon>
+                </div>
+              </ng-container>
+              <ng-template #elseTempl>
+                <div class="a-n2">
+                  <ion-icon class="a-icon" name="location"></ion-icon>
+                  <div class="a-e">{{'+ Aggiungi Indirizzo' | translate}}</div>
+                </div>
+              </ng-template>
+            </nav>
+          </ng-container>
+        </div>
+        <div class="b1" *ngIf="dExt.deliveryMethod as deliveryMethod">
+          <div class="t1">{{'Modalità di trasporto' | translate}}</div>
+          <ion-radio-group class="r1s" [(ngModel)]="deliveryMethod.id">
+            <div class="r1">
+              <div class="r1-n">
+                <ion-radio mode="md" color="dark" [value]="deliveryMethod.id"></ion-radio>
+                <div class="r1-label">{{deliveryMethod.Name}}</div>
+              </div>
+              <div class="r1-note" *ngIf="deliveryMethod.Detail as detail">({{detail}})</div>
+            </div>
+          </ion-radio-group>
+        </div>
+        <div class="b1">
+          <div class="t1">{{'Nota di cliente' | translate}}</div>
+          <textarea class="n1-el" [placeholder]="'Scrivere una nota (facoltativa)' | translate"
+            [(ngModel)]="note"></textarea>
+        </div>
+        <div class="c1s" *ngIf="!resizeExt.isLG">
+          <ng-container *ngTemplateOutlet="couponTempl">
+          </ng-container>
+        </div>
+        <div class="b1" *ngIf="vCarts?.length">
+          <ng-container
+            *ngTemplateOutlet="cartsTempl; context: {$implicit: vCarts, title: 'Riepilogo Dell\'ordine', amount: vAmount}">
+          </ng-container>
+        </div>
+        <div class="b1" *ngIf="nvCarts?.length">
+          <ng-container
+            *ngTemplateOutlet="cartsTempl; context: {$implicit: nvCarts, title: '未计入起订量商品', amount: nvAmount}">
+          </ng-container>
+        </div>
+        <div class="b1" *ngIf="gifts?.length">
+          <div class="t1">{{'Elenco degli omaggi' | translate}}</div>
+          <div class="g1s">
+            <div class="g1" *ngFor="let item of gifts;">
+              <figure class="g1-image">
+                <img [src]="item.ImageCount>0 ? item.ImgPath : defaultImage">
+              </figure>
+              <div class="g1-c1">
+                <div class="g1-name">{{item.Name}}</div>
+                <div class="g1-note" *ngIf="item.Note as note">[ {{note}} ]</div>
+                <div class="g1-tag">{{'Gratis' | translate}}</div>
+                <div class="g1-qt">x{{item.Quantity}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngTemplateOutlet="sumTempl; context: {pos: 'main'}">
+        </ng-container>
+      </main>
+      <aside class="host-right" *ngIf="resizeExt.isLG">
+        <ng-container *ngTemplateOutlet="sumTempl; context: {pos: 'right'}">
+        </ng-container>
+        <ng-container *ngTemplateOutlet="couponTempl">
+        </ng-container>
+      </aside>
+    </div>
+  </section>
+</ion-content>
+<ion-footer *ngIf="!resizeExt.isLG">
+  <footer class="footer">
+    <div class="footer-c1">
+      <span>
+        {{'Totale (Iva incluso)' | translate}}:
+      </span>
+      <span style="font-weight: 500; color: var(--ion-color-danger);">
+        {{amountToPay | currency: 'EUR'}}
+      </span>
+    </div>
+    <button class="footer-btn ion-activatable" (click)="onCheckout()">
+      <ion-ripple-effect></ion-ripple-effect>
+      {{'Checkout' | translate | uppercase}}
+    </button>
+  </footer>
+</ion-footer>
+
+<ng-template #cartsTempl let-carts let-amount="amount" let-title="title">
+  <div class="t1">{{title | translate}}</div>
+  <table class="p1s">
+    <tr class="p1" *ngFor="let item of carts;">
+      <td style="width: var(--image-size);">
+        <figure class="p1-image">
+          <img [src]="item.ImageCount>0 ? item.ImgPath : defaultImage">
+        </figure>
+      </td>
+      <td>
+        <div class="p1-c1">
+          <div class="p1-name">{{item.Name}}</div>
+          <div class="p1-note" *ngIf="item.Note as note">[ {{note}} ]</div>
+          <div class="p1-price">
+            {{((1-item.Discount)*item.Price) | currency: 'EUR'}}
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="p1-qt">
+          x{{item.Quantity}}
+        </div>
+      </td>
+      <td>
+        <div class="p1-total-price">
+          {{item.Total | currency: 'EUR'}}
+        </div>
+      </td>
+    </tr>
+  </table>
+</ng-template>
+
+<ng-template #else2Templ>
+  <div class="prop">
+    <label class="prop-label">{{'联系电话' | translate}}</label>
+    <input class="prop-value button" style="flex: 1" [placeholder]="'请填写您的手机电话号码' | translate" [(ngModel)]="phone">
+  </div>
+</ng-template>
+
+<ng-template #sumTempl let-pos="pos">
+  <div class="s1c {{pos}}">
+    <div class="s1c-t">{{'Importo totale' | translate}}</div>
+    <div class="s1s">
+      <div class="s1">
+        <div class="s1-label">{{'Articoli' | translate}}</div>
+        <div class="s1-value">{{totalQuantity | number}}</div>
+      </div>
+      <div class="s1">
+        <div class="s1-label">{{'Subtotale' | translate}}</div>
+        <div class="s1-value">{{amount | currency: 'EUR'}}</div>
+      </div>
+      <div class="s1">
+        <div class="s1-label">{{'Spedizione' | translate}}</div>
+        <div class="s1-value">{{transportFare | currency: 'EUR'}}</div>
+      </div>
+      <ng-container *ngIf="dExt.deliveryMethod.Discount">
+        <div class="s1">
+          <div class="s1-label" [translate]="'Sconto N'"
+            [translateParams]="{n: dExt.deliveryMethod.Name+' '+(dExt.deliveryMethod.Discount | percent)}">
+          </div>
+          <div class="s1-value" style="color: var(--ion-color-danger);">
+            - {{dExt.deliveryMethod.Discount*dExt.amount | currency: 'EUR'}}
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let item of mExt.useds;">
+        <div class="s1" *ngIf="item.Bonus as bonus">
+          <div class="s1-label" [translate]="'Sconto N'"
+            [translateParams]="{n: item.Name+(bonus < 1 ? ' -'+(bonus | percent) : '')}">
+          </div>
+          <div class="s1-value" style="color: var(--ion-color-danger);">
+            - {{(bonus < 1 ? bonus*dExt.amount : bonus) | currency: 'EUR' }}</div>
+          </div>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="pos==='right'">
+      <div class="s1" style="font-weight: 500;">
+        <div class="s1-label">{{'Totale (Iva incluso)' | translate}}:</div>
+        <div class="s1-value" style="color: var(--ion-color-danger);">{{amountToPay | currency: 'EUR'}}</div>
+      </div>
+      <button class="checkout-btn ion-activatable" (click)="onCheckout()">
+        <ion-ripple-effect></ion-ripple-effect>
+        {{'Procedi al Pagamento' | translate | uppercase}}
+      </button>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #couponTempl>
+  <div class="c1">
+    <div class="c1-t">{{'Codice sconto' | translate}}</div>
+    <div class="c1-n">
+      <input #promoCode class="c1-input-el" [placeholder]="'Codice sconto' | translate"
+        (keyup.ENTER)="onChangePromoCode()">
+      <button class="c1-btn" (click)="onChangePromoCode()">{{'Applica' | translate}}</button>
+    </div>
+  </div>
+  <div class="c1" (click)="onSelectPromo()">
+    <div class="c1-t">{{'Seleziona coupon' | translate}}</div>
+    <div class="c1-n">
+      <input class="c1-input-el" [placeholder]="'Seleziona coupon' | translate" style="pointer-events: none;">
+      <button class="c1-btn">{{'Seleziona' | translate}}</button>
+    </div>
+  </div>
+</ng-template>

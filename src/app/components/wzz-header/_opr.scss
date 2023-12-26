@@ -1,0 +1,22 @@
+.o1s {
+    display: flex;
+    align-items: center;
+    margin: 0 calc(var(--wzz-spacing-x-xxl) * -1);
+}
+
+.o1 {
+    display: flex;
+    align-items: center;
+    padding: var(--wzz-spacing-md) var(--wzz-spacing-x-xxl);
+    background: transparent;
+    transition: opacity 0.2s;
+
+    > ion-icon {
+        font-size: 24px;
+    }
+
+    &.disabled {
+        opacity: 0;
+        pointer-events: none;
+    }
+}

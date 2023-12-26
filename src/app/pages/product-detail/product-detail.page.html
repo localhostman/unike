@@ -1,0 +1,193 @@
+<ion-header mode="ios" collapse="fade">
+  <ion-toolbar class="header">
+    <wzz-header [title]="'产品详细' | translate" [defaultHref]="[language, 'category'] | routerLink"></wzz-header>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <div class="host-inner">
+      <div class="p1">
+        <div class="p1-imgc" *ngIf="resizeExt.isLG">
+          <div class="p1-imgc-n" *ngIf="origImgPaths.length>1">
+            <swiper-container #i1SwiperRef class="p1-imgs" direction="vertical" [slideToClickedSlide]="true"
+              [slidesPerView]="imageThumbNum" [spaceBetween]="12" [ngStyle]="{
+            width: imageListWidth+'px',
+            height: imageHeight+'px',
+            opacity: selectedImageIndex==undefined ? 0 : 1
+          }">
+              <swiper-slide *ngFor="let imgPath of thumbImgPaths; let index=index;">
+                <figure class="p1-img" [class.selected]="selectedImageIndex==index" (click)="onChangeImage(index)">
+                  <img [src]="imgPath">
+                </figure>
+              </swiper-slide>
+            </swiper-container>
+            <ng-container *ngIf="showThumbDirBtn">
+              <button class="p1-imgc-btn top" (click)="i1SwiperEl?.slidePrev();">
+                <ion-icon name="arrow-up"></ion-icon>
+              </button>
+              <button class="p1-imgc-btn down" (click)="i1SwiperEl?.slideNext();">
+                <ion-icon name="arrow-down"></ion-icon>
+              </button>
+            </ng-container>
+          </div>
+          <zoom-image class="p1-imgc-zoomer" [image]="origImgPaths[selectedImageIndex ?? 0]" [ngStyle]="{
+            width: imageWidth+'px',
+            height: imageHeight+'px'
+          }"></zoom-image>
+        </div>
+        <div class="p1-imgc" *ngIf="!resizeExt.isLG">
+          <swiper-container #i1SwiperRef class="p1-imgs" (slideChangeTransitionEnd)="onSwipeImage()" [ngStyle]="{
+            width: '390px',
+            opacity: selectedImageIndex==undefined ? 0 : 1
+        }">
+            <swiper-slide swiperSlide *ngFor="let imgPath of origImgPaths; let index=index;">
+              <figure class="p1-img">
+                <img [src]="imgPath">
+              </figure>
+            </swiper-slide>
+          </swiper-container>
+          <ng-container *ngIf="showThumbDirBtn">
+            <button class="p1-imgc-btn left" (click)="i1SwiperEl?.slidePrev();">
+              <ion-icon name="arrow-left"></ion-icon>
+            </button>
+            <button class="p1-imgc-btn right" (click)="i1SwiperEl?.slideNext();">
+              <ion-icon name="arrow-right"></ion-icon>
+            </button>
+          </ng-container>
+        </div>
+        <div class="p1-n">
+          <div class="p1-name">
+            <div class="p1-name-n">{{data.Name}}</div>
+          </div>
+          <div class="p1-idno">{{'COD' | translate}}: {{data.Code}}</div>
+          <div class="p1-sold">
+            <ion-icon name="sold"></ion-icon>
+            <div translate="N Venduti" [translateParams]="{n: data.OrderedCount}"></div>
+          </div>
+          <ng-container *ngIf="lastCart">
+            <div class="p1-price" *ngIf="data.Accessible; else noAccessibleTempl">
+              <ng-container *ngIf="lastCart.Price as price">
+                <div class="p1-price-n">
+                  <span class="new">
+                    {{(lastCart.Discount ? (1-lastCart.Discount)*price : price) | currency : 'EUR'}}
+                    <span class="p1-um">/ {{data.UM | translate}}</span>
+                  </span>
+                  <span class="old" *ngIf="lastCart.Discount">{{price | currency: 'EUR'}}</span>
+                </div>
+                <div class="p1-discount" *ngIf="lastCart.Discount as discount" translate="Risparmi P"
+                  [translateParams]="{p: (price*discount | currency: 'EUR')}">
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+          <product-prop [product]="data" [ltime]="data.LTime" [props]="props" [cartService]="cartService"
+            [parentCDRef]="cdRef" (wzzChange)="onChangeProp($event)"></product-prop>
+          <ng-container *ngIf="lastCart">
+            <div class="q1">
+              <div class="q1-t">{{'Quantità' | translate | uppercase}}</div>
+              <div class="q1-n">
+                <ion-icon name="cart-remove" (click)="productPropEl.changeQuantity(-data.PackQuantity)"></ion-icon>
+                <div class="q1-input" (click)="onInsertQuantity()">{{lastCart.Quantity | number}}</div>
+                <ion-icon name="cart-add" (click)="productPropEl.changeQuantity(data.PackQuantity)"></ion-icon>
+              </div>
+            </div>
+            <div class="o1s">
+              <button class="o1 tocart ion-activatable" (click)="productPropEl.changeQuantity(data.PackQuantity)">
+                <ion-ripple-effect></ion-ripple-effect>
+                {{'Aggiungi al carrello' | translate | uppercase}}
+              </button>
+              <button class="o1 buy ion-activatable" (click)="onDirectCheckout()">
+                <ion-ripple-effect></ion-ripple-effect>
+                {{'Aquisto subito' | translate | uppercase}}
+              </button>
+            </div>
+          </ng-container>
+          <div class="g1c" *ngIf="data.AddGift" [routerLink]="[language, 'gift'] | routerLink">
+            <div class="g1c-t1">
+              <div class="g1c-t1-n">
+                {{'Acquista 3 prendi uno gratis' | translate}}
+              </div>
+              <button class="g1c-btn">{{'vedi di più' | translate}} ></button>
+            </div>
+            <div class="g1c-t2">{{'gift_desc_1' | translate}}</div>
+            <div class="g1s">
+              <div class="g1" *ngFor="let item of gifts;">
+                <figure class="g1-image">
+                  <img [src]="item.ImgPath" *ngIf="item; else g1ElseTempl">
+                  <ng-template #g1ElseTempl>
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                  </ng-template>
+                </figure>
+              </div>
+
+            </div>
+          </div>
+          <div class="p3c">
+            <div class="p3c-t">{{'Pagamento' | translate | uppercase}}</div>
+            <div class="p3s">
+              <img class="p3" src="assets/imgs/mastercard.png">
+              <img class="p3" src="assets/imgs/visa.png">
+              <img class="p3" src="assets/imgs/paypal.png">
+              <img class="p3" src="assets/imgs/postepay.png">
+            </div>
+          </div>
+          <div class="s1c">
+            <div class="s1c-t1">{{'Spedizione' | translate | uppercase}}</div>
+            <div class="s1c-t2" translate="shipping_desc_1"
+              [translateParams]="{e: dExt.deliveryMethod.MinimumOrderAmount}"></div>
+          </div>
+          <div class="d1c">
+            <div class="d1c-t">{{'Descrizione' | translate | uppercase}}</div>
+            <ng-container *ngTemplateOutlet="collectionDescTempl;">
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="p2c" *ngIf="hotProducts?.length">
+        <div class="p2c-t">{{'Potrebbe piacerti anche' | translate}}</div>
+        <div class="p2s">
+          <product class="p2" [data]="item" [ltime]="item.LTime" *ngFor="let item of hotProducts;"></product>
+        </div>
+      </div>
+    </div>
+    <wzz-footer></wzz-footer>
+  </section>
+
+  <ng-template #noAccessibleTempl>
+    <div class="p1-audit-msg">{{'申请授权通过后才可查看产品价格' | translate}}</div>
+  </ng-template>
+</ion-content>
+
+<ng-template #collectionDescTempl>
+  <div class="d1s">
+    <div class="d1s-t">{{'collection_desc_title_1' | translate}}</div>
+    <div class="d1s-n">
+      <div class="d1" [innerHTML]="'collection_desc_text_1_1' | translate"></div>
+      <div class="d1" [innerHTML]="'collection_desc_text_1_2' | translate"></div>
+      <div class="d1" [innerHTML]="'collection_desc_text_1_3' | translate"></div>
+      <div class="d1" [innerHTML]="'collection_desc_text_1_4' | translate"></div>
+    </div>
+  </div>
+  <div class="d1s">
+    <div class="d1s-t">{{'collection_desc_title_2' | translate}}</div>
+    <div class="d1s-n">
+      <div class="d1" [innerHTML]="'collection_desc_text_2_1' | translate"></div>
+      <div class="d1" [innerHTML]="'collection_desc_text_2_2' | translate"></div>
+      <div class="d1" [innerHTML]="'collection_desc_text_2_3' | translate"></div>
+      <div class="d1" [innerHTML]="'collection_desc_text_2_4' | translate"></div>
+      <div class="d1" [innerHTML]="'collection_desc_text_2_5' | translate"></div>
+    </div>
+  </div>
+  <div class="d1s">
+    <div class="d1s-t">{{'collection_desc_title_3' | translate}}</div>
+    <div class="d1s-n">
+      <div class="d1" [innerHTML]="'collection_desc_text_3_1' | translate"></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #materialDescTempl>
+
+</ng-template>

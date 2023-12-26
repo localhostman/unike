@@ -1,0 +1,61 @@
+:host {
+    --placeholder-color: currentColor;
+    --placeholder-opacity: 0.6;
+    padding-left: var(--padding-start);
+    padding-right: var(--padding-end);
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    font-family: var(--ion-font-family, inherit);
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 2;
+    &.ng-touched.ng-invalid {
+        .select-icon {
+            color: var(--ion-color-danger);
+        }
+    }
+    &.select-disabled {
+        --ion-color-step-500: var(--ion-color-secondary);
+        color: var(--ion-color-secondary) !important;
+        pointer-events: none;
+    }
+}
+
+.select-text {
+    flex: 1 1 0%;
+    min-width: 16px;
+    font-size: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.select-placeholder {
+    flex: 1 1 0%;
+    color: var(--placeholder-color);
+    opacity: var(--placeholder-opacity);
+}
+
+.select-icon {
+    width: 17px;
+    height: 14px;
+    position: relative;
+    color: var(--ion-color-step-500, gray);
+    &-inner {
+        left: 6px;
+        top: 50%;
+        margin-top: -3px;
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        border-top: 6px solid;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        color: currentcolor;
+        pointer-events: none;
+    }
+}

@@ -1,0 +1,125 @@
+@media (min-width: $wzz-width-lg) {
+    .b-gt-lg {
+        display: block !important;
+    }
+    .b-lt-lg {
+        display: none !important;
+    }
+    .f-gt-lg {
+        display: flex !important;
+    }
+    .f-lt-lg {
+        display: none !important;
+    }
+    .t-gt-lg {
+        display: table-cell !important;
+    }
+    .t-lt-lg {
+        display: none !important;
+    }
+}
+
+@media (max-width: $wzz-width-lg) {
+    .b-gt-lg {
+        display: none !important;
+    }
+    .b-lt-lg {
+        display: block !important;
+    }
+    .f-gt-lg {
+        display: none !important;
+    }
+    .f-lt-lg {
+        display: flex !important;
+    }
+    .t-gt-lg {
+        display: none !important;
+    }
+    .t-lt-lg {
+        display: table-cell !important;
+    }
+}
+
+@media (min-width: $wzz-width-md) {
+    .b-gt-md {
+        display: block !important;
+    }
+    .b-lt-md {
+        display: none !important;
+    }
+    .f-gt-md {
+        display: flex !important;
+    }
+    .f-lt-md {
+        display: none !important;
+    }
+    .t-gt-md {
+        display: table-cell !important;
+    }
+    .t-lt-md {
+        display: none !important;
+    }
+}
+
+@media (max-width: $wzz-width-md) {
+    .b-gt-md {
+        display: none !important;
+    }
+    .b-lt-md {
+        display: block !important;
+    }
+    .f-gt-md {
+        display: none !important;
+    }
+    .f-lt-md {
+        display: flex !important;
+    }
+    .t-gt-md {
+        display: none !important;
+    }
+    .t-lt-md {
+        display: table-cell !important;
+    }
+}
+
+@media (min-width: $wzz-width-sm) {
+    .b-gt-sm {
+        display: block !important;
+    }
+    .b-lt-sm {
+        display: none !important;
+    }
+    .f-gt-sm {
+        display: flex !important;
+    }
+    .f-lt-sm {
+        display: none !important;
+    }
+    .t-gt-sm {
+        display: table-cell !important;
+    }
+    .t-lt-sm {
+        display: none !important;
+    }
+}
+
+@media (max-width: $wzz-width-sm) {
+    .b-gt-sm {
+        display: none !important;
+    }
+    .b-lt-sm {
+        display: block !important;
+    }
+    .f-gt-sm {
+        display: none !important;
+    }
+    .f-lt-sm {
+        display: flex !important;
+    }
+    .t-gt-sm {
+        display: none !important;
+    }
+    .t-lt-sm {
+        display: table-cell !important;
+    }
+}

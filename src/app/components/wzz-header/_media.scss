@@ -1,0 +1,13 @@
+.m1s {
+    display: flex;
+    margin: 0 calc(var(--wzz-spacing-md) * -1);
+    @media (max-width: #{$wzz-width-md}) {
+        display: none;
+    }
+}
+
+.m1 {
+    width: 28px;
+    height: 28px;
+    padding: var(--wzz-spacing-md);
+}

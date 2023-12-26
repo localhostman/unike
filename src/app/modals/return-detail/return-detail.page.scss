@@ -1,0 +1,94 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/styles/_form-t1";
+@import "./_product";
+@import "./_image";
+
+ion-toolbar {
+    --min-height: 60px;
+}
+
+ion-title {
+    font-family: "trajan", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.t1 {
+    text-align: center;
+}
+
+.t2 {
+    color: #0059df;
+    text-align: center;
+    text-decoration: underline;
+    padding: var(--wzz-spacing-xxl);
+    cursor: pointer;
+}
+
+.host {
+    user-select: none;
+    padding: 0 var(--wzz-spacing-3-4xl);
+}
+
+.p1c {
+    padding-top: var(--wzz-spacing-xxl);
+    border-bottom: 1px solid var(--ion-color-light-shade);
+    &:last-child {
+        border-bottom-style: none;
+    }
+    &-t {
+        font-size: var(--wzz-font-size-xl);
+        font-weight: 500;
+    }
+}
+
+.p1s {
+    padding: var(--wzz-spacing-lg) 0;
+}
+
+.p1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--wzz-spacing-lg) 0;
+    &-label {
+        margin-right: var(--wzz-spacing-xxl);
+    }
+}
+
+.danger {
+    color: var(--ion-color-danger);
+    font-weight: 500;
+}
+
+.success {
+    color: var(--ion-color-success);
+    font-weight: 500;
+}
+
+.pending,
+.rejected {
+    color: var(--ion-color-danger);
+    font-weight: 500;
+}
+.accepted {
+    color: var(--ion-color-success);
+    font-weight: 500;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--wzz-spacing-xxl) var(--wzz-spacing-3-4xl);
+    border-top: 1px solid var(--ion-color-light-shade);
+}
+
+.submit-btn {
+    color: #fff;
+    background: var(--ion-color-dark);
+    font-size: var(--wzz-font-size-lg);
+    font-weight: 500;
+    border: 1px solid var(--ion-color-dark);
+    padding: 0 var(--wzz-spacing-3-4xl);
+    height: 40px;
+}

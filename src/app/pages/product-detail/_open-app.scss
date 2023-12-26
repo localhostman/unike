@@ -1,0 +1,26 @@
+.open-app {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: var(--wzz-font-size-md-l);
+    color: #fff;
+    background: var(--ion-color-danger);
+    padding: 0 var(--wzz-spacing-3xl);
+
+    &-fixer {
+        height: 40px;
+    }
+
+    &-inner {
+        flex: 1;
+        line-height: 40px;
+        margin-right: var(--wzz-spacing-3xl);
+    }
+
+    &-icon {
+        font-size: var(--wzz-font-size-xxl-l);
+    }
+}

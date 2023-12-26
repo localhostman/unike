@@ -1,0 +1,40 @@
+<ion-header mode="ios" collapse="fade">
+  <wzz-header [title]="'Chi siamo' | translate" [defaultHref]="[language, 'home'] | routerLink"></wzz-header>
+</ion-header>
+<ion-content #content class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <div class="host-inner">
+      <header class="host-header">
+        <div class="t1">{{'Chi siamo' | translate}}</div>
+      </header>
+      <div class="t2">{{'about_us_title_1' | translate | uppercase}}</div>
+      <div class="t3">{{'about_us_text_1' | translate}}</div>
+      <div class="s1s">
+        <div class="s1">
+          <figure class="s1-image">
+            <img src="assets/imgs/pages/about-us/1.jpg">
+          </figure>
+          <div class="s1-n1">
+            <div class="s1-n2">
+              <div class="s1-t1">{{'about_us_title_2' | translate | uppercase}}</div>
+              <div class="s1-t2">{{'about_us_text_2' | translate}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="s1">
+          <figure class="s1-image">
+            <img src="assets/imgs/pages/about-us/2.jpg">
+          </figure>
+          <div class="s1-n1">
+            <div class="s1-n2">
+              <div class="s1-t1">{{'about_us_title_3' | translate | uppercase}}</div>
+              <div class="s1-t2">{{'about_us_text_3' | translate}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <wzz-footer></wzz-footer>
+  </section>
+</ion-content>

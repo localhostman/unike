@@ -1,0 +1,22 @@
+.p1s {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: #{$wzz-width-lg}) {
+        padding: var(--wzz-spacing-xxl);
+    }
+    @media (max-width: #{$wzz-width-lg}) {
+        padding: var(--wzz-spacing-lg) var(--wzz-spacing-lg);
+    }
+}
+
+.p1 {
+    @media (min-width: #{$wzz-width-lg}) {
+        flex: 0 0 25%;
+        padding: var(--wzz-spacing-xxl) var(--wzz-spacing-x-xxl);
+    }
+    @media (max-width: #{$wzz-width-lg}) {
+        flex: 0 0 50%;
+        padding: var(--wzz-spacing-lg);
+    }
+}

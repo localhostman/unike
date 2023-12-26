@@ -1,0 +1,94 @@
+<ion-header mode="ios" collapse="fade">
+  <wzz-header [title]="'Shipping info' | translate" [defaultHref]="[language, 'home'] | routerLink"></wzz-header>
+</ion-header>
+<ion-content #content class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <div class="host-inner">
+      <div class="t1">{{'Shipping info' | translate | uppercase}}</div>
+      <div class="s1">
+        <div class="t2">{{'INFORMAZIONI SULLA CONSEGNA' | translate}}</div>
+        <div class="t3">{{'shipping_rule_text_1_1' | translate}}</div>
+        <div class="t3">{{'shipping_rule_text_1_2' | translate}}</div>
+      </div>
+      <div class="s1">
+        <div class="t2">{{'TEMPI DI ELABORAZIONE DELL’ORDINE' | translate}}</div>
+        <div class="t3">{{'shipping_rule_text_2_1' | translate}}</div>
+        <div class="t3">{{'shipping_rule_text_2_2' | translate}}</div>
+      </div>
+      <div class="s1">
+        <div class="t2">{{'TEMPI DI CONSEGNA' | translate}}</div>
+        <div class="t3">{{'shipping_rule_text_3' | translate}}</div>
+      </div>
+      <div class="l1c">
+        <table class="l1s">
+          <thead>
+            <tr>
+              <th>{{'Zona di spedizione' | translate}}</th>
+              <th>{{'Giorni lavorativi' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{'Spediti in Italia' | translate}}</td>
+              <td>{{'3/5 giorni' | translate}}</td>
+            </tr>
+            <tr>
+              <td>{{'Spediti verso il resto dell’Unione Europe' | translate}}</td>
+              <td>{{'5/6 giorni' | translate}}</td>
+            </tr>
+            <tr>
+              <td>{{'Spediti in tutto il resto del mondo' | translate}}</td>
+              <td>{{'6/7 giorni' | translate}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="t3">{{'shipping_rule_text_3' | translate}}</div>
+      </div>
+      <div class="s1">
+        <div class="t2">{{'SHIPPING COSTS' | translate}}</div>
+        <div class="t3">{{'Zona di spedizione' | translate}}</div>
+      </div>
+      <div class="l1c">
+        <table class="l1s">
+          <thead>
+            <tr>
+              <th>{{'Valore dell\'ordine' | translate}}</th>
+              <th>{{'Costo di consegna' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{'Meno di 50€' | translate}}</td>
+              <td>{{'€ 7,50' | translate}}</td>
+            </tr>
+            <tr>
+              <td>{{'50€ e oltre' | translate}}</td>
+              <td>{{'Gratuito' | translate}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="s1">
+        <div class="t2">{{'TASSE E DAZI DOGANALI' | translate}}</div>
+        <div class="t4">{{'All’interno dell’Unione europea' | translate}}</div>
+        <div class="t3">{{'shipping_rule_text_4' | translate}}</div>
+        <div class="t4">{{'Paesi extra-UE' | translate}}</div>
+        <div class="t3">{{'shipping_rule_text_5' | translate}}</div>
+        <div class="t4">{{'Spedizione verso gli Stati Uniti d’America' | translate}}</div>
+        <div class="t3">{{'shipping_rule_text_6' | translate}}</div>
+        <div class="t4">{{'Mancato sdoganamento' | translate}}</div>
+        <div class="t3">{{'shipping_rule_text_7' | translate}}</div>
+      </div>
+      <div class="s1">
+        <div class="t2">{{'DETTAGLI DEL CONTATTO' | translate}}</div>
+        <div class="t3" [innerHTML]="'shipping_rule_text_8' | translate"></div>
+      </div>
+      <div class="s1">
+        <div class="t2">{{'ANNULLA ORDINE' | translate}}</div>
+        <div class="t3" [innerHTML]="'shipping_rule_text_9' | translate"></div>
+      </div>
+    </div>
+    <wzz-footer></wzz-footer>
+  </section>
+</ion-content>

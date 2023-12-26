@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>up</title>
+    <g id="页面设计-PC端" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="产品详情" transform="translate(-306.000000, -100.000000)" fill-rule="nonzero">
+            <g id="up" transform="translate(306.000000, 100.000000)">
+                <rect id="矩形" fill="#000000" opacity="0" x="0" y="0" width="32" height="32"></rect>
+                <path d="M27.828125,23.603125 L16.809375,8.4125 C16.409375,7.8625 15.590625,7.8625 15.19375,8.4125 L4.171875,23.603125 C4.053125,23.76875 4.16875,24 4.375,24 L6.71875,24 C6.878125,24 7.028125,23.921875 7.121875,23.79375 L16,11.55625 L24.878125,23.79375 C24.971875,23.921875 25.121875,24 25.28125,24 L27.625,24 C27.828125,24 27.946875,23.76875 27.828125,23.603125 L27.828125,23.603125 Z" id="路径" fill="#333333"></path>
+            </g>
+        </g>
+    </g>
+</svg>

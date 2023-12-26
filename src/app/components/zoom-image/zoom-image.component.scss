@@ -1,0 +1,11 @@
+@import "src/app/fw/styles/_image";
+
+.full {
+    @extend %image;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.zoom {
+    max-width: none;
+}

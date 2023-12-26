@@ -1,0 +1,11 @@
+.popover-t2 {
+    --width: 160px;
+    --box-shadow: 0px 6px 10px rgba(34, 27, 27, 0.2);
+    --offset-y: -8px;
+
+    font-size: 14px;
+
+    &::part(content) {
+        border-radius: 0;
+    }
+}

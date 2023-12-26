@@ -1,0 +1,10 @@
+<ion-content>
+  <section class="payment" [hidden]="!visible">
+    <div class="payment-title">
+      <div class="payment-title-inner">{{'订单应付金额' | translate}}: </div>
+      <div class="payment-amount">{{amount | currency: 'EUR'}}</div>
+    </div>
+    <div class="payment-subtitle">{{'请选择您的支付方式' | translate}}</div>
+    <div id="paypal-btn"></div>
+  </section>
+</ion-content>

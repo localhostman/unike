@@ -1,0 +1,70 @@
+<ion-header mode="ios" collapse="fade">
+  <wzz-header [title]="'Condizioni di vendita' | translate" [defaultHref]="[language, 'home'] | routerLink"></wzz-header>
+</ion-header>
+<ion-content #content class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <div class="host-inner"> 
+      <div class="t1">{{'Condizioni di vendita' | translate | uppercase}}</div>
+      <div class="c1s" @accordionInit>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 0}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 1}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 2}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 3}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 4}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 5}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 6}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 7}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 8}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 9}">
+          </ng-container>
+        </div>
+        <div class="c1">
+          <ng-container *ngTemplateOutlet="c1Templ; context: {index: 10}">
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <wzz-footer></wzz-footer>
+  </section>
+</ion-content>
+
+<ng-template #c1Templ let-index="index">
+  <div class="c1-t1" (click)="data[index]=!data[index]; cdRef.detectChanges();" [class.opened]="data[index]">
+    <div class="c1-t1-n">
+      {{'sale_condition_title_'+(index+1) | translate | uppercase}}
+    </div>
+    <ion-icon name="arrow-right"></ion-icon>
+  </div>
+  <div class="c1-t2" @accordionOpenClose *ngIf="data[index]">
+    <div class="c1-t2-n" [innerHTML]="'sale_condition_text_'+(index+1) | translate"></div>
+  </div>
+</ng-template>

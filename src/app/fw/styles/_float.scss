@@ -1,0 +1,7 @@
+%float-left{
+  margin-left: calc((100vw +  var(--scrollbar-width) - var(--wzz-max-width)) / 2);
+}
+%float-right{
+  margin-right: calc((100vw +  var(--scrollbar-width) - var(--wzz-max-width)) / 2);
+}
+

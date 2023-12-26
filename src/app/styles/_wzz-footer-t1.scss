@@ -1,0 +1,30 @@
+.wzz-footer {
+    display: flex;
+    background: #fff;
+    padding: var(--wzz-spacing-md) var(--wzz-spacing-3-4xl) max(var(--ion-safe-area-bottom), var(--wzz-spacing-md));
+
+    &-btn {
+        flex: 1;
+        width: 100%;
+        border-radius: 2px;
+        font-size: var(--wzz-font-size-lg);
+        font-weight: 500;
+        color: #fff;
+        background: var(--ion-color-dark);
+        height: 40px;
+        transition: background 0.3s;
+        &.disabled {
+            background: #999;
+            pointer-events: none;
+        }
+        &:active {
+            background: var(--ion-color-primary-shade);
+        }
+    }
+
+    :host-context(.modal-t1) &,
+    :host-context(.modal-t2) &,
+    :host-context(.modal-t3) & {
+        padding: var(--wzz-spacing-md) var(--wzz-spacing-3-4xl);
+    }
+}

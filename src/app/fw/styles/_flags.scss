@@ -1,0 +1,21 @@
+$flags: ("it", -36px, -1395px), ("cn", 0, -1426px), ("en", -36px -434px), ("fr", -36px -372px), ("de", 0 -1705px),
+    ("es", -36px -93px);
+%flag {
+    content: "";
+    display: inline-block;
+    margin-top: -2px;
+    margin-right: 8px;
+    flex: 0 0 16px;
+    width: 16px;
+    height: 11px;
+    line-height: 11px;
+    vertical-align: text-top;
+    background-image: url("/assets/imgs/flags.png");
+    background-repeat: no-repeat;
+}
+@each $flag, $xx, $yy in $flags {
+    %flag-#{$flag} {
+        @extend %flag;
+        background-position: $xx $yy;
+    }
+}

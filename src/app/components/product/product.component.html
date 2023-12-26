@@ -1,0 +1,19 @@
+<ng-container *ngIf="data">
+  <figure class="image">
+    <img [src]="data.ImgPath">
+    <div class="sale" *ngIf="!asGift && discount">{{'Sale' | translate | uppercase}}</div>
+    <ng-content select="[slot=num]"></ng-content>
+  </figure>
+  <div class="inner">
+    <div class="name">{{data.Name}}</div>
+    <ng-container *ngIf="!asGift">
+      <div class="price">
+        <span class="new">{{data.Price*(1-discount) | currency: 'EUR'}}</span>
+        <span class="old" *ngIf="discount">{{data.Price | currency: 'EUR'}}</span>
+      </div>
+      <div class="discount" *ngIf="discount" translate="Risparmi P"
+        [translateParams]="{p: data.Price*discount | currency: 'EUR'}">
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

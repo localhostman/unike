@@ -1,0 +1,56 @@
+@import "src/app/fw/styles/_hover";
+
+:host {
+  --item-dim: 32px;
+  --justify-content: center;
+  --border-color: #e6e6e6;
+
+  display: flex;
+  justify-content: var(--justify-content);
+  cursor: pointer;
+  user-select: none;
+}
+
+.list {
+  display: flex;
+  font-size: var(--wzz-font-size-md);
+  justify-content: center;
+  height: var(--item-dim);
+  padding: 0 6px 0 7px;
+  overflow: hidden;
+}
+
+.item,
+.btn {
+  position: relative;
+  min-width: var(--item-dim);
+  padding: 0 var(--wzz-spacing-sm);
+  height: var(--item-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ion-color-dark);
+  background: #fff;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+
+  &.current {
+    color: #fff;
+    border-color: var(--ion-color-dark);
+    background: var(--ion-color-dark);
+    z-index: 1;
+  }
+  &.disabled {
+    color: #ccc;
+    pointer-events: none;
+  }
+}
+
+.item {
+  margin-left: -1px;
+  border-right: 1px solid var(--border-color);
+}
+
+.btn {
+  margin: 0;
+}

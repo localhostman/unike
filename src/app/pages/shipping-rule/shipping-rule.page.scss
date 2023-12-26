@@ -1,0 +1,60 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_container";
+@import "src/app/fw/styles/_image";
+
+@import "./_table";
+
+.host {
+    line-height: 1.7;
+    &-inner {
+        --wzz-max-width: 1000px;
+        @include container;
+        flex-direction: column;
+        padding: 0 var(--wzz-spacing-3-4xl) var(--wzz-spacing-7-8xl);
+    }
+}
+
+.t1 {
+    text-align: center;
+    font-family: "trajan", sans-serif;
+    font-weight: 500;
+    padding-top: var(--wzz-spacing-5-6xl);
+
+    @media (min-width: #{$wzz-width-lg}) {
+        font-size: 28px;
+    }
+    @media (min-width: #{$wzz-width-md}) and (max-width: #{$wzz-width-lg}) {
+        font-size: 24px;
+    }
+    @media (max-width: #{$wzz-width-md}) {
+        font-size: 18px;
+    }
+}
+
+.t2 {
+    font-family: "trajan", sans-serif;
+    font-size: var(--wzz-font-size-xl);
+    font-weight: 500;
+    margin-bottom: var(--wzz-spacing-xxl);
+}
+
+.t3 {
+    color: var(--ion-color-dark-tint);
+    ::ng-deep {
+        a {
+            text-decoration: underline;
+        }
+    }
+}
+
+.t4 {
+    font-weight: 500;
+    margin: var(--wzz-spacing-4xl) 0 var(--wzz-spacing-xl);
+}
+
+.s1 {
+    padding-top: var(--wzz-spacing-5-6xl);
+}
+
+.l1 {
+}

@@ -1,0 +1,22 @@
+.payment {
+    @include container;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wzz-spacing-3xl);
+    
+
+    &-title {
+        font-size: var(--wzz-font-size-xl);
+        display: flex;
+        font-weight: 500;
+        margin-bottom: var(--wzz-spacing-md);
+    }
+    &-subtitle {
+        color: var(--ion-color-dark);
+    }
+    &-amount {
+        margin-left: var(--wzz-spacing-lg);
+    }
+    
+}

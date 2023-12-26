@@ -1,0 +1,28 @@
+.as-t2 {
+    --button-color: var(--ion-color-dark);
+    .action-sheet-button {
+        font-size: var(--wzz-font-size-xl);
+        padding: var(--wzz-spacing-xxl);
+        height: 46px;
+    }
+
+    .action-sheet-button {
+        height: 64px;
+        padding: 0 var(--wzz-spacing-xxl);
+
+        &:last-child .action-sheet-button-inner {
+            border-bottom-style: none;
+        }
+    }
+
+    .action-sheet-button-inner {
+        font-size: var(--wzz-font-size-lg);
+        height: 100%;
+        border-bottom: 1px solid var(--ion-color-light);
+    }
+
+    .action-sheet-icon {
+        padding-bottom: 0;
+        margin-right: var(--wzz-spacing-xxl);
+    }
+}

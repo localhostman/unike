@@ -1,0 +1,42 @@
+.c1s {
+}
+
+.c1 {
+    padding: var(--wzz-spacing-xl) 0;
+    border-bottom: 1px solid var(--ion-color-light-shade);
+
+    &:last-child {
+        border-bottom-style: none;
+    }
+
+    &-t1 {
+        display: flex;
+        align-items: center;
+        padding: var(--wzz-spacing-xxl) 0;
+        cursor: pointer;
+        &-n {
+            flex: 1;
+            font-family: "trajan", sans-serif;
+            font-size: var(--wzz-font-size-xl);
+            font-weight: 500;
+        }
+        > ion-icon {
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+        &.opened {
+            > ion-icon {
+                transform: rotateZ(90deg);
+            }
+        }
+    }
+    &-t2 {
+        overflow: hidden;
+        &-n {
+            color: var(--ion-color-dark-tint);
+            white-space: pre-line;
+            padding-bottom: var(--wzz-spacing-xxl);
+        }
+    }
+}

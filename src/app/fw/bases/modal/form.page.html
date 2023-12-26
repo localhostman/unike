@@ -1,0 +1,73 @@
+<ion-header mode="ios">
+    <ion-toolbar>
+        <ion-title mode="ios">{{title | translate}}</ion-title>
+        <ion-buttons slot="end" class="buttons-end">
+            <ion-button class="modal-back-btn" color="dark" fill="clear" (click)="onClose()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <section class="form" [formGroup]="form">
+        <ng-container *ngFor="let field of fields;">
+            <ng-container *ngIf="!field.hidden">
+                <div class="prop" *ngIf="form.get(field.name); let control;">
+                    <ng-container [ngSwitch]="field.type">
+                        <div class="select" *ngSwitchCase="fieldTypes.SELECT">
+                            <label class="select-label" [class.required]="field.required">{{field.label | translate}}:
+                            </label>
+                            <ng-container *ngIf="field.options as options">
+                                <ion-select class="select-el" justify="end" toggleIcon="select-arrow"
+                                    [placeholder]="field.helpText | translate" [formControlName]="field.name"
+                                    [interfaceOptions]="{header: lang('Seleziona ')+lang(field.label)}"
+                                    *ngIf="options.length<10; else selectMoreTempl">
+                                    <ion-select-option *ngFor="let item of options" [value]="item.id"
+                                        [disabled]="item.disabled">
+                                        {{item.name | translate}}
+                                    </ion-select-option>
+                                </ion-select>
+                                <ng-template #selectMoreTempl>
+                                    <wzz-select class="select-el" [placeholder]="field.helpText | translate"
+                                        [formControlName]="field.name"
+                                        [interfaceOptions]="{header: lang('Seleziona ')+lang(field.label)}">
+                                        <wzz-select-option *ngFor="let item of options" [value]="item.id">
+                                            {{item.name | translate}}
+                                        </wzz-select-option>
+                                    </wzz-select>
+                                </ng-template>
+                            </ng-container>
+                        </div>
+                        <div class="input" *ngSwitchCase="fieldTypes.PASSWORD">
+                            <label class="input-label" [class.required]="field.required">{{field.label | translate}}:
+                            </label>
+                            <input type="password" class="input-el" [placeholder]="field.helpText | translate"
+                                [formControlName]="field.name">
+                        </div>
+                        <div class="input" *ngSwitchCase="fieldTypes.NUMBER">
+                            <label class="input-label" [class.required]="field.required">{{field.label | translate}}:
+                            </label>
+                            <input type="number" class="input-el" [placeholder]="field.helpText | translate"
+                                [formControlName]="field.name">
+                        </div>
+                        <div class="input" *ngSwitchDefault>
+                            <label class="input-label" [class.required]="field.required">{{field.label | translate}}:
+                            </label>
+                            <input class="input-el" [placeholder]="field.helpText | translate"
+                                [formControlName]="field.name">
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-container>
+    </section>
+</ion-content>
+<ion-footer mode="ios">
+    <footer class="wzz-footer">
+        <button class="wzz-footer-btn ion-activatable" (click)="onSubmit()">{{submitText | translate}}
+            <ion-ripple-effect>
+            </ion-ripple-effect>
+        </button>
+    </footer>
+</ion-footer>

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title mode="ios">{{(!!paymentMethod ? paymentMethod.Name : '订单加载中..') | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <button class="modal-back-btn" (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="payment" [hidden]="!visible">
+    <div class="payment-title">
+      <div class="payment-title-inner">{{'订单应付金额' | translate}}: </div>
+      <div class="payment-amount">{{payInfo.AmountToPay | currency: payInfo.CurrencyCode: 'symbol-narrow'}}</div>
+    </div>
+    <ng-container [ngSwitch]="paymentMethod.TypeId">
+      <ng-container *ngSwitchCase="paymentMethods.WX_PAY">
+        <ng-container *ngIf="payInfo.ExchangeRate as ec">
+          <div class="payment-subtitle" [translate]="'当前金额是以EC的汇率计算得出'" [translateParams]="{ec: ec}" *ngIf="ec!=1">
+          </div>
+        </ng-container>
+        <ng-container *ngIf="payInfo.code_url">
+          <div class="payment-subtitle">{{'请打开微信扫下方的二维码完成支付' | translate}}</div>
+          <qrcode [qrdata]="payInfo.code_url" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        </ng-container>
+        <ng-container *ngIf="payInfo.url">
+          <div class="payment-subtitle">{{'请打开微信扫下方的二维码完成支付' | translate}}</div>
+          <img class="qrcode-el" [src]="payInfo.url">
+        </ng-container>
+        <ng-container *ngIf="payInfo.mweb_url">
+          <div class="payment-subtitle">{{'请点击下方按钮唤起微信APP进行支付' | translate}}</div>
+          <button id="wxpay-btn" class="ion-activatable" (click)="onClickWxpay()">唤起微信<ion-ripple-effect>
+            </ion-ripple-effect>
+          </button>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="paymentMethods.PAYPAL">
+        <div class="payment-subtitle">{{'请选择您的支付方式' | translate}}</div>
+        <div id="paypal-btn"></div>
+      </ng-container>
+    </ng-container>
+
+  </section>
+</ion-content>

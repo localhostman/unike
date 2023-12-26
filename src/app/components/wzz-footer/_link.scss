@@ -1,0 +1,34 @@
+.l1s {
+}
+
+.l1 {
+    padding: var(--wzz-spacing-x-xxl) var(--wzz-spacing-lg);
+    &-t {
+        color: var(--ion-color-dark);
+        font-weight: 500;
+        margin-bottom: 12px;
+    }
+    &-n1,
+    &-n2 {
+        display: flex;
+    }
+
+    &-n1 {
+        margin-right: -8px;
+    }
+
+    &-n2 {
+        margin-right: -12px;
+    }
+
+    &-s-img {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+    }
+    &-m-img {
+        width: 36px;
+        height: 24px;
+        margin-right: 12px;
+    }
+}

@@ -1,0 +1,65 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_image";
+@import "src/app/styles/_form-t1";
+
+@import "./_login";
+@import "./_third-part";
+
+ion-toolbar {
+    --min-height: 108px;
+}
+
+.buttons-last-slot {
+    align-self: flex-start;
+    margin: var(--wzz-spacing-3xl);
+}
+
+.t1 {
+    font-size: var(--wzz-font-size-xl);
+    font-weight: 500;
+    padding-top: var(--wzz-spacing-5-6xl);
+}
+
+.t2 {
+    font-weight: 400;
+    color: var(--ion-color-danger);
+    padding: var(--wzz-spacing-xxl) 0;
+}
+
+.host {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    flex: 1;
+    padding: var(--wzz-spacing-3xl) var(--wzz-spacing-5xl);
+}
+
+.input {
+    &-el {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        > input {
+            flex: 1;
+            border-style: none;
+        }
+    }
+    &-btn {
+        color: var(--ion-color-primary);
+        background: transparent;
+        width: 90px;
+        height: 100%;
+        text-align: right;
+    }
+}
+
+.submit-btn {
+    font-size: var(--wzz-font-size-xl);
+    padding: 0 var(--wzz-spacing-5xl);
+    height: 50px;
+    color: #fff;
+    background: var(--ion-color-dark);
+    margin: var(--wzz-spacing-5xl) auto;
+}

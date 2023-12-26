@@ -1,0 +1,41 @@
+.p1c {
+    padding: var(--wzz-spacing-3-4xl);
+}
+
+.p1s {
+}
+
+.p1 {
+    &-more-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 var(--wzz-spacing-3-4xl);
+        width: 120px;
+        height: 40px;
+        color: #fff;
+        background: var(--ion-color-dark);
+        margin: var(--wzz-spacing-4xl) auto 0;
+    }
+    &-dir-btn {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 120px;
+        font-size: 20px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 2;
+        &.prev {
+            left: var(--wzz-spacing-3-4xl);
+        }
+        &.next {
+            right: var(--wzz-spacing-3-4xl);
+        }
+    }
+}

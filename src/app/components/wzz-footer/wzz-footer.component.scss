@@ -1,0 +1,37 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_container";
+
+@import "./_slug";
+@import "./_group";
+@import "./_newsletter";
+@import "./_link";
+
+:host {
+    display: block;
+}
+
+.r1 {
+    background: #fff8e7;
+}
+
+.r2 {
+    @include container;
+    justify-content: space-between;
+    padding: var(--wzz-spacing-xxl);
+    @media (max-width: #{$wzz-width-lg}) {
+        flex-direction: column;
+    }
+}
+
+.r3 {
+    text-align: center;
+    padding: var(--wzz-spacing-xxl) var(--wzz-spacing-3-4xl);
+    color: var(--ion-color-medium);
+    background: var(--ion-color-light);
+
+    @media (min-width: #{$wzz-width-sm}) {
+    }
+    @media (max-width: #{$wzz-width-sm}) {
+        font-size: var(--wzz-font-size-md);
+    }
+}

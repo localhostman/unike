@@ -1,0 +1,22 @@
+.p3c {
+    border-top: 1px solid var(--ion-color-light-shade);
+    margin-top: var(--wzz-spacing-5xl);
+    padding-top: var(--wzz-spacing-5xl);
+    &-t {
+        flex: 1;
+        font-weight: 500;
+    }
+}
+
+.p3s {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.p3 {
+    width: 50px;
+    height: 34px; 
+    border: 1px solid var(--ion-color-light-shade);
+    border-radius: 5px;
+    margin: var(--wzz-spacing-xxl) var(--wzz-spacing-xxl) 0 0;
+}

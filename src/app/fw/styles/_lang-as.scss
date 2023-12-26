@@ -1,0 +1,39 @@
+@import "./flags";
+
+.lang-as {
+    --button-color: var(--ion-color-dark);
+}
+
+.lang-as-btn {
+    color: var(--ion-color-dark) !important;
+    display: flex !important;
+    align-items: center;
+
+    &.sc-ion-action-sheet-ios {
+        font-size: 16px;
+        justify-content: center;
+    }
+
+    .action-sheet-button-inner {
+        width: auto;
+    }
+
+    &.Cn::before {
+        @extend %flag-cn;
+    }
+    &.It::before {
+        @extend %flag-it;
+    }
+    &.En::before {
+        @extend %flag-en;
+    }
+    &.Fr::before {
+        @extend %flag-fr;
+    }
+    &.De::before {
+        @extend %flag-de;
+    }
+    &.Es::before {
+        @extend %flag-es;
+    }
+}

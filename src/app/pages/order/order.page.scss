@@ -1,0 +1,26 @@
+@import "./_state";
+@import "./_order";
+
+.host {
+    &-header {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 2;
+        padding: 0 var(--wzz-spacing-xxl); 
+    }
+}
+
+:host {
+    &.tab {
+        .host {
+            &-header {
+                padding: 0;
+            }
+        }
+        .o1 {
+            border: 1px solid var(--ion-color-light-shade);
+            margin-top: var(--wzz-spacing-3-4xl);
+        }
+    }
+}

@@ -1,0 +1,28 @@
+.s1 {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    font-size: var(--wzz-font-size-lg);
+    padding: var(--wzz-spacing-xxl) 0 var(--wzz-spacing-xxl) var(--wzz-spacing-xxl);
+    &-n1 {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 0 var(--wzz-spacing-xxl);
+        background: var(--ion-color-light);
+    }
+
+    &-icon {
+        font-size: 24px;
+    }
+    &-el {
+        flex: 1;
+        height: 40px;
+        padding: 0 var(--wzz-spacing-xxl);
+        border-style: none;
+        background: transparent;
+    }
+    &-close {        
+        padding: var(--wzz-spacing-lg);
+    }
+}

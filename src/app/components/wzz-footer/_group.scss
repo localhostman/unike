@@ -1,0 +1,26 @@
+.g1 {
+    padding: var(--wzz-spacing-xxl) var(--wzz-spacing-lg);
+
+    &-h {
+        font-weight: 500;
+        color: var(--ion-color-dark);
+        font-weight: 500;
+    }
+    &-t {
+        color: var(--ion-color-dark-tint);
+        margin: var(--wzz-spacing-xxl) 0 calc(var(--wzz-spacing-xxl) * -1);
+        > div,
+        > a {
+            display: block;
+            padding-bottom: var(--wzz-spacing-xxl);
+        }
+    }
+    &-a {
+        color: inherit;
+        cursor: pointer;
+        transition: color 0.3s;
+        &:hover {
+            color: var(--ion-color-primary);
+        }
+    }
+}

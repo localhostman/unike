@@ -1,0 +1,135 @@
+@import "./_form-style-1";
+
+.form {
+    // --error-min-height
+
+    @extend %form;
+    &.disabled {
+        pointer-events: none;
+        color: var(--ion-color-medium-tint);
+    }
+}
+
+.title {
+    @extend %title;
+}
+
+.sub-title {
+    @extend %sub-title;
+}
+
+.prop {
+    @extend %prop;
+}
+
+.required {
+    @extend %required;
+}
+
+.input {
+    @extend %input;
+
+    &-label {
+        @extend %input-label;
+    }
+
+    &-el {
+        @extend %input-el;
+        padding: 10px;
+
+        &[disabled] {
+            color: var(--ion-color-danger);
+            background: transparent;
+        }
+
+        // border: 1px solid transparent;
+        // transition: border-color 0.2s;
+        // &:focus {
+        //     border-color: var(--ion-color-primary);
+        // }
+    }
+}
+
+.textarea {
+    @extend %textarea;
+    &-label {
+        @extend %input-label;
+    }
+
+    &-el {
+        @extend %textarea-el;
+        padding: 10px;
+    }
+}
+
+.select {
+    @extend %input;
+
+    &-label {
+        @extend %input-label;
+        padding-right: 10px;
+    }
+
+    &-el {
+        @extend %input-el;
+        --padding-start: 10px;
+        --padding-end: 10px;
+        --placeholder-color: var(--ion-color-medium);
+        --placeholder-opacity: 1;
+        min-height: auto;
+        &.select-disabled {
+            opacity: 1;
+            color: var(--ion-color-danger);
+            &::part(icon) {
+                display: none;
+            }
+        }
+
+        &::part(container) {
+            flex: 1;
+        }
+        &::part(icon) {
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
+.checkbox {
+    @extend %input;
+
+    &-label {
+        @extend %input-label;
+        padding-left: 10px;
+    }
+
+    &-el {
+        width: 26px;
+        height: 26px;
+        margin: 3px 0;
+        --border-color: var(--ion-color-light-shade);
+        --border-radius: 2px;
+    }
+}
+
+.error {
+    @extend %error;
+}
+
+.btn {
+    @extend %btn;
+}
+
+.ng-invalid.ng-touched {
+    &::after {
+        border-color: var(--ion-color-danger);
+    }
+}
+
+.error.hidden {
+    opacity: 0;
+}
+
+.error span {
+    margin-right: 4px;
+}

@@ -1,9 +1,21 @@
 // This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url: "http://localhost:8070/",
+  // url: "https://i.istarl.com/",
+  firebaseConfig: {
+    apiKey: "AIzaSyA6tHqmLzvhUYcCYEDyKQfEtGpjitRlAdE",
+    authDomain: "istar-order.firebaseapp.com",
+    databaseURL: "https://istar-order-default-rtdb.firebaseio.com",
+    projectId: "istar-order",
+    storageBucket: "istar-order.appspot.com",
+    messagingSenderId: "761720280134",
+    appId: "1:761720280134:web:300a927b829d820cd22647",
+    measurementId: "G-6GKDBWLNPH"
+  }
 };
 
 /*

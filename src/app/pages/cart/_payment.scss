@@ -1,0 +1,20 @@
+.p1c {
+    border: 1px solid var(--ion-color-light-shade);
+    padding: var(--wzz-spacing-3-4xl);
+    margin-top: var(--wzz-spacing-4xl);
+    &-t {
+        font-weight: 500;
+    }
+}
+
+.p1s {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: calc(var(--wzz-spacing-xxl) * -1);
+}
+
+.p1 {
+    width: 36px;
+    height: 24px;
+    margin: var(--wzz-spacing-xxl) var(--wzz-spacing-xxl) 0 0;
+}

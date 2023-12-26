@@ -1,0 +1,39 @@
+<ion-header mode="ios" collapse="fade">
+  <ion-toolbar>
+    <ion-title mode="ios">{{'Dettagli omaggi' | translate | uppercase}}</ion-title>
+    <ion-buttons slot="end">
+      <button class="modal-back-btn" (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section class="host" *ngIf="visible">
+    <figure class="p1-image">
+      <img [src]="origImgPaths[selectedImageIndex]">
+    </figure>
+    <div class="p1-name">{{data.Name}}</div>
+    <product-prop [product]="data" [props]="props" [cartService]="giftService" [parentCDRef]="cdRef"
+      (wzzChange)="onChangeProp($event)"></product-prop>
+  </section>
+</ion-content>
+<ion-footer mode="ios">
+  <footer class="footer">
+    <div class="o1" *ngIf="lastCart as lastCart">
+      <ng-container *ngIf="lastCart.Quantity as quantity; else toCartTempl">
+        <div class="o1-n">
+          <ion-icon name="cart-remove" (click)="onChangeQuantity(-data.PackQuantity)"></ion-icon>
+          <div class="o1-input" (click)="onInsertQuantity()">{{lastCart.Quantity | number}}</div>
+          <ion-icon name="cart-add" (click)="onChangeQuantity(data.PackQuantity)"></ion-icon>
+        </div>
+      </ng-container>
+      <ng-template #toCartTempl>
+        <button class="o1-tocart" (click)="onChangeQuantity(data.PackQuantity)">
+          {{'Aggiungi' | translate}}
+        </button>
+      </ng-template>
+    </div>
+  </footer>
+
+</ion-footer>

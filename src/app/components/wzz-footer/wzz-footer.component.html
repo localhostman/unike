@@ -1,0 +1,88 @@
+<ng-container *ngIf="visible">
+  <div class="r1">
+    <div class="s1s">
+      <div class="s1">
+        <ion-icon name="footer-shipping"></ion-icon>
+        <div>
+          {{'Spedizione gratuita M' | translate: {m: 150 | currency: 'EUR'} | uppercase }}
+        </div>
+      </div>
+      <div class="s1">
+        <ion-icon name="footer-tracking"></ion-icon>
+        <div>{{'Tracking shipping' | translate | uppercase}}</div>
+      </div>
+      <div class="s1">
+        <ion-icon name="footer-payment"></ion-icon>
+        <div>{{'Pagamenti sicuri' | translate | uppercase}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="r2">
+    <div class="g1">
+      <div class="g1-h">{{'Informazione azienda' | translate}}</div>
+      <div class="g1-t">
+        <div>{{shop.Name}}</div>
+        <div>{{shop.Address}} {{shop.Zip}} {{shop.City}} {{shop.Province}}</div>
+        <div>{{'P.Iva' | translate}} {{shop.PIva}} - {{'C.F.' | translate}}: {{shop.CF}}</div>
+        <div *ngIf="shop.Email as val">{{val}}</div>
+      </div>
+    </div>
+    <div class="g1">
+      <div class="g1-h">{{'Legale' | translate}}</div>
+      <div class="g1-t">
+        <a class="g1-a" [routerLink]="[language, 'sale-condition'] | routerLink">
+          {{'Condizione di vendita' | translate}}
+        </a>
+        <a class="g1-a">{{'Cookie Policy' | translate}}</a>
+        <a class="g1-a">{{'Privacy Policy' | translate}}</a>
+        <a class="g1-a">{{'GDPR' | translate}}</a>
+      </div>
+    </div>
+    <div class="g1">
+      <div class="g1-h">{{'Info e supporto' | translate}}</div>
+      <div class="g1-t">
+        <a class="g1-a" [routerLink]="[language, 'about-us'] | routerLink">{{'About' | translate}}</a>
+        <a class="g1-a" [routerLink]="[language, 'contact'] | routerLink">{{'Contact' | translate}}</a>
+        <a class="g1-a" [routerLink]="[language, 'faq'] | routerLink">{{'Faq' | translate}}</a>
+        <a class="g1-a" [routerLink]="[language, 'tutorial'] | routerLink">{{'Istruzione' | translate}}</a>
+        <a class="g1-a" [routerLink]="[language, 'shipping-rule'] | routerLink">{{'Shipping info' | translate}}</a>
+        <a class="g1-a" [routerLink]="[language, 'return-rule'] | routerLink">{{'Ordine e resi' | translate}}</a>
+      </div>
+    </div>
+    <div class="n1">
+      <div class="n1-t">{{'Newsletter' | translate}}</div>
+      <div class="n1-n">
+        <div class="n1-subt">
+          {{'Iscriviti alla newsletter per ricevere aggiornamenti e sconti per te' | translate}}
+        </div>
+        <div class="n1-input">
+          <input [placeholder]="'Inserisci email' | translate">
+          <button class="n1-input-btn">{{'Iscriviti' | translate}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="l1s">
+      <div class="l1">
+        <div class="l1-t">{{'Seguici' | translate}}</div>
+        <div class="l1-n1">
+          <img class="l1-s-img" src="assets/imgs/ins.png">
+          <img class="l1-s-img" src="assets/imgs/fb.png">
+          <img class="l1-s-img" src="assets/imgs/yt.png">
+          <img class="l1-s-img" src="assets/imgs/tt.png">
+        </div>
+      </div>
+      <div class="l1">
+        <div class="l1-t">{{'Pagamento' | translate}}</div>
+        <div class="l1-n2">
+          <img class="l1-m-img" src="assets/imgs/mastercard.png">
+          <img class="l1-m-img" src="assets/imgs/visa.png">
+          <img class="l1-m-img" src="assets/imgs/paypal.png">
+          <img class="l1-m-img" src="assets/imgs/postepay.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="r3">
+    {{'Copyright © 2023 Unica Srl. All rights reserved.Credits' | translate | uppercase}}
+  </div>
+</ng-container>

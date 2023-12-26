@@ -1,0 +1,52 @@
+<ion-header mode="ios" collapse="fade">
+  <ion-toolbar>
+    <div class="header" *ngIf="visible">
+      <figure class="p-image" *ngIf="imgPath">
+        <img class="p-image-el" [src]="imgPath">
+      </figure>
+      <div class="p-n">
+        <div class="p-header">
+          <div class="product-name">{{data.Name}}</div>
+        </div>
+        <div class="p-price" *ngIf="lastCart">
+          <div class="new">
+            {{(!!lastCart.Discount ? (1-lastCart.Discount)*lastCart.Price : lastCart.Price) | currency: 'EUR'}}
+            <span class="p-um" *ngIf="lastCart.UM">/{{lastCart.UM | translate}}</span>
+          </div>
+          <div class="old" *ngIf="!!lastCart.Discount">{{lastCart.Price | currency: 'EUR'}}</div>
+        </div>
+        <!-- <div class="product-tip">{{'请选择您所需要的规格' | translate}}</div> -->
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section class="host" *ngIf="visible">
+    <product-prop [product]="data" [props]="props" [parentCDRef]="cdRef"
+      (wzzChange)="onChangeProp($event)"></product-prop>
+  </section>
+</ion-content>
+<ion-footer>
+  <div class="o" *ngIf="lastCart as lastCart">
+    <ng-container *ngIf="lastCart.Quantity as quantity; else toCartTempl">
+      <div class="o-n">
+        <button class="opr-btn remove ion-activatable" (click)="onChangeQuantity(-data.PackQuantity)">
+          <ion-icon name="remove"></ion-icon>
+          <ion-ripple-effect></ion-ripple-effect>
+        </button>
+        <div class="o-input" (click)="onInsertQuantity()">{{lastCart.Quantity | number}}</div>
+        <button class="o-btn add ion-activatable" (click)="onChangeQuantity(data.PackQuantity)">
+          <ion-icon name="add"></ion-icon>
+          <ion-ripple-effect></ion-ripple-effect>
+        </button>
+      </div>
+    </ng-container>
+    <ng-template #toCartTempl>
+      <button class="o-tocart ion-activatable" (click)="onChangeQuantity(data.PackQuantity)">
+        {{'加入购物车' | translate}}
+        <ion-ripple-effect></ion-ripple-effect>
+      </button>
+
+    </ng-template>
+  </div>
+</ion-footer>

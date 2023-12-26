@@ -1,0 +1,80 @@
+<ng-container *ngIf="!tabMode; else hostTempl;">
+  <ion-header mode="ios">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="dark"  icon="back" [defaultHref]="[language, 'me', 'profile'] | routerLink" *ngIf="!modalMode">
+        </ion-back-button>
+      </ion-buttons>
+      <ion-title mode="ios">{{'Gestione counpon' | translate}}</ion-title>
+      <ion-buttons slot="end">
+        <button class="modal-back-btn" (click)="onClose()" *ngIf="modalMode">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ng-container *ngTemplateOutlet="hostTempl;">
+    </ng-container>
+  </ion-content>
+</ng-container>
+
+<ng-template #hostTempl>
+  <section class="host" *ngIf="visible">
+    <header class="host-header">
+      <ion-segment mode="md" class="s1s" [ngModel]="state" (ionChange)="onChangeState($event)">
+        <ion-segment-button class="s1" [value]="states.GOT">
+          {{'Disponibile' | translate}}
+        </ion-segment-button>
+        <ion-segment-button class="s1" [value]="states.EXPIRED">
+          {{'Scaduto' | translate}}
+        </ion-segment-button>
+      </ion-segment>
+    </header>
+    <main class="host-main">
+      <div class="c1s" *ngIf="data?.length; else emptyTempl">
+        <ng-container *ngFor="let item of data;">
+          <ng-container [ngSwitch]="state">
+            <ng-container *ngSwitchCase="states.GOT">
+              <ng-container *ngTemplateOutlet="gotTempl; context: {$implicit: item}">
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="states.EXPIRED">
+              <ng-container *ngTemplateOutlet="gotTempl; context: {$implicit: item}">
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </main>
+  </section>
+</ng-template>
+
+<ng-template #gotTempl let-item>
+  <div class="c1" [class.expired]="item.StateId==states.EXPIRED" [class.selected]="item.selected"
+    (click)="onClick(item)">
+    <div class="c1-n1">
+      <div class="c1-circle start"></div>
+      <div class="c1-circle end"></div>
+      <div class="c1-n2">
+        <div class="c1-bonus">-{{item.Bonus>1 ? (item.Bonus | currency: 'EUR') : (item.Bonus | percent)}}</div>
+        <div class="c1-moa">
+          {{(item.Moa ? 'Sugli ordini >= M' : 'Sugli tutti ordini') | translate: {m: item.Moa | currency: 'EUR'} }}
+        </div>
+        <div class="c1-date">
+          {{'Durata' | translate}}:
+          <ng-container *ngIf="!item.StartDate && !item.EndDate; else date1Templ">
+            {{'Illimitata' | translate}}
+          </ng-container>
+          <ng-template #date1Templ>
+            {{item.StartDate | date: 'shortDate'}} - {{item.EndDate | date: 'shortDate'}}
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #emptyTempl>
+  <empty></empty>
+</ng-template>

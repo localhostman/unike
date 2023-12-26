@@ -1,0 +1,11 @@
+.s1c {
+    border-top: 1px solid var(--ion-color-light-shade);
+    margin-top: var(--wzz-spacing-5xl);
+    padding-top: var(--wzz-spacing-5xl);
+    &-t1 {
+        font-weight: 500;
+    }
+    &-t2 {
+        margin-top: var(--wzz-spacing-xxl);
+    }
+}

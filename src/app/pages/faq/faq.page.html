@@ -1,0 +1,86 @@
+<ion-header mode="ios" collapse="fade">
+  <wzz-header [title]="'Faq' | translate" [defaultHref]="[language, 'home'] | routerLink"></wzz-header>
+</ion-header>
+<ion-content #content class="root-content">
+  <wzz-subheader></wzz-subheader>
+  <section class="host" *ngIf="visible">
+    <div class="host-inner">
+      <div class="t1">{{'Faq' | translate | uppercase}}</div>
+      <div class="f1s" @accordionInit>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 0}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 1}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 2}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 3}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 4}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 5}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 6}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 7}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 8}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 9}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 10}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 11}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 12}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 13}">
+          </ng-container>
+        </div>
+        <div class="f1">
+          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 14}">
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <wzz-footer></wzz-footer>
+  </section>
+</ion-content>
+
+<ng-template #f1Templ let-index="index">
+  <div class="f1-t1" (click)="data[index]=!data[index]; cdRef.detectChanges();" [class.opened]="data[index]">
+    <div class="f1-t1-n">
+      {{'faq_title_'+(index+1) | translate | uppercase}}
+    </div>
+    <ion-icon name="arrow-right"></ion-icon>
+  </div>
+  <div class="f1-t2" @accordionOpenClose *ngIf="data[index]">
+    <div class="f1-t2-n" [innerHTML]="'faq_text_'+(index+1) | translate"></div>
+  </div>
+</ng-template>

@@ -1,0 +1,53 @@
+.p2c {
+    --el-knob-size: 20px;
+
+    border-top: 1px solid var(--ion-color-light);
+    padding: var(--wzz-spacing-3-4xl) 0 calc(var(--wzz-spacing-3-4xl) - var(--el-knob-size) / 2);
+    &-t {
+        font-size: var(--wzz-font-size-xl);
+        font-weight: 500;
+        font-family: "trajan", sans-serif;
+        line-height: 24px;
+    }
+}
+
+.p2 {
+    display: block;
+    max-width: 240px;
+    &-labels {
+        display: flex;
+        justify-content: space-between;
+        padding-top: var(--wzz-spacing-xxl);
+    }
+    &-label {
+        font-weight: 500;
+    }
+    &-el {
+        --knob-size: var(--el-knob-size);
+        --knob-box-shadow: none;
+        padding: 0 calc(var(--knob-size) / 2);
+        height: 42px;
+
+        &::part(knob) {
+            border: 2px solid var(--ion-color-dark);
+            width: calc(var(--knob-size) - 4px);
+            height: calc(var(--knob-size) - 4px);
+        }
+        &::part(pin) {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ion-color-dark);
+            color: #fff;
+            border-radius: 10px;
+            top: calc(var(--knob-size) / -2);
+            line-height: 1;
+            min-width: 24px;
+            padding: 0 8px;
+            height: 24px;
+            transition:
+                transform 120ms ease,
+                background 120ms ease;
+        }
+    }
+}

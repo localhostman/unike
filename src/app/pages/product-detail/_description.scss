@@ -1,0 +1,26 @@
+.d1c {
+    border-top: 1px solid var(--ion-color-light-shade);
+    margin-top: var(--wzz-spacing-5xl);
+    padding-top: var(--wzz-spacing-5xl);
+    &-t {
+        font-weight: 500;
+    }
+}
+
+.d1s {
+    padding-top: var(--wzz-spacing-5xl);
+    &-t {
+        font-family: "trajan", sans-serif;
+        font-weight: 500;
+        line-height: 18px;
+    }
+}
+
+.d1 {
+    padding-top: var(--wzz-spacing-xxl);
+    ::ng-deep {
+        b {
+            font-weight: 500;
+        }
+    }
+}

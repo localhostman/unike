@@ -1,0 +1,40 @@
+@import "src/app/fw/styles/_variables";
+@import "src/app/fw/styles/_container";
+@import "src/app/fw/styles/_image";
+@import "src/app/fw/styles/_flags";
+
+@import "./_account";
+@import "./_menu";
+
+.host {
+    min-height: auto;
+    &-inner {
+        @include container;
+        padding: 0 0 var(--wzz-spacing-6xl);
+    }
+    &-left {
+        align-self: flex-start;
+        position: sticky;
+        top: 0;
+        min-width: 240px;
+        padding: var(--wzz-spacing-5-6xl) var(--wzz-spacing-3-4xl);
+    }
+    &-main {
+        flex: 1;
+        position: relative;
+        padding: var(--wzz-spacing-5-6xl) var(--wzz-spacing-3-4xl);
+        > ion-router-outlet {
+            position: relative;
+            display: block;
+            width: 100%;
+            contain: none;
+            ::ng-deep .ion-page {
+                position: relative;
+                contain: none;
+            }
+        }
+    }
+    &-menu {
+        width: 100%;
+    }
+}

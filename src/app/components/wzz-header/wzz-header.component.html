@@ -1,0 +1,130 @@
+<div class="r1">
+  <div class="r1-n">
+    <div class="m1s">
+      <figure class="m1">
+        <img src="assets/imgs/ins.png">
+      </figure>
+      <figure class="m1">
+        <img src="assets/imgs/fb.png">
+      </figure>
+      <figure class="m1">
+        <img src="assets/imgs/yt.png">
+      </figure>
+      <figure class="m1">
+        <img src="assets/imgs/tt.png">
+      </figure>
+    </div>
+    <div class="t1">
+      {{'Spedizioni gratuite a partire da M in 24/48h' | translate: {m: d?.MinimumOrderAmount | currency: 'EUR'} }}
+    </div>
+    <div class="c1s">
+      <a class="c1" [routerLink]="[language, 'faq'] | routerLink">{{'FAQ' | translate}}</a>
+      <a class="c1">
+        <ion-icon name="whatsapp"></ion-icon>
+        <div class="c1-label">{{'+39-3312730888'}}</div>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="r2">
+  <div class="r2-n">
+    <!-- <figure class="logo">
+      <img [src]="shop?.LogoUrl">
+    </figure> -->
+    <div class="o1s" *ngIf="!resizeExt.isLG">
+      <button class="o1" (click)="onShowAppMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <a class="o1" [routerLink]="[language, 'search'] | routerLink" [routerDirection]="topLevel ? 'back' : 'forward'"
+        [skipLocationChange]="true">
+        <ion-icon name="search"></ion-icon>
+      </a>
+    </div>
+    <div [routerLink]="[language, 'home'] | routerLink" routerDirection="back"
+      style="cursor: pointer; display: flex; align-items: center; justify-content: center; width: 120px; height: 40px; color: #fff; background: var(--ion-color-dark);">
+      LOGO
+    </div>
+    <div class="l1s" @searchInit>
+      <div class="l1s-n">
+        <a class="l1" [routerLink]="[language, 'home'] | routerLink" routerDirection="back">
+          {{'Home' | translate | uppercase}}
+        </a>
+        <a class="l1" [routerLink]="[language, 'product', collectionIdno] | routerLink"
+          [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: collectionIdno}"
+          [id]="'category-collection'+timestamp">
+          {{'Collezioni' | translate | uppercase}}
+          <ion-icon name="arrow-down" *ngIf="collectionCategories.length"></ion-icon>
+        </a>
+        <a class="l1" *ngFor="let event of events;" [routerLink]="[language, 'event', event.id] | routerLink"
+          [routerDirection]="topLevel ? 'back' : 'forward'">
+          {{event.Name | translate | uppercase}}
+        </a>
+        <a class="l1" [routerLink]="[language, 'product', materialIdno] | routerLink"
+          [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: materialIdno}"
+          [id]="'category-material'+timestamp">
+          {{'Accessori' | translate | uppercase}}<ion-icon name="arrow-down"
+            *ngIf="materialCategories.length"></ion-icon>
+        </a>
+        <a class="l1" [routerLink]="[language, 'tutorial'] | routerLink"
+          [routerDirection]="topLevel ? 'back' : 'forward'">
+          {{'Istruzioni' | translate | uppercase}}
+        </a>
+        <a class="l1" [routerLink]="[language, 'about-us'] | routerLink"
+          [routerDirection]="topLevel ? 'back' : 'forward'">
+          {{'About' | translate | uppercase}}
+        </a>
+        <a class="l1" [routerLink]="[language, 'contact'] | routerLink"
+          [routerDirection]="topLevel ? 'back' : 'forward'">
+          {{'Contatteci' | translate | uppercase}}
+        </a>
+        <div class="s1" *ngIf="searchActive" @searchInOut>
+          <div class="s1-n">
+            <ion-icon name="search" class="s1-icon"></ion-icon>
+            <input class="s1-el" [(ngModel)]="q" (keyup.ENTER)="onSearch()">
+          </div>
+          <ion-icon name="close" class="s1-close" (click)="searchActive=false; cdRef.detectChanges();"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="o1s">
+      <button class="o1" [class.disabled]="searchActive" (click)="searchActive=true; cdRef.detectChanges();"
+        *ngIf="resizeExt.isLG">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button class="o1" [routerLink]="[language, 'cart'] | routerLink">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+      <button class="o1" [routerLink]="[language, 'me', 'profile'] | routerLink" routerDirection="back">
+        <ion-icon name="account"></ion-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ion-popover mode="md" cssClass="popover-t2" [trigger]="'category-collection'+timestamp" triggerAction="hover"
+  [showBackdrop]="false" [keepContentsMounted]="true" [dismissOnSelect]="true" *ngIf="collectionCategories.length">
+  <ng-template>
+    <ion-content>
+      <div class="c2s">
+        <div class="c2" *ngFor="let item of collectionCategories;"
+          [routerLink]="[language, 'product', collectionIdno] | routerLink"
+          [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: item.idno}">{{item.Name}}
+        </div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+
+<ion-popover mode="md" cssClass="popover-t2" [trigger]="'category-material'+timestamp" triggerAction="hover"
+  [showBackdrop]="false" [keepContentsMounted]="true" [dismissOnSelect]="true" *ngIf="materialCategories.length">
+  <ng-template>
+    <ion-content>
+      <div class="c2s">
+        <div class="c2" *ngFor="let item of materialCategories;"
+          [routerLink]="[language, 'product', materialIdno] | routerLink"
+          [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: item.idno}">{{item.Name}}
+        </div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-popover>

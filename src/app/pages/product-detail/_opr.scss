@@ -1,0 +1,26 @@
+.o1s {
+    display: flex;
+    flex-direction: column;
+    margin: var(--wzz-spacing-5xl) 0 calc(var(--wzz-spacing-4xl) * -1);
+    cursor: pointer;
+}
+
+.o1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: inherit;
+    height: 44px;
+    border: 1px solid var(--ion-color-dark);
+    padding: 0 var(--wzz-spacing-3-4xl);
+    margin-bottom: var(--wzz-spacing-4xl);
+
+    &.tocart {
+        color: var(--ion-color-dark);
+        background: #fff;
+    }
+    &.buy {
+        color: #fff;
+        background: var(--ion-color-dark);
+    }
+}

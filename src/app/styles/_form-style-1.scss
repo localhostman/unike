@@ -1,0 +1,119 @@
+%form {
+    --input-text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    min-height: 100%;
+    padding: var(--wzz-spacing-x-xxl);
+}
+
+%title {
+    text-align: left;
+    font-size: 21px;
+    font-weight: 500;
+    padding: 40px 0 24px;
+}
+
+%sub-title {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 24px 0 24px;
+}
+
+%prop {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--wzz-spacing-x-xxl);
+}
+
+%input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 100%;
+        height: 2px;
+        opacity: 0;
+        border-radius: 2px;
+        background: var(--ion-color-primary);
+        transition: opacity 0.2s;
+    }
+    &:has(input:focus) {
+        &::after {
+            opacity: 1;
+        }
+    }
+    &:has(input.ng-invalid.ng-touched) {
+        &::after {
+            background: var(--ion-color-danger);
+            opacity: 1;
+        }
+    }
+}
+
+%input-label {
+    color: var(--ion-color-dark);
+    margin-bottom: 8px;
+}
+
+%required {
+    &::after {
+        content: "*";
+        color: var(--ion-color-danger);
+        margin-left: 4px;
+    }
+}
+
+%input-el {
+    font-size: inherit;
+    border-style: none;
+    text-align: var(--input-text-align);
+    border: 1px solid var(--ion-color-light-shade);
+    height: 38px;
+}
+
+%error {
+    text-align: left;
+    font-size: 12px;
+    line-height: 14px;
+    min-height: 14px;
+    margin-top: 6px;
+    color: var(--ion-color-danger);
+}
+
+%btn {
+    font-size: 14px;
+    font-weight: 500;
+    height: 44px;
+    color: #fff;
+    background: var(--ion-color-primary);
+    border-radius: 44px;
+    margin-top: 24px;
+}
+
+%textarea {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+%textarea-el {
+    line-height: 1.5;
+    height: 6em;
+    border-style: none;
+    background: transparent;
+    width: 100%;
+    padding: 0;
+    font-size: inherit;
+    resize: none;
+    border: 1px solid var(--ion-color-light-shade);
+}

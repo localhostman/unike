@@ -1,0 +1,13 @@
+.p1 {
+    &-image {
+        @extend %image;
+        --height: 75%;
+    }
+    &-name {
+        font-size: 21px;
+        font-family: "trajan", sans-serif;
+        font-weight: 500;
+        line-height: 1.25;
+        padding-top: var(--wzz-spacing-3-4xl);
+    }
+}

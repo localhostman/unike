@@ -1,0 +1,60 @@
+<a class="i1" [routerLink]="[language, 'home'] | routerLink" routerDirection="back" (click)="onClickItem()">
+    <div class="i1-n">{{'Home' | translate | uppercase}}</div>
+</a>
+
+<a class="i1" [routerLink]="[language, 'product', collectionIdno] | routerLink"
+    [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: collectionIdno}"
+    (click)="onClickItem()" *ngIf="!collectionCategories.length">
+    <div class="i1-n">{{'Collezioni' | translate | uppercase}}</div>
+</a>
+<ng-container *ngIf="collectionCategories.length">
+    <div class="i1"
+        (click)="categoryStateRef[collectionIdno]=!categoryStateRef[collectionIdno]; cdRef.detectChanges();">
+        <div class="i1-n">{{'Collezioni' | translate | uppercase}}</div>
+        <ion-icon name="arrow-down"></ion-icon>
+    </div>
+    <div class="i2s" *ngIf="categoryStateRef[collectionIdno]" @accordionOpenClose>
+        <a class="i2" *ngFor="let item of collectionCategories;"
+            [routerLink]="[language, 'product', collectionIdno] | routerLink"
+            [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: item.idno}"
+            (click)="onClickItem()">{{item.Name |
+            uppercase}}</a>
+    </div>
+</ng-container>
+
+<a class="i1" *ngFor="let event of events;" [routerLink]="[language, 'event', event.id] | routerLink"
+    [routerDirection]="topLevel ? 'back' : 'forward'" (click)="onClickItem()">
+    <div class="i1-n">{{event.Name | translate | uppercase}}</div>
+</a>
+
+<a class="i1" [routerLink]="[language, 'product', materialIdno] | routerLink"
+    [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: materialIdno}" (click)="onClickItem()"
+    *ngIf="!materialCategories.length">
+    <div class="i1-n">{{'Accessori' | translate | uppercase}}</div>
+</a>
+<ng-container *ngIf="materialCategories.length">
+    <div class="i1" (click)="categoryStateRef[materialIdno]=!categoryStateRef[materialIdno]; cdRef.detectChanges();">
+        <div class="i1-n">{{'Accessori' | translate | uppercase}}</div>
+        <ion-icon name="arrow-down"></ion-icon>
+    </div>
+    <div class="i2s" *ngIf="categoryStateRef[materialIdno]" @accordionOpenClose>
+        <a class="i2" *ngFor="let item of materialCategories;"
+            [routerLink]="[language, 'product', materialIdno] | routerLink"
+            [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: materialIdno}"
+            (click)="onClickItem()">{{item.Name |
+            uppercase}}</a>
+    </div>
+</ng-container>
+
+<a class="i1" [routerLink]="[language, 'tutorial'] | routerLink" [routerDirection]="topLevel ? 'back' : 'forward'"
+    (click)="onClickItem()">
+    <div class="i1-n">{{'Istruzioni' | translate | uppercase}}</div>
+</a>
+<a class="i1" [routerLink]="[language, 'about-us'] | routerLink" [routerDirection]="topLevel ? 'back' : 'forward'"
+    (click)="onClickItem()">
+    <div class="i1-n">{{'About' | translate | uppercase}}</div>
+</a>
+<a class="i1" [routerLink]="[language, 'contact'] | routerLink" [routerDirection]="topLevel ? 'back' : 'forward'"
+    (click)="onClickItem()">
+    <div class="i1-n">{{'Contatteci' | translate | uppercase}}</div>
+</a>

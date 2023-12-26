@@ -19,6 +19,10 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "allowedCommonJsDependencies": [
+              "qrcode",
+              "exif-js/exif"
+            ],
             "assets": [
               {
                 "glob": "**/*",
@@ -27,7 +31,7 @@
               },
               {
                 "glob": "**/*.svg",
-                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "input": "src/assets/svg",
                 "output": "./svg"
               }
             ],

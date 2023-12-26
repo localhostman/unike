@@ -1,0 +1,15 @@
+@import "src/app/fw/styles/_variables";
+
+@import "./_search-bar";
+@import "./_search-content";
+
+.clear-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    left: var(--wzz-spacing-xxl);
+    padding: 0 var(--wzz-spacing-xxl);
+    height: 40px;
+    color: var(--ion-color-medium);
+    background: transparent;
+}

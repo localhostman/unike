@@ -1,0 +1,31 @@
+.r1s {
+    margin-bottom: calc(var(--wzz-spacing-xxl) * -1);
+}
+
+.r1 {
+    padding: var(--wzz-spacing-xxl) 0;
+    border-bottom: 1px dashed var(--ion-color-light-shade);
+    &:last-of-type {
+        border-bottom-style: none;
+    }
+
+    &-n {
+        display: flex;
+        align-items: center;
+        > ion-radio {
+            --border-width: 1px;
+            margin-right: var(--wzz-spacing-xxl);
+            &::part(mark) {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+    &-label {
+        font-weight: 500;
+    }
+    &-note {
+        margin-top: 4px;
+        color: var(--ion-color-medium);
+    }
+}
