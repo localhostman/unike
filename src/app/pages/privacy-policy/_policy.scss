@@ -1,0 +1,29 @@
+.r1s {
+    padding-top: var(--wzz-spacing-5-6xl);
+}
+
+.r1 {
+    padding-bottom: var(--wzz-spacing-3-4xl);
+    &:last-child {
+        padding-bottom: 0;
+    }
+
+    &-n {
+        color: var(--ion-color-dark-tint);
+    }
+
+    &-t1 {
+        font-weight: 500;
+    }
+    &-t2 {
+        list-style: disc;
+        list-style-position: inside;
+        white-space: pre-line;
+        ::ng-deep {
+            a {
+                color: #0059df;
+                cursor: pointer;
+            }
+        }
+    }
+}

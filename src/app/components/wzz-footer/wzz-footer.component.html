@@ -33,9 +33,15 @@
         <a class="g1-a" [routerLink]="[language, 'sale-condition'] | routerLink">
           {{'Condizione di vendita' | translate}}
         </a>
-        <a class="g1-a">{{'Cookie Policy' | translate}}</a>
-        <a class="g1-a">{{'Privacy Policy' | translate}}</a>
-        <a class="g1-a">{{'GDPR' | translate}}</a>
+        <a class="g1-a" [routerLink]="[language, 'cookie-policy'] | routerLink">
+          {{'Cookie Policy' | translate}}
+        </a>
+        <a class="g1-a" [routerLink]="[language, 'privacy-policy'] | routerLink">
+          {{'Privacy Policy' | translate}}
+        </a>
+        <a class="g1-a"[routerLink]="[language, 'gdpr'] | routerLink">
+          {{'GDPR' | translate}}
+        </a>
       </div>
     </div>
     <div class="g1">

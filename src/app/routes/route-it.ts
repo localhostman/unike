@@ -1,4 +1,5 @@
 import { SeoGuard } from '../guards/seo.guard';
+import { GdprPageModule } from '../pages/gdpr/gdpr.module';
 import { ITranslateRoute } from './route';
 
 export function getRoutes(mobile: boolean): ITranslateRoute[] {
@@ -239,6 +240,42 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
         },
         canActivate: [SeoGuard],
         loadChildren: () => import('../pages/sale-condition/sale-condition.module').then(m => m.SaleConditionPageModule)
+      }]
+    },
+    {
+      language: "privacy-policy",
+      translate: "privacy-policy",
+      routes: [{
+        path: 'it/privacy-policy',
+        data: {
+          title: "Privacy policy | fasunidy.com",
+        },
+        canActivate: [SeoGuard],
+        loadChildren: () => import('../pages/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyPageModule)
+      }]
+    },
+    {
+      language: "cookie-policy",
+      translate: "cookie-policy",
+      routes: [{
+        path: 'it/cookie-policy',
+        data: {
+          title: "Cookie policy | fasunidy.com",
+        },
+        canActivate: [SeoGuard],
+        loadChildren: () => import('../pages/cookie-policy/cookie-policy.module').then(m => m.CookiePolicyPageModule)
+      }]
+    },
+    {
+      language: "gdpr",
+      translate: "gdpr",
+      routes: [{
+        path: 'it/gdpr',
+        data: {
+          title: "GDPR | fasunidy.com",
+        },
+        canActivate: [SeoGuard],
+        loadChildren: () => import('../pages/gdpr/gdpr.module').then(m => GdprPageModule)
       }]
     },
   ];

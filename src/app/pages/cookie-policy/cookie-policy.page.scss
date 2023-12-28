@@ -1,7 +1,7 @@
 @import "src/app/fw/styles/_variables";
 @import "src/app/fw/styles/_container";
 
-@import "./_return";
+@import "./_policy";
 
 .host {
     line-height: 1.7;
@@ -28,9 +28,4 @@
     @media (max-width: #{$wzz-width-md}) {
         font-size: 18px;
     }
-}
-
-.t2 {
-    color: var(--ion-color-dark-tint);
-    padding-top: var(--wzz-spacing-5-6xl);
 }
