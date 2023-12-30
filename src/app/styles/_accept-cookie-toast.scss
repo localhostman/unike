@@ -1,7 +1,7 @@
 .accept-cookie-toast {
     --min-width: calc(100% - var(--start) * 2);
     --max-width: var(--min-width);
-    --ion-color-base: rgba(255, 255, 255, 0.9) !important;
+    // --ion-color-base: rgba(255, 255, 255, 0.9) !important;
     --border-radius: 0;
     --box-shadow: #66666626;
 
@@ -14,5 +14,8 @@
         font-size: 120%;
         font-weight: 500;
         margin-bottom: 16px;
+    }
+    &::part(button) {
+        letter-spacing: 0;
     }
 }

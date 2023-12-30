@@ -1,7 +1,5 @@
 .modal-t4 {
-    @extend %modal;
-
-    --width: 100%;
+    --width: calc(100% - var(--wzz-spacing-4xl));
     --max-width: 600px;
     --height: 75vh;
     --max-height: 480px;

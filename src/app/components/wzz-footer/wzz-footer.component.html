@@ -62,8 +62,8 @@
           {{'Iscriviti alla newsletter per ricevere aggiornamenti e sconti per te' | translate}}
         </div>
         <div class="n1-input">
-          <input [placeholder]="'Inserisci email' | translate">
-          <button class="n1-input-btn">{{'Iscriviti' | translate}}</button>
+          <input type="email" [(ngModel)]="email" [placeholder]="'Inserisci email' | translate">
+          <button class="n1-input-btn" (click)="onSubscribe()">{{'Iscriviti' | translate}}</button>
         </div>
       </div>
     </div>
@@ -71,16 +71,16 @@
       <div class="l1">
         <div class="l1-t">{{'Seguici' | translate}}</div>
         <div class="l1-n1">
-          <a class="l1-s-img" href="https://www.instagram.com/fasunidy/" target="_blank">
+          <a class="l1-s-img" href="https://www.instagram.com/fasunidy/" target="_blank" rel="nofollow">
             <img src="assets/imgs/ins.png">
           </a>
-          <a class="l1-s-img" href="https://www.facebook.com/fasunidy" target="_blank">
+          <a class="l1-s-img" href="https://www.facebook.com/fasunidy" target="_blank" rel="nofollow">
             <img src="assets/imgs/fb.png">
           </a>
-          <a class="l1-s-img" href="https://www.tiktok.com/@fasunidy_official" target="_blank">
+          <a class="l1-s-img" href="https://www.tiktok.com/@fasunidy_official" target="_blank" rel="nofollow">
             <img src="assets/imgs/yt.png">
           </a>
-          <a class="l1-s-img" href="https://www.tiktok.com/@fasunidy_official" target="_blank">
+          <a class="l1-s-img" href="https://www.tiktok.com/@fasunidy_official" target="_blank" rel="nofollow">
             <img src="assets/imgs/tt.png">
           </a>
         </div>

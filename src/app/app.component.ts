@@ -49,7 +49,7 @@ export class AppComponent extends CompBase implements AfterViewInit {
     const adOpened = (event || d) && !this.envExt.isLogin();
     if (adOpened) {
       const { TopadPageModule } = await import("./modals/topad/topad.module");
-      const modal = await this.createModal({
+      const modal = await this.modalCtrl.create({
         cssClass: "modal-t4",
         component: TopadPageModule.getPage(),
         componentProps: {
@@ -112,12 +112,17 @@ export class AppComponent extends CompBase implements AfterViewInit {
           header: this.lang("Avviso sull'utilizzo dei cookie"),
           message: this.lang("Questo sito Web utilizza cookie per marketing, analisi e per migliorare l'esperienza dell'utente. Per modificare le impostazioni dei cookie o saperne di più, consulta la sezione \"Cookie: Sito Web\" della nostra Informativa sulla privacy qui. Se continui a navigare nel nostro sito web, accetti questi cookie."),
           position: "bottom",
+          layout: "stacked",
           color: 'light',
           cssClass: 'accept-cookie-toast',
           buttons: [{
             side: 'end',
-            icon: 'close',
-            role: 'cancel'
+            text: this.lang("Acceta tutto"),
+            role: 'accept'
+          }, {
+            side: 'end',
+            text: this.lang("Rifiuta tutto"),
+            role: 'reject'
           }]
         });
 
