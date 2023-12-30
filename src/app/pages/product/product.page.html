@@ -19,10 +19,10 @@
             <div class="num" translate="N Prodotti trovati" [translateParams]="{n: count}"></div>
             <button class="f2" (click)="onOpenMenu(filterMenuId)">
               <ion-icon name="pro-filter"></ion-icon>
-              <div class="f2-label">{{'Filtri' | translate}}</div>
+              <div class="f2-label">{{'Filtri' | translate}}</div> 
             </button>
             <ion-select class="s1-el" [(ngModel)]="sort" mode="md" interface="popover"
-              [interfaceOptions]="{cssClass: 'popover-t1'}" [label]="('Ordina' | translate)+': '">
+              [interfaceOptions]="{cssClass: 'popover-t1'}" [label]="('Ordina' | translate)+': '" (ionChange)="onSort()">
               <ion-select-option *ngFor="let item of sorts;" [value]="item">{{item.Name}}</ion-select-option>
             </ion-select>
           </div>

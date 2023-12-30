@@ -21,7 +21,7 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./product.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductPage extends PageBase implements AfterViewInit { 
+export class ProductPage extends PageBase implements AfterViewInit {
 
   protected sortStorageKey: string = "product_sort";
   sorts: ICommonEntity[] = PRODUCT_SORT;
@@ -180,6 +180,14 @@ export class ProductPage extends PageBase implements AfterViewInit {
 
   async onSelectCategory(categoryIdno: string) {
     this.updateUrl({ category: categoryIdno });
+  }
+
+  async onSort() {
+    await this.loadingService.run(async () => {
+      await this.reload(true);
+    });
+
+    this.cdRef.detectChanges();
   }
 
   async onClickProp(propIdno: string) {

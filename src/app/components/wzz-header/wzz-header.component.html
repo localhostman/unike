@@ -1,36 +1,35 @@
 <div class="r1">
   <div class="r1-n">
     <div class="m1s">
-      <figure class="m1">
+      <a class="m1" href="https://www.instagram.com/fasunidy/" target="_blank">
         <img src="assets/imgs/ins.png">
-      </figure>
-      <figure class="m1">
+      </a>
+      <a class="m1" href="https://www.facebook.com/fasunidy" target="_blank">
         <img src="assets/imgs/fb.png">
-      </figure>
-      <figure class="m1">
+      </a>
+      <a class="m1" href="https://www.tiktok.com/@fasunidy_official" target="_blank">
         <img src="assets/imgs/yt.png">
-      </figure>
-      <figure class="m1">
+      </a>
+      <a class="m1" href="https://www.tiktok.com/@fasunidy_official" target="_blank">
         <img src="assets/imgs/tt.png">
-      </figure>
+      </a>
     </div>
     <div class="t1">
-      {{'Spedizioni gratuite a partire da M in 24/48h' | translate: {m: d?.MinimumOrderAmount | currency: 'EUR'} }}
+      {{
+      'Spedizioni gratuite a partire da M in 24/48h' | translate: {m: (d?.MinimumOrderAmount ?? 0) | currency: 'EUR'}
+      }}
     </div>
     <div class="c1s">
       <a class="c1" [routerLink]="[language, 'faq'] | routerLink">{{'FAQ' | translate}}</a>
       <a class="c1">
         <ion-icon name="whatsapp"></ion-icon>
-        <div class="c1-label">{{'+39-3312730888'}}</div>
+        <div class="c1-label">{{'+39-3279771006'}}</div>
       </a>
     </div>
   </div>
 </div>
 <div class="r2">
   <div class="r2-n">
-    <!-- <figure class="logo">
-      <img [src]="shop?.LogoUrl">
-    </figure> -->
     <div class="o1s" *ngIf="!resizeExt.isLG">
       <button class="o1" (click)="onShowAppMenu()">
         <ion-icon name="menu"></ion-icon>
@@ -74,7 +73,7 @@
         </a>
         <a class="l1" [routerLink]="[language, 'contact'] | routerLink"
           [routerDirection]="topLevel ? 'back' : 'forward'">
-          {{'Contatteci' | translate | uppercase}}
+          {{'Contact' | translate | uppercase}}
         </a>
         <div class="s1" *ngIf="searchActive" @searchInOut>
           <div class="s1-n">

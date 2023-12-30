@@ -56,7 +56,8 @@
           </ng-container>
         </div>
         <div class="f1">
-          <ng-container *ngTemplateOutlet="f1Templ; context: {index: 12}">
+          <ng-container
+            *ngTemplateOutlet="f1Templ; context: {index: 12, params: {m: (d?.MinimumOrderAmount ?? 0) | number: '0.2-2' } }">
           </ng-container>
         </div>
         <div class="f1">
@@ -73,7 +74,7 @@
   </section>
 </ion-content>
 
-<ng-template #f1Templ let-index="index">
+<ng-template #f1Templ let-index="index" let-params="params">
   <div class="f1-t1" (click)="data[index]=!data[index]; cdRef.detectChanges();" [class.opened]="data[index]">
     <div class="f1-t1-n">
       {{'faq_title_'+(index+1) | translate | uppercase}}
@@ -81,6 +82,6 @@
     <ion-icon name="arrow-right"></ion-icon>
   </div>
   <div class="f1-t2" @accordionOpenClose *ngIf="data[index]">
-    <div class="f1-t2-n" [innerHTML]="'faq_text_'+(index+1) | translate"></div>
+    <div class="f1-t2-n" [innerHTML]="'faq_text_'+(index+1) | translate: params"></div>
   </div>
 </ng-template>

@@ -68,8 +68,9 @@ export const PRODUCT_PROP_TYPE = {
 export const PRODUCT_SORT = [
     { id: 'Sort desc', Name: 'Consigliati' },
     { id: 'Name asc', Name: 'Descrizioni' },
-    { id: 'Price asc', Name: 'Prezzi' },
-    { id: 'CTime desc', Name: 'Data create' }
+    { id: 'CTime desc', Name: 'Novità' },
+    { id: 'Price asc', Name: 'Prezzi da basso a alto' },
+    { id: 'Price desc', Name: 'Prezzi da alto a basso' }
 ];
 
 export const INS_MEDIA_TYPE = {

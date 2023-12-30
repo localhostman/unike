@@ -4,7 +4,7 @@
       <div class="s1">
         <ion-icon name="footer-shipping"></ion-icon>
         <div>
-          {{'Spedizione gratuita M' | translate: {m: 150 | currency: 'EUR'} | uppercase }}
+          {{'Spedizione gratuita M' | translate: {m: (d?.MinimumOrderAmount ?? 0) | currency: 'EUR'} | uppercase }}
         </div>
       </div>
       <div class="s1">
@@ -39,7 +39,7 @@
         <a class="g1-a" [routerLink]="[language, 'privacy-policy'] | routerLink">
           {{'Privacy Policy' | translate}}
         </a>
-        <a class="g1-a"[routerLink]="[language, 'gdpr'] | routerLink">
+        <a class="g1-a" [routerLink]="[language, 'gdpr'] | routerLink">
           {{'GDPR' | translate}}
         </a>
       </div>
@@ -71,10 +71,18 @@
       <div class="l1">
         <div class="l1-t">{{'Seguici' | translate}}</div>
         <div class="l1-n1">
-          <img class="l1-s-img" src="assets/imgs/ins.png">
-          <img class="l1-s-img" src="assets/imgs/fb.png">
-          <img class="l1-s-img" src="assets/imgs/yt.png">
-          <img class="l1-s-img" src="assets/imgs/tt.png">
+          <a class="l1-s-img" href="https://www.instagram.com/fasunidy/" target="_blank">
+            <img src="assets/imgs/ins.png">
+          </a>
+          <a class="l1-s-img" href="https://www.facebook.com/fasunidy" target="_blank">
+            <img src="assets/imgs/fb.png">
+          </a>
+          <a class="l1-s-img" href="https://www.tiktok.com/@fasunidy_official" target="_blank">
+            <img src="assets/imgs/yt.png">
+          </a>
+          <a class="l1-s-img" href="https://www.tiktok.com/@fasunidy_official" target="_blank">
+            <img src="assets/imgs/tt.png">
+          </a>
         </div>
       </div>
       <div class="l1">

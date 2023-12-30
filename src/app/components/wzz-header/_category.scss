@@ -4,6 +4,7 @@
 
 .c2 {
     padding: var(--wzz-spacing-x-xxl);
+    user-select: none;
     cursor: pointer;
     transition: color 0.2s;
     &:hover {

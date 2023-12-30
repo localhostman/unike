@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header mode="ios">
   <ion-toolbar>
-    <ion-title mode="ios">{{(!!paymentMethod ? paymentMethod.Name : '订单加载中..') | translate}}</ion-title>
+    <ion-title mode="ios">{{(!!paymentMethod ? paymentMethod.Name : 'Caricamento..') | translate}}</ion-title>
     <ion-buttons slot="end">
       <button class="modal-back-btn" (click)="onClose()">
         <ion-icon name="close"></ion-icon>

@@ -1,6 +1,6 @@
 <ion-header mode="ios" collapse="fade">
   <ion-toolbar class="header">
-    <wzz-header [title]="'产品详细' | translate" [defaultHref]="[language, 'category'] | routerLink"></wzz-header>
+    <wzz-header [title]="'Dettaglio prodotto' | translate" [defaultHref]="[language, 'category'] | routerLink"></wzz-header>
   </ion-toolbar>
 </ion-header>
 
@@ -94,13 +94,13 @@
               </div>
             </div>
             <div class="o1s">
-              <button class="o1 tocart ion-activatable" (click)="productPropEl.changeQuantity(data.PackQuantity)">
+              <button class="o1 tocart ion-activatable" (click)="onChangeQuantity(data.PackQuantity)">
                 <ion-ripple-effect></ion-ripple-effect>
                 {{'Aggiungi al carrello' | translate | uppercase}}
               </button>
               <button class="o1 buy ion-activatable" (click)="onDirectCheckout()">
                 <ion-ripple-effect></ion-ripple-effect>
-                {{'Aquisto subito' | translate | uppercase}}
+                {{'Aquista subito' | translate | uppercase}}
               </button>
             </div>
           </ng-container>

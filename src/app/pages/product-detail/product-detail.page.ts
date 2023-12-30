@@ -9,11 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct, IProductProp, ICart } from 'src/app/interfaces/i-data';
 import { ProductService } from 'src/app/services/product.service';
 import { DeliveryExtension } from 'src/app/extensions/delivery';
-import { IonContent, Platform } from '@ionic/angular';
+import { IonContent, NavController } from '@ionic/angular';
 import { ProductExtension } from 'src/app/extensions/product';
 import Swiper from 'swiper';
 import { CartService } from 'src/app/services/cart.service';
 import { SendOrderPage } from 'src/app/modals/send-order/send-order.page';
+import { SUCCESS_MESSAGE } from 'src/app/fw/const/const';
 
 const IMAGE_LIST_WIDTH = 80;
 const IMAGE_THUMB_NUM = 6.5;
@@ -61,7 +62,7 @@ export class ProductDetailPage extends CompBase implements AfterViewInit {
     public cartService: CartService,
     private productPropService: ProductPropService,
     private service: ProductService,
-    private platform: Platform,
+    private _navCtrl: NavController,
     private route: ActivatedRoute,
     protected override injector: Injector,
     public override cdRef: ChangeDetectorRef
@@ -155,6 +156,17 @@ export class ProductDetailPage extends CompBase implements AfterViewInit {
       this.cdRef.detectChanges();
     }, 100);
 
+  }
+
+  async onChangeQuantity(quantity: number) {
+    await this.productPropEl.changeQuantity(quantity);
+    this.getMessageExt().confirm({
+      message: this.lang(SUCCESS_MESSAGE),
+      successText: this.lang("Vedi carrello"),
+      success: () => {
+        this._navCtrl.navigateForward(this.routerLinkExt.translate([this.language, "cart"]));
+      }
+    });
   }
 
   async onDirectCheckout() {

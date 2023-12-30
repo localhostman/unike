@@ -1,7 +1,9 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector } from '@angular/core';
+import { DeliveryExtension } from 'src/app/extensions/delivery';
 import { ResizeExtension } from 'src/app/extensions/resize';
 import { RouterLinkExtension } from 'src/app/extensions/router-link';
 import { PageBase } from 'src/app/fw/bases/page/page.base';
+import { IDeliveryMethod } from 'src/app/interfaces/i-data';
 import { Animations } from 'src/app/utils/animations';
 
 @Component({
@@ -24,9 +26,12 @@ export class FaqPage extends PageBase implements AfterViewInit {
     true
   ];
 
+  d?: IDeliveryMethod;
+
   constructor(
-    public routerLinkExt: RouterLinkExtension,
     public resizeExt: ResizeExtension,
+    public routerLinkExt: RouterLinkExtension,
+    public dExt: DeliveryExtension,
     protected override injector: Injector,
     public override cdRef: ChangeDetectorRef
   ) {
@@ -35,6 +40,8 @@ export class FaqPage extends PageBase implements AfterViewInit {
 
   async ngAfterViewInit() {
     this.cdRef.detach();
+
+    this.d = this.dExt.deliveryMethod;
 
     this.visible = true;
     this.cdRef.detectChanges();

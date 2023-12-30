@@ -43,7 +43,6 @@ export class WzzHeaderComponent extends CompBase implements AfterViewInit {
 
   timestamp = Date.now();
 
-  shop?: IShop;
   events!: IPromo[];
   d?: IDeliveryMethod;
   collectionIdno = COLLECTION_IDNO;
@@ -71,7 +70,6 @@ export class WzzHeaderComponent extends CompBase implements AfterViewInit {
   async ngAfterViewInit() {
     this.cdRef.detach();
 
-    this.shop = this.envExt.shop;
     this.events = this.envExt.eventsHuodong;
     this.d = this.dExt.deliveryMethod;
     if (this.q) {
