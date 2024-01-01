@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 import { LangBase } from '../fw/bases/lang/lang.base';
 import { PaymentModalPage } from '../modals/payment-modal/payment-modal.page';
 import { PAYMENT_METHOD } from 'src/app/const/const';
-import { MessageExtension } from './message';
+import { MessageExtension } from '../fw/extensions/message';
 
 // declare var WeixinJSBridge: any;
 

@@ -18,7 +18,7 @@ import { PaymentMethodService } from 'src/app/services/payment-method.service';
 import { SelectGiftPage } from '../select-gift/select-gift.page';
 import { GiftService } from 'src/app/services/gift.service';
 import { AddressPage } from 'src/app/pages/address/address.page';
-import { ResizeExtension } from 'src/app/extensions/resize';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { CouponPage } from 'src/app/pages/coupon/coupon.page';
 
 @Component({

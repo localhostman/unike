@@ -1,5 +1,5 @@
 import { PLATFORM_DOMAIN, PROMO_TYPE } from './../const/const';
-import { RouterLinkExtension } from './../extensions/router-link';
+import { RouterLinkExtension } from '../fw/extensions/router-link';
 import { LangExtension } from './../extensions/lang';
 import { Platform } from '@ionic/angular';
 import { CookieService } from './../fw/services/cookie.service';

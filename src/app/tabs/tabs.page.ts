@@ -1,4 +1,4 @@
-import { RouterLinkExtension } from './../extensions/router-link';
+import { RouterLinkExtension } from '../fw/extensions/router-link';
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Injector } from '@angular/core';
 import { CompBase } from '../fw/bases/comp/comp.base';
 

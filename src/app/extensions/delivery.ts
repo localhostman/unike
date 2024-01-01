@@ -1,4 +1,4 @@
-import { MessageExtension } from './message';
+import { MessageExtension } from '../fw/extensions/message';
 import { Injectable, Injector, ChangeDetectorRef } from '@angular/core';
 import { DeliveryMethodService } from '../services/delivery-method.service';
 import { CartService } from '../services/cart.service';

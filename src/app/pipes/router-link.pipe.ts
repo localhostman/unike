@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { RouterLinkExtension } from '../extensions/router-link';
+import { RouterLinkExtension } from '../fw/extensions/router-link';
 
 @Pipe({
   name: 'routerLink'

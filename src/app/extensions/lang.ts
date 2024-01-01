@@ -1,4 +1,4 @@
-import { MessageExtension } from './message';
+import { MessageExtension } from '../fw/extensions/message';
 import { DOCUMENT, Location } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Env } from '../fw/dynamics/env';
 import { AjaxService } from '../fw/services/ajax.service';
 import { Utility } from '../fw/utils/utility';
-import { RouterLinkExtension } from './router-link';
+import { RouterLinkExtension } from '../fw/extensions/router-link';
 import { LANG_COOKIE } from 'src/app/fw/services/cookie.service';
 import { Router, Route } from '@angular/router';
 import { WzzStorage } from '../fw/utils/wzz-storage';

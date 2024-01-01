@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector } from '@angular/core';
-import { ResizeExtension } from 'src/app/extensions/resize';
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 import { PageBase } from 'src/app/fw/bases/page/page.base';
 
 @Component({

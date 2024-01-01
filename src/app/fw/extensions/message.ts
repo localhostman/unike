@@ -2,7 +2,7 @@ import { Injectable, Injector } from "@angular/core";
 import { AlertController, ModalController, ModalOptions, ToastController } from "@ionic/angular";
 import { LangBase } from "src/app/fw/bases/lang/lang.base";
 import { Md5 } from "ts-md5";
-import { EnvExtension } from "./env";
+import { EnvExtension } from "../../extensions/env";
 
 @Injectable({
     providedIn: 'root'

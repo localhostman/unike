@@ -4,7 +4,7 @@ import { Platform, ModalController, ToastController, AlertController, MenuContro
 import { Router, ActivatedRoute } from '@angular/router';
 import { WzzStorage } from './fw/utils/wzz-storage';
 import { register } from 'swiper/element/bundle';
-import { ResizeExtension } from './extensions/resize';
+import { ResizeExtension } from './fw/extensions/resize';
 import { CompBase } from './fw/bases/comp/comp.base';
 import { DeliveryExtension } from './extensions/delivery';
 import { WzzMenuComponent } from './components/wzz-menu/wzz-menu.component';

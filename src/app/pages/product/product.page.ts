@@ -1,5 +1,5 @@
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
-import { ResizeExtension } from './../../extensions/resize';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
+import { ResizeExtension } from '../../fw/extensions/resize';
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, Injector } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { CategoryService } from 'src/app/services/category.service';

@@ -5,9 +5,9 @@ import { ICategory, IPromo } from 'src/app/interfaces/i-data';
 import { COLLECTION_IDNO, MATETIAL_IDNO } from 'src/app/const/const';
 import { CategoryService } from 'src/app/services/category.service';
 import { filter } from 'rxjs';
-import { ResizeExtension } from 'src/app/extensions/resize';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { Animations } from 'src/app/utils/animations';
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 
 @Component({
   selector: 'wzz-menu',

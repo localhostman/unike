@@ -15,6 +15,7 @@ import { ProductDetailPageRoutingModule } from './product-detail-routing.module'
 import { ProductDetailPage } from './product-detail.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { CartComponentModule } from 'src/app/components/cart/cart.module';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -31,7 +32,8 @@ import { TranslateModule } from '@ngx-translate/core';
     WzzFooterComponentModule,
     ProductComponentModule,
     ProductPropComponentModule,
-    ZoomImageComponentModule
+    ZoomImageComponentModule,
+    CartComponentModule
   ],
   declarations: [ProductDetailPage]
 })

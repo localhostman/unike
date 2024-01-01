@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
-import { RouterLinkExtension } from '../extensions/router-link';
+import { RouterLinkExtension } from '../fw/extensions/router-link';
 import { SeoService } from '../services/seo.service';
 
 @Injectable({

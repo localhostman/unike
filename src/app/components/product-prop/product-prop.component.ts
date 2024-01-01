@@ -187,6 +187,8 @@ export class ProductPropComponent extends CompBase implements OnChanges, AfterVi
     this.dExt.update();
 
     this.parentCDRef.detectChanges();
+
+    return this.lastCart;
   }
 
 }

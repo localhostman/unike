@@ -4,7 +4,7 @@ import { CartService } from './../services/cart.service';
 import { IProduct, IDeliveryMethod } from './../interfaces/i-data';
 import { IOrderProductRef, OrderService } from './../services/order.service';
 import { ChangeDetectorRef, Injectable } from "@angular/core";
-import { MessageExtension } from './message';
+import { MessageExtension } from '../fw/extensions/message';
 
 const normalize = function (item: any, ref: any, proNumRef: any, d: IDeliveryMethod, callback?: Function) {
     if (!item)

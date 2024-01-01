@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { EventsService } from '../fw/dynamics/events.service';
-import { RouterLinkExtension } from '../extensions/router-link';
+import { RouterLinkExtension } from '../fw/extensions/router-link';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({

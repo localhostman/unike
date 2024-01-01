@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, Input,
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeliveryExtension } from 'src/app/extensions/delivery';
 import { ProductExtension } from 'src/app/extensions/product';
-import { ResizeExtension } from 'src/app/extensions/resize';
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 import { IProduct } from 'src/app/interfaces/i-data';
 import { GiftPage } from 'src/app/pages/gift/gift.page';
 import { ProductService } from 'src/app/services/product.service';

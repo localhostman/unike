@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Platform } from "@ionic/angular";
 import { Subject } from "rxjs";
-import { MEDIA_WIDTH } from "../fw/const/const";
+import { MEDIA_WIDTH } from "../const/const";
 
 @Injectable({
     providedIn: 'root'

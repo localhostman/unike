@@ -1,11 +1,11 @@
-import { RouterLinkExtension } from './../../extensions/router-link';
+import { RouterLinkExtension } from '../../fw/extensions/router-link';
 import { ProductExtension } from 'src/app/extensions/product';
 import { DeliveryExtension } from './../../extensions/delivery';
 import { CompBase } from './../../fw/bases/comp/comp.base';
 import { IProduct } from './../../interfaces/i-data';
 import { ChangeDetectionStrategy, Component, Input, ChangeDetectorRef, Injector, AfterViewInit, OnChanges, SimpleChanges, HostListener } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { ResizeExtension } from 'src/app/extensions/resize';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
 
 @Component({
   selector: 'product',

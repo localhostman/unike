@@ -5,7 +5,7 @@ import { ICart } from 'src/app/interfaces/i-data';
 import { CartService } from 'src/app/services/cart.service';
 import { CompBase } from 'src/app/fw/bases/comp/comp.base';
 import { DeliveryExtension } from 'src/app/extensions/delivery';
-import { ResizeExtension } from 'src/app/extensions/resize';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
 
 @Component({
   selector: 'app-cart',

@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Injector, Input, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResizeExtension } from 'src/app/extensions/resize';
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 import { PageBase } from 'src/app/fw/bases/page/page.base';
 import { FAIL_MESSAGE } from 'src/app/fw/const/const';
 import { Utility } from 'src/app/fw/utils/utility';

@@ -1,0 +1,7 @@
+<ng-container *ngIf="visible">
+  <div class="backdrop" (click)="onClose()" @backdropInOut></div>
+  <section class="host" @hostInOut (@hostInOut.start)="onAnimationStart($event)"
+    (@hostInOut.done)="onAnimationEnd($event)">
+
+  </section>
+</ng-container>

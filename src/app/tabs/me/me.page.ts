@@ -1,5 +1,5 @@
 import { DEFAULT_AVATAR } from './../../fw/const/const';
-import { RouterLinkExtension } from './../../extensions/router-link';
+import { RouterLinkExtension } from '../../fw/extensions/router-link';
 import { LangExtension } from '../../extensions/lang';
 import { Component, ChangeDetectionStrategy, AfterViewInit, ChangeDetectorRef, Injector } from '@angular/core';
 import { CompBase } from 'src/app/fw/bases/comp/comp.base';
@@ -9,7 +9,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { InitializerService } from 'src/app/services/initializer.service';
 import { GettablePromoService } from 'src/app/services/gettable-promo.service';
 import { Router } from '@angular/router';
-import { ResizeExtension } from 'src/app/extensions/resize';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
 
 @Component({
   selector: 'app-me',

@@ -2,8 +2,8 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, E
 import { ActivatedRoute, Router } from '@angular/router';
 import { skip } from 'rxjs';
 import { ORDER_STATE } from 'src/app/const/const';
-import { ResizeExtension } from 'src/app/extensions/resize';
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 import { PageBase } from 'src/app/fw/bases/page/page.base';
 import { ALL } from 'src/app/fw/const/const';
 import { IOrder } from 'src/app/interfaces/i-data';

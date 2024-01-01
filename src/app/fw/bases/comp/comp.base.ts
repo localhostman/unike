@@ -7,7 +7,7 @@ import { LangBase } from 'src/app/fw/bases/lang/lang.base';
 import { ModalController, ModalOptions } from '@ionic/angular';
 import { DEFAULT_IMAGE } from '../../const/const';
 import { IBase } from '../../interfaces/i-data';
-import { MessageExtension } from 'src/app/extensions/message';
+import { MessageExtension } from 'src/app/fw/extensions/message';
 import { EnvExtension } from 'src/app/extensions/env';
 import { EventsService } from '../../dynamics/events.service';
 import { LoadingService } from '../../services/loading.service';

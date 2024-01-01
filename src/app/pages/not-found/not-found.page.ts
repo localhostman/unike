@@ -2,8 +2,8 @@ import { CompBase } from './../../fw/bases/comp/comp.base';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { ResizeExtension } from 'src/app/extensions/resize';
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 
 @Component({
   selector: 'app-not-found',

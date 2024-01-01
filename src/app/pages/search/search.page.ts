@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 import { SearchExtension } from 'src/app/extensions/search';
 import { CompBase } from 'src/app/fw/bases/comp/comp.base';
 

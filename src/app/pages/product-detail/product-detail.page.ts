@@ -1,9 +1,9 @@
 import { Product } from './../../utils/product';
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
-import { ResizeExtension } from './../../extensions/resize';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
+import { ResizeExtension } from '../../fw/extensions/resize';
 import { ProductPropComponent } from './../../components/product-prop/product-prop.component';
 import { ProductPropService } from './../../services/product-prop.service';
-import { Component, ChangeDetectorRef, ChangeDetectionStrategy, AfterViewInit, ViewChild, Injector, ElementRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, AfterViewInit, ViewChild, Injector, ElementRef, ViewContainerRef } from '@angular/core';
 import { CompBase } from 'src/app/fw/bases/comp/comp.base';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct, IProductProp, ICart } from 'src/app/interfaces/i-data';
@@ -14,7 +14,8 @@ import { ProductExtension } from 'src/app/extensions/product';
 import Swiper from 'swiper';
 import { CartService } from 'src/app/services/cart.service';
 import { SendOrderPage } from 'src/app/modals/send-order/send-order.page';
-import { SUCCESS_MESSAGE } from 'src/app/fw/const/const';
+import { DCompExtension } from 'src/app/fw/extensions/dcomp';
+import { CartComponent } from 'src/app/components/cart/cart.component';
 
 const IMAGE_LIST_WIDTH = 80;
 const IMAGE_THUMB_NUM = 6.5;
@@ -53,11 +54,13 @@ export class ProductDetailPage extends CompBase implements AfterViewInit {
   @ViewChild(ProductPropComponent) productPropEl!: ProductPropComponent;
 
   @ViewChild("i1SwiperRef") i1SwiperRef!: ElementRef;
+  @ViewChild("dcomp", { read: ViewContainerRef, static: true }) dcomp!: ViewContainerRef;
 
   constructor(
-    public dExt: DeliveryExtension,
-    public routerLinkExt: RouterLinkExtension,
     public resizeExt: ResizeExtension,
+    public deliveryExt: DeliveryExtension,
+    public routerLinkExt: RouterLinkExtension,
+    public dcompExt: DCompExtension,
     public productExt: ProductExtension,
     public cartService: CartService,
     private productPropService: ProductPropService,
@@ -158,15 +161,23 @@ export class ProductDetailPage extends CompBase implements AfterViewInit {
 
   }
 
-  async onChangeQuantity(quantity: number) {
-    await this.productPropEl.changeQuantity(quantity);
-    this.getMessageExt().confirm({
-      message: this.lang(SUCCESS_MESSAGE),
-      successText: this.lang("Vedi carrello"),
-      success: () => {
-        this._navCtrl.navigateForward(this.routerLinkExt.translate([this.language, "cart"]));
-      }
+  async onCart() {
+    this.dcompExt.create({
+      component: CartComponent,
+      componentProps: {
+        data: this.lastCart
+      },
+      templ: this.dcomp,
+      cdRef: this.cdRef
     });
+
+    // this.getMessageExt().confirm({
+    //   message: this.lang(SUCCESS_MESSAGE),
+    //   successText: this.lang("Vedi carrello"),
+    //   success: () => {
+    //     this._navCtrl.navigateForward(this.routerLinkExt.translate([this.language, "cart"]));
+    //   }
+    // });
   }
 
   async onDirectCheckout() {

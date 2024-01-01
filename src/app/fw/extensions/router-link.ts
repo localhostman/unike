@@ -1,4 +1,4 @@
-import { IProduct, ICategory } from './../interfaces/i-data';
+import { IProduct, ICategory } from '../../interfaces/i-data';
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, RendererFactory2, ViewEncapsulation } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
@@ -6,9 +6,9 @@ import { Route } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { skip } from 'rxjs';
-import { Env } from '../fw/dynamics/env';
-import { ISEO } from '../interfaces/i-data';
-import { getRoutes, ITranslateRoute } from '../routes/route';
+import { Env } from '../dynamics/env';
+import { ISEO } from '../../interfaces/i-data';
+import { getRoutes, ITranslateRoute } from '../../routes/route';
 
 const _translate = function (str: string | number, langRef: any, language: string, slug: string = "", slugRef: any = {}) {
     str = str.toString().toLowerCase();

@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Injector, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResizeExtension } from 'src/app/extensions/resize';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { CompBase } from 'src/app/fw/bases/comp/comp.base';
 import { PageBase } from 'src/app/fw/bases/page/page.base';
 import { FORM_INVALID_MSG, SUCCESS_MESSAGE } from 'src/app/fw/const/const';

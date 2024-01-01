@@ -1,5 +1,5 @@
 import { MATETIAL_IDNO } from './../../const/const';
-import { RouterLinkExtension } from './../../extensions/router-link';
+import { RouterLinkExtension } from '../../fw/extensions/router-link';
 import { DeliveryExtension } from 'src/app/extensions/delivery';
 import { ProductExtension } from './../../extensions/product';
 import { Component, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Injector, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
@@ -10,7 +10,7 @@ import { Swiper } from 'swiper/types';
 import { CategoryService } from 'src/app/services/category.service';
 import { COLLECTION_IDNO, INS_MEDIA_TYPE } from 'src/app/const/const';
 import { InsService } from 'src/app/services/ins.service';
-import { ResizeExtension } from 'src/app/extensions/resize';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { filter, firstValueFrom } from 'rxjs';
 import { MEDIA_WIDTH } from 'src/app/fw/const/const';
 

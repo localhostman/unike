@@ -1,4 +1,4 @@
-import { RouterLinkExtension } from 'src/app/extensions/router-link';
+import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 import { LangExtension } from '../../extensions/lang';
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, Injector, Input } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { filter } from 'rxjs';
 import { DeliveryExtension } from 'src/app/extensions/delivery';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { ResizeExtension } from 'src/app/extensions/resize';
+import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { SearchExtension } from 'src/app/extensions/search';
 
 @Component({
