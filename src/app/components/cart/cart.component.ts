@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, Input } from '@angular/core';
-import { EnvExtension } from 'src/app/extensions/env';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, Input } from '@angular/core';
 import { DcompComponent, Animations } from 'src/app/fw/bases/dcomp/dcomp.component';
 import { ICart } from 'src/app/interfaces/i-data';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,16 +13,27 @@ import { ICart } from 'src/app/interfaces/i-data';
     Animations.hostSlideInOut
   ]
 })
-export class CartComponent extends DcompComponent { 
+export class CartComponent extends DcompComponent implements AfterViewInit {
 
   @Input() data!: ICart;
+  override visible: boolean = true;
 
   constructor(
-    public envExt: EnvExtension,
+    protected service: CartService,
     protected override injector: Injector,
-    protected override cdRef: ChangeDetectorRef
+    public override cdRef: ChangeDetectorRef
   ) {
     super(injector, cdRef);
+  }
+
+  ngAfterViewInit() {
+    this.subscription.add(this.service.update$.subscribe(({ product }) => {
+      if (product.uniqueKey == this.data.uniqueKey) {
+        this.data.Quantity = product.Quantity;
+        this.data.Total = product.Total;
+        this.cdRef.detectChanges();
+      }
+    }));
   }
 
 }

@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    RouterModule.forRoot([], { preloadingStrategy: PreloadAllModules, useHash: true, initialNavigation: 'enabledNonBlocking' })
+    RouterModule.forRoot([], { preloadingStrategy: PreloadAllModules, useHash: false, initialNavigation: 'enabledNonBlocking' })
   ],
   exports: [RouterModule]
 })

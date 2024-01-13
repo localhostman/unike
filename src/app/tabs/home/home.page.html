@@ -19,7 +19,7 @@
           <div class="c1" *ngFor="let item of collectionCategories;"
             [routerLink]="[language, 'product', collectionIdno] | routerLink" [queryParams]="{category: item.idno}">
             <figure class="c1-n">
-              <img [src]="item.ImgPath">
+              <img [src]="item.ImgPath" [alt]="item.Name">
               <div class="c1-name">
                 <div class="c1-name-n">{{item.Name | uppercase}}</div>
               </div>

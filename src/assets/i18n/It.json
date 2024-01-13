@@ -204,5 +204,7 @@
     "支付超时, 请重新提交订单": "Pagamento scaduto, inviare nuovamente l'ordine",
     "您正在退出支付界面": "Stai uscendo dall'interfaccia di pagamento",
     "退出": "Esci",
-    "继续支付": "Continua"
+    "继续支付": "Continua",
+    "Meno di M": "Meno di {{m}}€",
+    "M e oltre": "{{m}}€ e oltre"
 }

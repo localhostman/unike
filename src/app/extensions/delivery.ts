@@ -171,6 +171,7 @@ export class DeliveryExtension extends LangBase {
 
     async update(d1?: IDeliveryMethod) { //[是否可发单, 运费]
         let [totalQuantity, oAmount, amount, vAmount, totalWeight] = this.cartService.getSum();
+
         const [enableSendOrder, transportFare, diffAmount, d] = await this.getSum(vAmount, totalWeight, d1);
 
         this.enableSendOrder = enableSendOrder;

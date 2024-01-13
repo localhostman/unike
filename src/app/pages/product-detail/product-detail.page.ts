@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct, IProductProp, ICart } from 'src/app/interfaces/i-data';
 import { ProductService } from 'src/app/services/product.service';
 import { DeliveryExtension } from 'src/app/extensions/delivery';
-import { IonContent, NavController } from '@ionic/angular';
+import { IonContent } from '@ionic/angular';
 import { ProductExtension } from 'src/app/extensions/product';
 import Swiper from 'swiper';
 import { CartService } from 'src/app/services/cart.service';
@@ -65,7 +65,6 @@ export class ProductDetailPage extends CompBase implements AfterViewInit {
     public cartService: CartService,
     private productPropService: ProductPropService,
     private service: ProductService,
-    private _navCtrl: NavController,
     private route: ActivatedRoute,
     protected override injector: Injector,
     public override cdRef: ChangeDetectorRef
@@ -103,10 +102,23 @@ export class ProductDetailPage extends CompBase implements AfterViewInit {
     this.subscription.add(this.resizeExt.resize$.subscribe(() => {
       this.cdRef.detectChanges();
     }));
+
+
+    this.subscription.add(this.cartService.update$.subscribe(({ product }) => {
+      if (product.uniqueKey == this.lastCart.uniqueKey) {
+        this.lastCart.Quantity = product.Quantity;
+        this.lastCart.Total = product.Total;
+        this.cdRef.detectChanges();
+      }
+    }));
   }
 
   get i1SwiperEl(): Swiper | undefined {
     return this.i1SwiperRef?.nativeElement?.swiper;
+  }
+
+  async onViewImage(index?: number) {
+    Product.viewImage(this.origImgPaths, index);
   }
 
   onSwipeImage() {
@@ -162,6 +174,11 @@ export class ProductDetailPage extends CompBase implements AfterViewInit {
   }
 
   async onCart() {
+    if (this.lastCart.Quantity <= 0) {
+      this.getMessageExt().alert(this.lang("Inserisci la quantità"));
+      return;
+    }
+
     this.dcompExt.create({
       component: CartComponent,
       componentProps: {
@@ -216,6 +233,7 @@ export class ProductDetailPage extends CompBase implements AfterViewInit {
 
     this.data = res?.topics ?? {};
     this.hotProducts = res?.extra ?? [];
+    this.data.ValuableMoaFinal = Product.isValuableMoa(this.data, this.deliveryExt.deliveryMethod);
 
     // this.hotProducts.unshift(Utility.clone(this.data));
 

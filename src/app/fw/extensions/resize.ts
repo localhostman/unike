@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, afterNextRender } from "@angular/core";
 import { Platform } from "@ionic/angular";
 import { Subject } from "rxjs";
 import { MEDIA_WIDTH } from "../const/const";
@@ -24,22 +24,24 @@ export class ResizeExtension {
     ) {
         let width = this._platform.width() ?? 8000;
         this._updateMode(width);
-        this._platform.resize.subscribe(() => {
-            width = this._platform.width();
 
-            if (this._tid) {
-                clearTimeout(this._tid);
-            }
+        afterNextRender(() => {
+            this._platform.resize.subscribe(() => {
+                width = this._platform.width();
 
-            this._tid = setTimeout(() => {
-                clearTimeout(this._tid);
-                this._tid = null;
-                if (this._updateMode(width))
-                    this.resize$.next(width);
-            }, 200);
+                if (this._tid) {
+                    clearTimeout(this._tid);
+                }
 
-
+                this._tid = setTimeout(() => {
+                    clearTimeout(this._tid);
+                    this._tid = null;
+                    if (this._updateMode(width))
+                        this.resize$.next(width);
+                }, 200);
+            });
         });
+
     }
 
     private _updateMode(width: number) {

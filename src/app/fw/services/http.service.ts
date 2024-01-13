@@ -27,7 +27,7 @@ export class HttpService {
     async options(url: string, headers: any) {
         const res = this._run(
             () => Http.request({ url, headers, method: 'options', connectTimeout: 5000 }),
-            () => this.http.get<IRes>(url, { headers: headers, withCredentials: false })
+            () => this.http.get<IRes>(url, { headers: headers, withCredentials: true })
         );
         return res;
     }
@@ -35,7 +35,7 @@ export class HttpService {
     async get(url: string, headers: any, responseType: any = "json") {
         const res = this._run(
             () => Http.request({ url, headers, method: 'get', connectTimeout: 5000 }),
-            () => this.http.get<any>(url, { headers, responseType, withCredentials: false })
+            () => this.http.get<any>(url, { headers, responseType, withCredentials: true })
         );
         return res;
     }
@@ -43,7 +43,7 @@ export class HttpService {
     async delete(url: string, headers: any, responseType: any = "json") {
         const res = this._run(
             () => Http.request({ url, headers, method: 'del', connectTimeout: 5000 }),
-            () => this.http.delete<any>(url, { headers, responseType, withCredentials: false })
+            () => this.http.delete<any>(url, { headers, responseType, withCredentials: true })
         );
         return res;
     }
@@ -51,7 +51,7 @@ export class HttpService {
     async put(url: string, formData: any, headers: any, responseType: any = "json") {
         const res = this._run(
             () => Http.request({ url, data: formData, headers, method: 'put', connectTimeout: 5000 }),
-            () => this.http.put<any>(url, formData, { headers, responseType, withCredentials: false })
+            () => this.http.put<any>(url, formData, { headers, responseType, withCredentials: true })
         );
         return res;
     }
@@ -59,7 +59,7 @@ export class HttpService {
     async post(url: string, formData: any, headers: any, responseType: any = "json", hasFile: boolean = false) {
         const res = this._run(
             () => Http.request({ url, data: formData, headers, method: 'post', connectTimeout: hasFile ? 120000 : 5000 }),
-            () => this.http.post<any>(url, formData, { headers, responseType, withCredentials: false }),
+            () => this.http.post<any>(url, formData, { headers, responseType, withCredentials: true }),
             hasFile ? 120000 : 5000
         );
         return res;
@@ -68,7 +68,7 @@ export class HttpService {
     async patch(url: string, formData: any, headers: any, responseType: any = "json") {
         const res = this._run(
             () => Http.request({ url, data: formData, headers, method: 'patch', connectTimeout: 5000 }),
-            () => this.http.patch<any>(url, formData, { headers, responseType, withCredentials: false })
+            () => this.http.patch<any>(url, formData, { headers, responseType, withCredentials: true })
         );
         return res;
     }

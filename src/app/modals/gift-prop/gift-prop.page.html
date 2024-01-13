@@ -13,12 +13,16 @@
     <figure class="p1-image">
       <img [src]="origImgPaths[selectedImageIndex]">
     </figure>
+    <div class="p1-thumbs">
+      <img class="p1-thumb" [class.selected]="index==selectedImageIndex" [src]="item"
+        *ngFor="let item of thumbImgPaths; let index=index;" (click)="onChangeImage(index)">
+    </div>
     <div class="p1-name">{{data.Name}}</div>
     <product-prop [product]="data" [props]="props" [cartService]="giftService" [parentCDRef]="cdRef"
       (wzzChange)="onChangeProp($event)"></product-prop>
   </section>
 </ion-content>
-<ion-footer mode="ios">
+<ion-footer mode="ios" *ngIf="!readonly">
   <footer class="footer">
     <div class="o1" *ngIf="lastCart as lastCart">
       <ng-container *ngIf="lastCart.Quantity as quantity; else toCartTempl">

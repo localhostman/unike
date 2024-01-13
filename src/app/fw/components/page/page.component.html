@@ -7,8 +7,7 @@
   <li class="item" (click)="onClickPage(1)" *ngIf="pages[0]!=1">
     01
   </li>
-  <li class="item" *ngFor="let item of pages;" (click)="onClickPage(item)"
-    [ngClass]="{current: item==page}">
+  <li class="item" *ngFor="let item of pages;" (click)="onClickPage(item)" [ngClass]="{current: item==page}">
     {{item | number: '2.0-0'}}
   </li>
   <li class="item" (click)="onClickPage(totalPage)" *ngIf="pages[pages.length-1]!=totalPage">
@@ -19,3 +18,11 @@
   <ion-icon name="arrow-right"></ion-icon>
 </button>
 <ng-content select="[slot=end]"></ng-content>
+
+<ng-container *ngIf="page>1">
+  <a [routerLink]="router.url" [queryParams]="{page: 1}" queryParamsHandling="merge"></a>
+</ng-container>
+
+<ng-container *ngIf="page+1<=totalPage">
+  <a [routerLink]="router.url" [queryParams]="{page: page+1}" queryParamsHandling="merge"></a>
+</ng-container>

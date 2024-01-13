@@ -90,7 +90,9 @@ export class HomePage extends CompBase implements AfterViewInit {
     await this.loadingService.run(async () => {
       const [categories,] = await Promise.all([
         firstValueFrom(this.categoryService.ready$.pipe(filter(data => !!data))),
-        this._reload()]);
+        this._reload()
+      ]);
+
       categories?.forEach((category: ICategory) => {
         if (category.idno === COLLECTION_IDNO)
           this.collectionCategories = category.Children ?? [];

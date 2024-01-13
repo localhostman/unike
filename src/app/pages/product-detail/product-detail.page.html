@@ -1,6 +1,7 @@
 <ion-header mode="ios" collapse="fade">
   <ion-toolbar class="header">
-    <wzz-header [title]="'Dettaglio prodotto' | translate" [defaultHref]="[language, 'category'] | routerLink"></wzz-header>
+    <wzz-header [title]="'Dettaglio prodotto' | translate"
+      [defaultHref]="[language, 'category'] | routerLink"></wzz-header>
   </ion-toolbar>
 </ion-header>
 
@@ -43,7 +44,7 @@
             opacity: selectedImageIndex==undefined ? 0 : 1
         }">
             <swiper-slide swiperSlide *ngFor="let imgPath of origImgPaths; let index=index;">
-              <figure class="p1-img">
+              <figure class="p1-img" (click)="onViewImage(index)">
                 <img [src]="imgPath">
               </figure>
             </swiper-slide>

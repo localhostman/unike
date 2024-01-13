@@ -25,7 +25,7 @@ export class CartService extends BaseService {
   private carts: ICartRef = {};
   protected proNumRef: { [key: string]: number } = {};
 
-  update$ = new Subject<{ product: IProduct, qt?: number }>();
+  update$ = new Subject<{ product: ICart, qt?: number }>();
   clear$ = new Subject<void>();
 
   constructor(
@@ -132,7 +132,6 @@ export class CartService extends BaseService {
           }
 
           if (callback) {
-            console.log(item);
             callback(item);
           }
         }
@@ -155,30 +154,6 @@ export class CartService extends BaseService {
     this.generateSum();
 
     return [newRef, removeds];
-  }
-
-  removeDataByProductIdno(product: IProduct) {
-    const idno = product.idno!;
-    let ct: number = 0;
-    let item: ICart;
-
-    do {
-      item = this.data[ct];
-      if (idno == item.idno) {
-        const key = item.uniqueKey!;
-        this.data.splice(ct, 1);
-        delete this.carts[key];
-      } else {
-        ct++;
-      }
-    } while (ct < this.data.length);
-
-    this.proNumRef[idno] = 0;
-
-    WzzStorage.set(STORAGE_KEY, this.carts);
-    this.generateSum();
-
-    this.update$.next({ product });
   }
 
   getPropInfo(product: IProduct) {
@@ -218,8 +193,12 @@ export class CartService extends BaseService {
     const timestamp: number = Date.now();
     let res: number | boolean | undefined;
     let newTotQt: number = 0;
+    let found: ICart;
 
     if (foundIndex == -1) {
+      if (qt < 0)
+        return 0;
+
       let maxOrderProductCount = this.envExt.maxOrderProductCount;
       if (Product.reachMaxOrderProduct(maxOrderProductCount, this.data)) {
         this.eventsService.showAlert$.next(this.translateService.instant('非常抱歉, 商品种类已达上限(N种), 您无法再添加新的商品', { n: maxOrderProductCount }));
@@ -237,22 +216,18 @@ export class CartService extends BaseService {
         qt = Math.min(newTotQt - totQt, qt);
       }
 
-      res = Product.reachStock(product, totQt + qt, propStock != undefined ? totQt + propStock : undefined, totalStock);
-
-      if (res === true) {
+      const [reachedStock, stock, diffStock] = Product.reachStock(product, totQt + qt, qt, totalStock, propStock);
+      if (reachedStock === true) {
         this.eventsService.showAlert$.next(this.translateService.instant('没有库存了'));
         return 0;
       }
-      else {
-        newTotQt = res;
-        qt = Math.max(Math.min(newTotQt - totQt, qt), 0);
-      }
 
-      const found: ICart = Utility.clone(product);
+      found = Utility.clone(product);
       found.uniqueKey = key;
       found.PropIdno = found.PropIdno ?? "";
       found.Quantity = qt;
       found.Timestamp = timestamp;
+      found.Stock = stock;
       if (imgPath)
         found.ImgPath = imgPath;
 
@@ -268,7 +243,7 @@ export class CartService extends BaseService {
       this.proNumRef[idno] = (this.proNumRef[idno] ?? 0) + qt;
       Product.generateTotal(found);
     } else {
-      const found = this.data[foundIndex];
+      found = this.data[foundIndex];
       const actQt = qt + found.Quantity!;
 
       if (actQt <= 0) {
@@ -280,6 +255,7 @@ export class CartService extends BaseService {
         this.data.splice(foundIndex, 1);
         delete this.carts[key];
       } else {
+
         if (qt > 0) {
           const maxNumPerOrder = product.MaxNumPerOrder!;
           res = Product.reachMaxNumPerOrder(product, totQt + qt, maxNumPerOrder);
@@ -291,13 +267,11 @@ export class CartService extends BaseService {
             qt = Math.min(res - totQt, qt);
           }
 
-          res = Product.reachStock(product, totQt + qt, propStock != undefined ? totQt + propStock : undefined, totalStock);
-          if (res === true) {
+          const [reachedStock, stock, diffStock] = Product.reachStock(product, totQt + qt, actQt, totalStock, propStock);
+
+          if (reachedStock === true) {
             this.eventsService.showAlert$.next(this.translateService.instant('没有库存了'));
             return 0;
-          }
-          else {
-            qt = Math.min(res - totQt, qt);
           }
         }
 
@@ -318,7 +292,7 @@ export class CartService extends BaseService {
     WzzStorage.set(STORAGE_KEY, this.carts);
 
     if (emitEvent) {
-      this.update$.next({ product, qt });
+      this.update$.next({ product: found, qt });
     }
 
     return qt;

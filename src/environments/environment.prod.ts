@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  app: "app_unikey",
   url: "https://i.istarl.com/",
   firebaseConfig: {
     apiKey: "AIzaSyA6tHqmLzvhUYcCYEDyKQfEtGpjitRlAdE",

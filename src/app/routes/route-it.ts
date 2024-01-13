@@ -103,6 +103,11 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
       translate: "eventi",
       routes: [{
         path: 'it/eventi/:promoId',
+        data: {
+          refererId: "event",
+          refererParam: "promoId"
+        },
+        canActivate: [SeoGuard],
         loadChildren: () => import('../pages/product/product.module').then(m => m.ProductPageModule)
       }]
     },

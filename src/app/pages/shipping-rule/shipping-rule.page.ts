@@ -2,6 +2,8 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, I
 import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 import { PageBase } from 'src/app/fw/bases/page/page.base';
+import { DeliveryExtension } from 'src/app/extensions/delivery';
+import { IDeliveryMethod } from 'src/app/interfaces/i-data';
 
 @Component({
   selector: 'app-shipping-rule',
@@ -11,9 +13,12 @@ import { PageBase } from 'src/app/fw/bases/page/page.base';
 })
 export class ShippingRulePage extends PageBase implements AfterViewInit {
 
+  d?: IDeliveryMethod;
+
   constructor(
-    public routerLinkExt: RouterLinkExtension,
     public resizeExt: ResizeExtension,
+    public routerLinkExt: RouterLinkExtension,
+    public dExt: DeliveryExtension,
     protected override injector: Injector,
     public override cdRef: ChangeDetectorRef
   ) {
@@ -22,6 +27,8 @@ export class ShippingRulePage extends PageBase implements AfterViewInit {
 
   async ngAfterViewInit() {
     this.cdRef.detach();
+
+    this.d = this.dExt.deliveryMethod;
 
     this.visible = true;
     this.cdRef.detectChanges();

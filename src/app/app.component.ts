@@ -1,5 +1,5 @@
 import { EnvExtension } from 'src/app/extensions/env';
-import { Component, HostListener, ChangeDetectorRef, ChangeDetectionStrategy, Injector, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, HostListener, ChangeDetectorRef, ChangeDetectionStrategy, Injector, AfterViewInit, ViewChild, afterNextRender } from '@angular/core';
 import { Platform, ModalController, ToastController, AlertController, MenuController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WzzStorage } from './fw/utils/wzz-storage';
@@ -43,96 +43,99 @@ export class AppComponent extends CompBase implements AfterViewInit {
   }
 
   async ngAfterViewInit() {
-    const event = this.envExt?.eventsShoudan[0];
-    const d = this.dExt.deliveryMethod;
-
-    const adOpened = (event || d) && !this.envExt.isLogin();
-    if (adOpened) {
-      const { TopadPageModule } = await import("./modals/topad/topad.module");
-      const modal = await this.modalCtrl.create({
-        cssClass: "modal-t4",
-        component: TopadPageModule.getPage(),
-        componentProps: {
-          event: event,
-          d: d
-        }
-      });
-      await modal.present();
-    }
-
     this.resizeExt.resize$.subscribe(() => {
       this.cdRef.detectChanges();
     });
   }
 
   initializeApp() {
-    this.platform.ready().then(async () => {
-      this.eventsService.login$.subscribe(async () => {
-        const { LoginModalPageModule } = await import("./modals/login-modal/login-modal.module");
-        const modal = await this.createModal({
-          component: LoginModalPageModule.getPage(),
-          cssClass: "modal-t1"
+    afterNextRender(() => {
+      this.platform.ready().then(async () => {
+        const event = this.envExt?.eventsShoudan[0];
+        const d = this.dExt.deliveryMethod;
+
+        const adOpened = (event || d) && !this.envExt.isLogin();
+        if (adOpened) {
+          const { TopadPageModule } = await import("./modals/topad/topad.module");
+          const modal = await this.modalCtrl.create({
+            cssClass: "modal-t4",
+            component: TopadPageModule.getPage(),
+            componentProps: {
+              event: event,
+              d: d
+            }
+          });
+          await modal.present();
+        }
+
+        this.eventsService.login$.subscribe(async () => {
+          const { LoginModalPageModule } = await import("./modals/login-modal/login-modal.module");
+          const modal = await this.createModal({
+            component: LoginModalPageModule.getPage(),
+            cssClass: "modal-t1"
+          });
+          await modal.present();
         });
-        await modal.present();
+
+        this.eventsService.showAlert$.subscribe(async (msg: string) => {
+          if (!msg)
+            return;
+
+          const mapObj: { [key: string]: string } = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;'
+          };
+
+          msg = msg.replace(/(?:&|<|>)/gi, (matched) => {
+            return mapObj[matched];
+          });
+
+          const toast = await this.alertCtrl.create({
+            header: this.lang('Avviso'),
+            message: msg,
+            buttons: ['OK']
+          });
+
+          await toast.present();
+        });
+
+        this.eventsService.showMenu$.subscribe(async (topLevel) => {
+          this.wzzMenu.topLevel = topLevel;
+          await this._menuCtrl.enable(true, this.menuId);
+          await this._menuCtrl.open(this.menuId);
+        });
+
+        WzzStorage.get(ACCEPT_COOKIE_STORAGE_KEY).then(async (b: boolean) => {
+          if (!b) {
+            const toast = await this.toastCtrl.create({
+              header: this.lang("Avviso sull'utilizzo dei cookie"),
+              message: this.lang("Questo sito Web utilizza cookie per marketing, analisi e per migliorare l'esperienza dell'utente. Per modificare le impostazioni dei cookie o saperne di più, consulta la sezione \"Cookie: Sito Web\" della nostra Informativa sulla privacy qui. Se continui a navigare nel nostro sito web, accetti questi cookie."),
+              position: "bottom",
+              layout: "stacked",
+              color: 'light',
+              cssClass: 'accept-cookie-toast',
+              buttons: [{
+                side: 'end',
+                text: this.lang("Acceta tutto"),
+                role: 'accept'
+              }, {
+                side: 'end',
+                text: this.lang("Rifiuta tutto"),
+                role: 'reject'
+              }]
+            });
+
+            toast.onDidDismiss().then(() => {
+              WzzStorage.set(ACCEPT_COOKIE_STORAGE_KEY, true);
+            });
+
+            await toast.present();
+          }
+        });
       });
     });
 
-    this.eventsService.showAlert$.subscribe(async (msg: string) => {
-      if (!msg)
-        return;
-
-      const mapObj: { [key: string]: string } = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;'
-      };
-
-      msg = msg.replace(/(?:&|<|>)/gi, (matched) => {
-        return mapObj[matched];
-      });
-
-      const toast = await this.alertCtrl.create({
-        header: this.lang('Avviso'),
-        message: msg,
-        buttons: ['OK']
-      });
-
-      await toast.present();
-    });
-
-    this.eventsService.showMenu$.subscribe(async (topLevel) => {
-      this.wzzMenu.topLevel = topLevel;
-      await this._menuCtrl.enable(true, this.menuId);
-      await this._menuCtrl.open(this.menuId);
-    });
-
-    WzzStorage.get(ACCEPT_COOKIE_STORAGE_KEY).then(async (b: boolean) => {
-      if (!b) {
-        const toast = await this.toastCtrl.create({
-          header: this.lang("Avviso sull'utilizzo dei cookie"),
-          message: this.lang("Questo sito Web utilizza cookie per marketing, analisi e per migliorare l'esperienza dell'utente. Per modificare le impostazioni dei cookie o saperne di più, consulta la sezione \"Cookie: Sito Web\" della nostra Informativa sulla privacy qui. Se continui a navigare nel nostro sito web, accetti questi cookie."),
-          position: "bottom",
-          layout: "stacked",
-          color: 'light',
-          cssClass: 'accept-cookie-toast',
-          buttons: [{
-            side: 'end',
-            text: this.lang("Acceta tutto"),
-            role: 'accept'
-          }, {
-            side: 'end',
-            text: this.lang("Rifiuta tutto"),
-            role: 'reject'
-          }]
-        });
-
-        toast.onDidDismiss().then(() => {
-          WzzStorage.set(ACCEPT_COOKIE_STORAGE_KEY, true);
-        });
-
-        await toast.present();
-      }
-    });
   }
   @HostListener('window:popstate')
   async overrideHardwareBackAction() {

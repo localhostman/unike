@@ -2,6 +2,38 @@
   <div class="backdrop" (click)="onClose()" @backdropInOut></div>
   <section class="host" @hostInOut (@hostInOut.start)="onAnimationStart($event)"
     (@hostInOut.done)="onAnimationEnd($event)">
-
+    <header class="host-header">
+      <div class="t1">{{'Prodotto aggiunto' | translate | uppercase}}</div>
+      <button class="close-btn" (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </header>
+    <main class="host-main">
+      <div class="c1s">
+        <div class="c1">
+          <div class="c1-r1">
+            <img class="c1-image-el" [src]="data.ImgPath">
+            <div class="c1-c1">
+              <div class="c1-name">{{data.Name}}</div>
+              <div class="c1-price">
+                <span class="new">{{(1-data.Discount)*data.Price | currency: 'EUR'}}</span>
+                <span class="old" *ngIf="data.Discount">{{data.Price | currency: 'EUR'}}</span>
+              </div>
+              <div class="c1-note" *ngIf="data.Note as val">[ {{val}} ]</div>
+            </div>
+          </div>
+          <div class="c1-r2">
+            <div class="c1-qt">{{'Quantità' | translate}}: {{data.Quantity}}</div>
+            <div class="c1-tot">{{'Totale' | translate}}:
+              <span class="c1-tot-value">{{data.Total | currency: 'EUR'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="submit-btn ion-activatable" [routerLink]="[language, 'cart'] | routerLink">
+        <ion-ripple-effect></ion-ripple-effect>
+        {{'Vedi carrello' | translate}}
+      </button>
+    </main>
   </section>
 </ng-container>

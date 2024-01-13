@@ -8,6 +8,7 @@ import { FILE_PREFIX } from 'src/app/const/const';
 import { EnvExtension } from 'src/app/extensions/env';
 import { TranslateService } from '@ngx-translate/core';
 import { Md5 } from 'ts-md5';
+import { environment } from 'src/environments/environment';
 
 const LANG_KEY = "lang";
 
@@ -70,9 +71,11 @@ export class AjaxService {
   getHeaders(url: string): HttpHeaders {
     if (!this._headers) {
       let headers: HttpHeaders = new HttpHeaders();
-      let lang = this.translateService.currentLang;
-      headers = headers.set(LANG_KEY, !!lang ? lang : Env.EN);
-      headers = headers.set('from', this._envExt.mobile ? (this._envExt.wechat ? FROM.WXWEB : FROM.MWEB) : FROM.PC);
+      let lang = this._envExt.language;
+      headers = headers.set("app", environment.app);
+      headers = headers.set(LANG_KEY, lang);
+      headers = headers.set('from', FROM.PC);
+
       this._headers = headers;
       this.updateHeaderAutorization();
     }

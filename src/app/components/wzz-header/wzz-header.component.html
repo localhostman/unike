@@ -118,10 +118,11 @@
   <ng-template>
     <ion-content>
       <div class="c2s">
-        <div class="c2" *ngFor="let item of materialCategories;"
+        <a class="c2" *ngFor="let item of materialCategories;"
           [routerLink]="[language, 'product', materialIdno] | routerLink"
-          [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: item.idno}">{{item.Name}}
-        </div>
+          [routerDirection]="topLevel ? 'back' : 'forward'" [queryParams]="{category: item.idno}">
+          {{item.Name}}
+        </a>
       </div>
     </ion-content>
   </ng-template>

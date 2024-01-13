@@ -9,7 +9,8 @@
         <div class="t1">{{'Elenco degli omaggi' | translate}}</div>
       </header>
       <div class="p1s">
-        <product class="p1" *ngFor="let item of data;" [data]="item" [ltime]="item.LTime" [asGift]="true"></product>
+        <product class="p1" *ngFor="let item of data;" [data]="item" [ltime]="item.LTime" [asGift]="true"
+          [giftReadonly]="true"></product>
       </div>
     </div>
     <wzz-footer></wzz-footer>

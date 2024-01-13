@@ -1,4 +1,4 @@
-import { OnDestroy, ChangeDetectorRef, Directive, Injector } from '@angular/core';
+import { OnDestroy, ChangeDetectorRef, Directive, Injector, afterNextRender } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
 import { DOCUMENT, Location } from '@angular/common';
@@ -27,6 +27,7 @@ export class CompBase extends LangBase implements OnDestroy {
   modalMode: boolean = false;
   mobile: boolean;
   defaultImage: string;
+  ssr: boolean = true;
 
   protected myUrl: string = "";
   protected firstEnterView: boolean = true;
@@ -50,6 +51,10 @@ export class CompBase extends LangBase implements OnDestroy {
     this.mobile = this.envExt.mobile;
     this.defaultImage = DEFAULT_IMAGE;
     this.isLogin = !!this.envExt.me;
+
+    afterNextRender(() => {
+      this.ssr = false;
+    });
   }
 
   async ionViewWillEnter() {

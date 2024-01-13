@@ -17,6 +17,10 @@
     padding: var(--wzz-spacing-xxl);
     cursor: pointer;
 
+    a {
+        pointer-events: none;
+    }
+
     &:hover {
         color: var(--ion-color-dark);
     }

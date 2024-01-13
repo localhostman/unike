@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 const PAGE_NUM = 5;
 
@@ -19,6 +20,7 @@ export class PageComponent implements OnChanges, OnInit {
   pages!: number[];
 
   constructor(
+    protected router: Router,
     protected cdRef: ChangeDetectorRef 
   ) { }
 

@@ -18,8 +18,8 @@ export class ProductPropService extends BaseService {
 
   override setData(data: any) {
     Object.keys(data).forEach(key => {
+      const p2 = data[key];
       if (key.length > PROP_UNIT_LEN) {
-        const p2 = data[key];
         const tmp = key.substring(0, PROP_UNIT_LEN);
         const p1 = data[tmp];
         if (p1) {
@@ -31,6 +31,9 @@ export class ProductPropService extends BaseService {
             children.push(p2);
           }
         }
+      }
+      else {
+        p2.Children = [];
       }
     });
 

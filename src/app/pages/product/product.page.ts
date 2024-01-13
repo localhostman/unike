@@ -130,6 +130,7 @@ export class ProductPage extends PageBase implements AfterViewInit {
         }
       });
 
+
       this.relativeCategoryRef = relativeFilter.CategoryIdnoRef ?? {};
       this.minPrice = relativeFilter.MinPrice ?? 0;
       this.maxPrice = relativeFilter.MaxPrice ?? 10;

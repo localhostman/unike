@@ -1,8 +1,7 @@
-import { PLATFORM_DOMAIN, PROMO_TYPE } from './../const/const';
+import { PROMO_TYPE } from './../const/const';
 import { RouterLinkExtension } from '../fw/extensions/router-link';
 import { LangExtension } from './../extensions/lang';
 import { Platform } from '@ionic/angular';
-import { CookieService } from './../fw/services/cookie.service';
 import { EnvExtension } from './../extensions/env';
 import { PLATFORM_ID } from '@angular/core';
 import { Injectable, Injector, Inject } from '@angular/core';
@@ -12,7 +11,7 @@ import { AjaxService } from '../fw/services/ajax.service';
 import { Env } from '../fw/dynamics/env';
 import { WzzStorage } from '../fw/utils/wzz-storage';
 import { Utility } from '../fw/utils/utility';
-import { RES_TYPE, CF_MSG } from '../fw/const/const';
+import { RES_TYPE } from '../fw/const/const';
 import { IRes } from '../fw/interfaces/i-res';
 import { EventsService } from '../fw/dynamics/events.service';
 import { Router } from '@angular/router';
@@ -21,10 +20,11 @@ import { PaymentMethodService } from './payment-method.service';
 import { ProductPropService } from './product-prop.service';
 import { CartService } from './cart.service';
 import { DeliveryExtension } from '../extensions/delivery';
-import { Title } from '@angular/platform-browser';
 import { SHOP_SETTING } from '../const/const';
 import { CategoryService } from './category.service';
 import { SearchExtension } from '../extensions/search';
+import { CookieService } from 'ngx-cookie-service';
+import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 const themeToString = function (theme: { [key: string]: string }) {
   let o: string = "";
@@ -57,6 +57,7 @@ export class InitializerService {
     private cartService: CartService,
     private categoryService: CategoryService,
     protected cookieService: CookieService,
+    protected ssrCookieService: SsrCookieService,
     protected translateService: TranslateService,
     protected platform: Platform,
     protected router: Router,
@@ -64,39 +65,40 @@ export class InitializerService {
   ) {
   }
   async init() {
-    let versions = Utility.getBrowser().versions;
     let { origin, protocol, href, hash } = this.document.location;
     let token: string = "";
     let language: string = "";
     const mobile = this.platform.is("mobile") || this.platform.is("android") || this.platform.is("ios");
 
     this.envExt.protocol = protocol;
-    this.envExt.wechat = versions.wechat;
     this.envExt.mobile = mobile;
     this.envExt.native = this.platform.is("capacitor");
-    WzzStorage.init(this.platformId, this.envExt, this.cookieService, this.translateService);
+    WzzStorage.init(this.platformId, this.envExt, this.cookieService, this.ssrCookieService, this.translateService);
 
-    let [path] = href.split("?");
-    if (hash)
-      path = path.split("#").pop()!;
+    try {
+      let [path] = href.split("?");
+      if (hash)
+        path = path.split("#").pop()!;
 
-    let [, firstPart] = path.split("/");
-    firstPart = firstPart.charAt(0).toUpperCase() + firstPart.slice(1);
-    if (Env.POSSIBLE_LANG_NAMES[firstPart])
-      language = firstPart;
+      let [, firstPart] = path.split("/");
+      firstPart = firstPart.charAt(0).toUpperCase() + firstPart.slice(1);
+      if (Env.POSSIBLE_LANG_NAMES[firstPart])
+        language = firstPart;
 
-    if (!language) {
-      const tmp = await this.langExt.read();
-      if (tmp)
-        language = tmp;
-      else {
-        language = this.translateService.getBrowserLang()!;
-        if (["zh", "zh-hans"].indexOf(language) != -1)
-          language = Env.CN;
-        else
-          language = language.charAt(0).toUpperCase() + language.slice(1);
+
+      if (!language) {
+        const tmp = await this.langExt.read();
+        if (tmp)
+          language = tmp;
+        else {
+          language = this.translateService.getBrowserLang() ?? "";
+          if (["zh", "zh-hans"].indexOf(language) != -1)
+            language = Env.CN;
+          else
+            language = language.charAt(0).toUpperCase() + language.slice(1);
+        }
       }
-    }
+    } catch (e) { }
 
     if (Env.POSSIBLE_LANGS.indexOf(language) != -1) {
     }
@@ -130,7 +132,6 @@ export class InitializerService {
   private async initSome() {
     return new Promise<boolean>(async (resolve) => {
       let carts = await this.cartService.getDataFromStorage();
-
       let res: IRes = await this.ajaxService.post(Utility.generateQueryString(this.apiUrl + "&init&opr=web&code=ujson&debug=1"), carts);
       const token = res.token!;
 
@@ -200,11 +201,8 @@ export class InitializerService {
           this.document.getElementById("favicon")!.setAttribute("href", ShopInfo.LogoUrl);
           this.document.documentElement.style.cssText = themeToString(JSON.parse(ShopInfo.Theme)) + "--pro-height: " + ProductImageRatio * 100 + "%;";
 
-          // if (PrivateHomePage && this.path == "/tabs/home") {
-          //   this.router.navigateByUrl("/" + App);
-          // }
-
           await WzzStorage.setToken(res.token!);
+
           resolve(true);
           break;
         case RES_TYPE.NEED_LOGIN:
@@ -213,7 +211,7 @@ export class InitializerService {
           resolve(true);
           break;
         case RES_TYPE.FAIL:
-          alert(CF_MSG);
+          console.log(res);
           break;
       }
     });

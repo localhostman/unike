@@ -1,3 +1,4 @@
+import { PhotoViewer } from '@capacitor-community/photoviewer';
 import { IBase } from '../fw/interfaces/i-data';
 import { IProduct, IDeliveryMethod, ICart } from './../interfaces/i-data';
 
@@ -31,18 +32,25 @@ export class Product {
             return maxNumPerOrder;
     };
 
-    static reachStock(product: IProduct, qt: number, propStock?: number, totalStock?: number) {
+    static reachStock(product: IProduct, totQt: number, propQt: number, totalStock?: number, propStock?: number): [boolean, number, number] {
         if (!product.EnableStock)
-            return 999999;
+            return [false, 999999, 999999];
 
-        if (propStock == undefined) {
-            propStock = totalStock;
+        if (propStock !== undefined) {
+            if (propStock < propQt)
+                return [true, propStock, 0];
+            else
+                return [false, propStock, propStock - propQt];
         }
 
-        if (propStock! < qt)
-            return true;
-        else
-            return propStock ?? 0;
+        if (totalStock !== undefined) {
+            if (totalStock < totQt)
+                return [true, totalStock, 0];
+            else
+                return [false, totalStock, totalStock - totQt];
+        }
+
+        return [false, 999999, 999999];
     };
 
     static getImgPaths(data: IProduct) {
@@ -60,6 +68,19 @@ export class Product {
         }
 
         return [thumbImgPaths, origImgPaths];
+    }
+
+    static viewImage(imageStrs: string[], startFrom: number = 0) {
+        const images = imageStrs.map((image: any) => {
+            return { url: image, title: "" };
+        });
+
+        PhotoViewer.show({
+            images, startFrom: startFrom, mode: "one", options: {
+                share: false,
+                title: false
+            }
+        });
     }
 
 }

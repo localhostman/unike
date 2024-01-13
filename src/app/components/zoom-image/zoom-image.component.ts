@@ -41,24 +41,6 @@ export class ZoomImageComponent implements OnChanges, OnInit {
   ngOnInit() {
   }
 
-  // private _tid1: any;
-  // onClickImageZoom(evt: any) {
-  //   if (this._tid1)
-  //     clearTimeout(this._tid1);
-
-  //   this.zooming = true;
-  //   this.cdRef.detectChanges();
-  //   this.zoom++;
-  //   this.onMouseMoveImage(evt);
-
-  //   this._tid1 = setTimeout(() => {
-  //     clearTimeout(this._tid1);
-  //     this.zooming = false;
-  //     this.cdRef.detectChanges();
-  //   }, 200);
-  //   this.cdRef.detectChanges();
-  // }
-
   onMouseEnter() {
     const el = this.el.nativeElement;
     this._zoomImageOffsetLeft = Utility.getOffsetLeft(el);

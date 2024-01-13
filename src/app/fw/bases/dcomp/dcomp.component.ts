@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Directive, ComponentRef, Input, Output, Injector } f
 import { OverlayEventDetail } from '@ionic/core';
 import { firstValueFrom, Subject } from 'rxjs';
 import { LangBase } from '../lang/lang.base';
+import { CompBase } from '../comp/comp.base';
 
 export const Animations = {
   backdropInOut: trigger('backdropInOut', [
@@ -38,7 +39,7 @@ export const Animations = {
 }
 
 @Directive()
-export class DcompComponent extends LangBase {
+export class DcompComponent extends CompBase {
 
   @Input() compRef!: ComponentRef<DcompComponent>;
   @Input() pageCDRef!: ChangeDetectorRef;
@@ -46,13 +47,12 @@ export class DcompComponent extends LangBase {
   @Output() didDismiss$: Subject<OverlayEventDetail> = new Subject<OverlayEventDetail>();
 
   private _returnValue: OverlayEventDetail = { data: null };
-  visible: boolean = true;
 
   constructor(
     protected override injector: Injector,
-    protected cdRef: ChangeDetectorRef
+    public override cdRef: ChangeDetectorRef
   ) {
-    super(injector);
+    super(injector, cdRef);
   }
 
   async onWillDismiss() {
@@ -85,7 +85,6 @@ export class DcompComponent extends LangBase {
   }
 
   async onClose() {
-    console.log("on close");
     this.dismiss();
   }
 

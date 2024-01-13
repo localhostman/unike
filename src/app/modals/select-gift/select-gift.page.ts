@@ -1,13 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeliveryExtension } from 'src/app/extensions/delivery';
 import { ProductExtension } from 'src/app/extensions/product';
 import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
-import { IProduct } from 'src/app/interfaces/i-data';
 import { GiftPage } from 'src/app/pages/gift/gift.page';
 import { ProductService } from 'src/app/services/product.service';
-import { GiftPropPage } from '../gift-prop/gift-prop.page';
 import { GiftService } from 'src/app/services/gift.service';
 
 @Component({
@@ -43,20 +41,8 @@ export class SelectGiftPage extends GiftPage {
     return this.giftService.getProNumRef();
   }
 
-  async onClickItem(item: IProduct) {
-    const modal = await this.getMessageExt().createModal({
-      component: GiftPropPage,
-      cssClass: "modal-product-prop",
-      componentProps: {
-        data: item
-      }
-    });
-
-    modal.onWillDismiss().then(() => {
-      this.cdRef.detectChanges();
-    });
-
-    await modal.present();
+  onUpdate() {
+    this.cdRef.detectChanges();
   }
 
   async onSubmit() {

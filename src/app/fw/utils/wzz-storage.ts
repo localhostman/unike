@@ -1,9 +1,10 @@
 import { Preferences } from '@capacitor/preferences';
 import { IEnv } from '../interfaces/i-env';
-import { CookieService } from '../services/cookie.service';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { EnvExtension } from 'src/app/extensions/env';
+import { CookieService } from 'ngx-cookie-service';
+import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 export const APP: string = "_istar_";
 export const ENV: string = APP + "env";
@@ -21,17 +22,20 @@ export class WzzStorage {
   private _platformId: any;
   private _envExt: EnvExtension;
   private _cookieService: CookieService;
+  private _ssrCookieService: SsrCookieService;
   private _translateService: TranslateService;
 
   constructor(
     platformId: any,
     envExt: EnvExtension,
     cookieService: CookieService,
+    ssrCookieService: SsrCookieService,
     translateService: TranslateService
   ) {
     this._platformId = platformId;
     this._envExt = envExt;
     this._cookieService = cookieService;
+    this._ssrCookieService = ssrCookieService;
     this._translateService = translateService;
   }
 
@@ -40,8 +44,11 @@ export class WzzStorage {
     value = JSON.stringify(value);
     if (isPlatformBrowser(this._platformId)) {
       await Preferences.set({ key: key, value: value });
+      this._cookieService.set(key, value, { expires: 28, path: "/", sameSite: "None", secure: true });
     }
-    this._cookieService.set(key, value);
+    else {
+      this._ssrCookieService.set(key, value, { expires: 28, path: "/", sameSite: "None", secure: true });
+    }
 
     return true;
   }
@@ -53,7 +60,7 @@ export class WzzStorage {
       value = (await Preferences.get({ key: key })).value!;
     }
     else {
-      value = this._cookieService.get(key);
+      value = this._ssrCookieService.get(key);
     }
 
     try {
@@ -66,8 +73,12 @@ export class WzzStorage {
     key = _getKey(WzzStorage._prefix, prefix, key);
     if (isPlatformBrowser(this._platformId)) {
       await Preferences.remove({ key: key });
+      this._cookieService.delete(key);
     }
-    this._cookieService.remove(key);
+    else {
+      this._ssrCookieService.delete(key);
+    }
+
     return true;
   }
 
@@ -93,8 +104,8 @@ export class WzzStorage {
     return this._set(ENV, env, "");
   }
 
-  static init(platformId: any, envExt: EnvExtension, cookieService: CookieService, translateService: TranslateService) {
-    WzzStorage._instance = new WzzStorage(platformId, envExt, cookieService, translateService);
+  static init(platformId: any, envExt: EnvExtension, cookieService: CookieService, ssrCookieService: SsrCookieService, translateService: TranslateService) {
+    WzzStorage._instance = new WzzStorage(platformId, envExt, cookieService, ssrCookieService, translateService);
   }
 
   static resetPrefix(prefix: string | number) {

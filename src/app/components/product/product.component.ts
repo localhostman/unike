@@ -3,9 +3,10 @@ import { ProductExtension } from 'src/app/extensions/product';
 import { DeliveryExtension } from './../../extensions/delivery';
 import { CompBase } from './../../fw/bases/comp/comp.base';
 import { IProduct } from './../../interfaces/i-data';
-import { ChangeDetectionStrategy, Component, Input, ChangeDetectorRef, Injector, AfterViewInit, OnChanges, SimpleChanges, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ChangeDetectorRef, Injector, AfterViewInit, OnChanges, SimpleChanges, HostListener, EventEmitter, Output } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ResizeExtension } from 'src/app/fw/extensions/resize';
+import { GiftPropPage } from 'src/app/modals/gift-prop/gift-prop.page';
 
 @Component({
   selector: 'product',
@@ -18,8 +19,10 @@ export class ProductComponent extends CompBase implements OnChanges, AfterViewIn
   @Input() data!: IProduct;
   @Input() ltime!: number;
   @Input() asGift: boolean = false;
+  @Input() giftReadonly: boolean = false;
 
   discount: number = 0;
+  @Output() wzzUpdate = new EventEmitter<void>();
 
   constructor(
     public dExt: DeliveryExtension,
@@ -44,9 +47,23 @@ export class ProductComponent extends CompBase implements OnChanges, AfterViewIn
   }
 
   @HostListener("click")
-  onClick() {
+  async onClick() {
     if (this.asGift) {
+      const modal = await this.getMessageExt().createModal({
+        component: GiftPropPage,
+        cssClass: "modal-product-prop",
+        componentProps: {
+          data: this.data,
+          readonly: this.giftReadonly
+        }
+      });
 
+      modal.onWillDismiss().then(() => {        
+        this.cdRef.detectChanges();
+        this.wzzUpdate.next();
+      });
+
+      await modal.present();
     }
     else {
       this.navCtrl.navigateForward(this.routerLinkExt.translate([this.language, "product-detail", this.data.id, this.data.idno]), { animated: !this.resizeExt.isLG });

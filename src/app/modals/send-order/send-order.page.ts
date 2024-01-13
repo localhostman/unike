@@ -231,20 +231,17 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
 
     const oldCarts = this.selecteds ?? this.service.getCarts();
 
-    [res1, res2, res3] = await Promise.all(
+    [res1, res2] = await Promise.all(
       [
         this.productService.getCarts({
           Carts: oldCarts
         }, { ignoreCheckRes: true }),
-        this.addressService.getDefault(),
-        this.promoService.getUsable()
+        this.addressService.getDefault()
       ]
     );
 
     this.carts = res1?.topics ?? [];
     this.address = res2?.topics;
-
-    [autoGetsPromos, usablePromos] = res3?.topics ?? [[], []];
 
     this.vCarts = [];
     this.vAmount = 0;
@@ -279,6 +276,14 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
         giftNum += Math.floor(quantity / giftTreshold);
       }
     });
+
+    [res3] = await Promise.all(
+      [
+        this.promoService.getUsable({ amount: this.amount })
+      ]
+    );
+
+    [autoGetsPromos, usablePromos] = res3?.topics ?? [[], []];
 
     this.resetProps(props);
 
@@ -345,7 +350,7 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
             LocalId: Date.now(),
             DeliveryMethodId: this.dExt.deliveryMethod.id,
             PaymentMethodId: paymentMethodId,
-            TradeType: Utility.getBrowser().versions.mobile ? 'JSAPI' : 'NATIVE',
+            TradeType: 'NATIVE',
             Address: address,
             Phone: this.phone,
             PromoIds: this.mExt.ids,

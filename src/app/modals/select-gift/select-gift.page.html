@@ -18,8 +18,8 @@
   <section class="host" *ngIf="visible">
     <div class="host-inner">
       <div class="p1s">
-        <product class="p1" *ngFor="let item of data;" [data]="item" [ltime]="item.LTime" [asGift]="true"
-          (click)="onClickItem(item)">
+        <product class="p1" *ngFor="let item of data;" [data]="item" [ltime]="item.LTime" [asGift]="true" 
+          (wzzUpdate)="onUpdate()">
           <div class="p1-num" slot="num" *ngIf="proNumRef[item.idno] as num">{{num}}</div>
         </product>
       </div>

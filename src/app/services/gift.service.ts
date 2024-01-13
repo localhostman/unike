@@ -40,8 +40,6 @@ export class GiftService extends CartService {
     const proTotQt = this.cartService.getProNumRef()[idno] ?? 0;
 
     const timestamp: number = Date.now();
-    let res: number | boolean;
-    let newTotQt: number = 0;
 
     if (this.actNum + qt > this.maxNum) {
       this.eventsService.showAlert$.next(this.translateService.instant(
@@ -53,15 +51,13 @@ export class GiftService extends CartService {
     }
 
     if (foundIndex == -1) {
-      res = Product.reachStock(product, totQt + proTotQt + qt, propStock != undefined ? totQt + propStock : undefined, totalStock);
-
-      if (res === true) {
+      const [reachedStock, stock, diffStock] = Product.reachStock(product, totQt + qt, qt, totalStock, propStock);
+      if (reachedStock === true) {
         this.eventsService.showAlert$.next(this.translateService.instant('没有库存了'));
         return 0;
       }
       else {
-        newTotQt = res;
-        qt = Math.max(Math.min(newTotQt - totQt - proTotQt, qt), 0);
+        qt = Math.max(qt, 0);
       }
 
       const found: ICart = Utility.clone(product);
@@ -89,13 +85,10 @@ export class GiftService extends CartService {
         this.data.splice(foundIndex, 1);
       } else {
         if (qt > 0) {
-          res = Product.reachStock(product, totQt + proTotQt + qt, propStock != undefined ? totQt + propStock : undefined, totalStock);
-          if (res === true) {
+          const [reachedStock, stock, diffStock] = Product.reachStock(product, totQt + qt, actQt, totalStock, propStock);
+          if (reachedStock === true) {
             this.eventsService.showAlert$.next(this.translateService.instant('没有库存了'));
             return 0;
-          }
-          else {
-            qt = Math.min(res - totQt - proTotQt, qt);
           }
         }
 

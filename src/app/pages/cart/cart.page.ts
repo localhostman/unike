@@ -52,7 +52,7 @@ export class CartPage extends CompBase implements AfterViewInit {
         if (isNaN(val))
           return;
 
-        this.service.toCart(item, val - quantity, item.Stock);
+        this.service.toCart(item, val - quantity, undefined, true, undefined, item.Stock);
         await this.dExt.update();
 
         this.cdRef.detectChanges();
@@ -61,7 +61,7 @@ export class CartPage extends CompBase implements AfterViewInit {
   }
 
   async onChangeQuantity(item: ICart, qt: number) {
-    this.service.toCart(item, qt, item.Stock);
+    this.service.toCart(item, qt, undefined, true, undefined, item.Stock);
 
     await this.dExt.update();
     this.cdRef.detectChanges();

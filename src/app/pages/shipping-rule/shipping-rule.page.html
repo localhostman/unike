@@ -58,12 +58,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{{'Meno di 50€' | translate}}</td>
-              <td>{{'€ 7,50' | translate}}</td>
+            <tr *ngIf="d?.TransportFare as fare">
+              <td>{{'Meno di M' | translate: {m: d?.MinimumOrderAmount ?? 0 } }}</td>
+              <td>€ {{fare | number: '0.2-2'}}</td>
             </tr>
             <tr>
-              <td>{{'50€ e oltre' | translate}}</td>
+              <td>{{'M e oltre' | translate: {m: d?.MinimumOrderAmount ?? 0 } }}</td>
               <td>{{'Gratuito' | translate}}</td>
             </tr>
           </tbody>

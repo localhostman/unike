@@ -1,9 +1,9 @@
 <ng-container *ngIf="data">
-  <figure class="image">
-    <img [src]="data.ImgPath">
+  <a class="image" [routerLink]="[language, 'product-detail', data.id, data.idno] | routerLink">
+    <img [src]="data.ImgPath" [alt]="data.Name">
     <div class="sale" *ngIf="!asGift && discount">{{'Sale' | translate | uppercase}}</div>
     <ng-content select="[slot=num]"></ng-content>
-  </figure>
+  </a>
   <div class="inner">
     <div class="name">{{data.Name}}</div>
     <ng-container *ngIf="!asGift">

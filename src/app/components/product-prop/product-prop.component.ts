@@ -115,7 +115,7 @@ export class ProductPropComponent extends CompBase implements OnChanges, AfterVi
     this.showPropPrice = this.envExt.showPropPrice;
     this.totalStock = this.product.Stock!;
 
-    [this.totalQuantity, this.amount, this.lastCart] = this.cartService.getPropInfo(this.product);
+    [this.totalQuantity, this.amount, this.lastCart] = this.cartService.getPropInfo(this.product); 
     const productProps = this.product.Props ?? [];
 
     let lastPropIdnoStr: string;
@@ -184,8 +184,7 @@ export class ProductPropComponent extends CompBase implements OnChanges, AfterVi
 
   async changeQuantity(qt: number) {
     this.cartService.toCart(this.lastCart, qt, this.totalStock, true, this.imgPath, this.stock);
-    this.dExt.update();
-
+    this.dExt.update(); 
     this.parentCDRef.detectChanges();
 
     return this.lastCart;

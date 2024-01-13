@@ -1,8 +1,8 @@
 import { NgModule, APP_INITIALIZER, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration, withHttpTransferCacheOptions } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,9 +12,6 @@ import LocalIt from '@angular/common/locales/it';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { CanActivateWhenLoginGuard } from './guards/can-activate-when-login.guard';
-import { CanActivateWhenUnloginGuard } from './guards/can-activate-when-unlogin.guard';
-
 import { InitializerService } from './services/initializer.service';
 
 import { Observable } from 'rxjs';
@@ -22,6 +19,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { WzzMenuComponentModule } from './components/wzz-menu/wzz-menu.module';
+import { CookieService } from 'ngx-cookie-service';
 
 const URL = environment.url;
 
@@ -112,6 +110,13 @@ export function HttpLoaderFactory(http: HttpClient) {
                 ],
             } as SocialAuthServiceConfig,
         },
+        CookieService,
+        provideClientHydration(
+            withHttpTransferCacheOptions({
+                includePostRequests: true
+            }),
+        ),
+        provideHttpClient(withFetch())
     ],
     bootstrap: [AppComponent]
 })

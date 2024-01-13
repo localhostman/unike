@@ -9,7 +9,7 @@
       <div class="t1">{{title}}</div>
     </header>
     <div class="host-inner" [class.full]="q">
-      <aside class="host-left" *ngIf="resizeExt.isLG">
+      <aside class="host-left" *ngIf="resizeExt.isLG && !ssr">
         <ng-container *ngTemplateOutlet="categoryTempl;">
         </ng-container>
       </aside>
@@ -19,10 +19,11 @@
             <div class="num" translate="N Prodotti trovati" [translateParams]="{n: count}"></div>
             <button class="f2" (click)="onOpenMenu(filterMenuId)">
               <ion-icon name="pro-filter"></ion-icon>
-              <div class="f2-label">{{'Filtri' | translate}}</div> 
+              <div class="f2-label">{{'Filtri' | translate}}</div>
             </button>
             <ion-select class="s1-el" [(ngModel)]="sort" mode="md" interface="popover"
-              [interfaceOptions]="{cssClass: 'popover-t1'}" [label]="('Ordina' | translate)+': '" (ionChange)="onSort()">
+              [interfaceOptions]="{cssClass: 'popover-t1'}" [label]="('Ordina' | translate)+': '"
+              (ionChange)="onSort()">
               <ion-select-option *ngFor="let item of sorts;" [value]="item">{{item.Name}}</ion-select-option>
             </ion-select>
           </div>
@@ -69,16 +70,21 @@
             <div class="c1" *ngIf="!c1.Children.length" [class.selected]="c1.idno==categoryIdno"
               (click)="onSelectCategory(c1.idno)">
               {{c1.Name | uppercase}}
+              <a [routerLink]="[language, 'product', c1.idno] | routerLink" [queryParams]="{category: c1.idno}"></a>
             </div>
             <ng-container *ngFor="let c2 of c1.Children;">
               <ng-container *ngIf="relativeCategoryRef[c2.idno]">
                 <div class="c1" *ngIf="!c2.Children.length" [class.selected]="c2.idno==categoryIdno"
                   (click)="onSelectCategory(c2.idno)">
                   {{c2.Name | uppercase}}
+                  <a [routerLink]="[language, 'product', c1.idno] | routerLink" [queryParams]="{category: c2.idno}"></a>
                 </div>
                 <ng-container *ngFor="let c3 of c2.Children;">
                   <div class="c1" [class.selected]="c3.idno==categoryIdno" (click)="onSelectCategory(c3.idno)">
-                    {{c3.Name | uppercase}}</div>
+                    {{c3.Name | uppercase}}
+                    <a [routerLink]="[language, 'product', c1.idno] | routerLink"
+                      [queryParams]="{category: c3.idno}"></a>
+                  </div>
                 </ng-container>
               </ng-container>
             </ng-container>
@@ -103,8 +109,8 @@
       <div class="p3s" *ngFor="let p1 of props;">
         <div class="p3s-t">{{p1.Name | uppercase}}</div>
         <div class="p3s-n">
-          <div class="p3 ion-activatable" *ngFor="let p2 of p1.Children;"
-            [class.selected]="propIdnoRef[p2.idno]" (click)="onClickProp(p2.idno)">
+          <div class="p3 ion-activatable" *ngFor="let p2 of p1.Children;" [class.selected]="propIdnoRef[p2.idno]"
+            (click)="onClickProp(p2.idno)">
             <ion-ripple-effect></ion-ripple-effect>
             {{p2.Name}}
           </div>

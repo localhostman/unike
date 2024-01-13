@@ -10,4 +10,20 @@
         line-height: 1.25;
         padding-top: var(--wzz-spacing-3-4xl);
     }
+    &-thumbs {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 calc(var(--wzz-spacing-xxl) * -1) 0 0;
+    }
+    &-thumb {
+        width: 48px;
+        height: 48px;
+        border: 1px solid #fff;
+        outline: 2px solid var(--ion-color-light-shadest);
+        margin: var(--wzz-spacing-xxl) var(--wzz-spacing-xxl) 0 0;
+        cursor: pointer;
+        &.selected {
+            outline-color: var(--ion-color-dark);
+        }
+    }
 }

@@ -93,7 +93,9 @@
             </div>
           </div>
         </div>
-        <ng-container *ngTemplateOutlet="sumTempl; context: {pos: 'main'}">
+        <ng-container *ngIf="!resizeExt.isLG">
+          <ng-container *ngTemplateOutlet="sumTempl; context: {pos: 'main'}">
+          </ng-container>
         </ng-container>
       </main>
       <aside class="host-right" *ngIf="resizeExt.isLG">

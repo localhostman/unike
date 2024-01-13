@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Injector, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Injector, Input, ViewChild } from '@angular/core';
 import { ProductPropPage } from '../product-prop/product-prop.page';
 import { DeliveryExtension } from 'src/app/extensions/delivery';
 import { ProductExtension } from 'src/app/extensions/product';
@@ -14,6 +14,8 @@ import { GiftService } from 'src/app/services/gift.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GiftPropPage extends ProductPropPage implements AfterViewInit {
+
+  @Input() readonly: boolean = false;
 
   thumbImgPaths: string[] = [];
   origImgPaths: string[] = [];
@@ -62,6 +64,11 @@ export class GiftPropPage extends ProductPropPage implements AfterViewInit {
       this.cdRef.detectChanges();
     }, 100);
 
+  }
+
+  onChangeImage(index: number) {
+    this.selectedImageIndex = index;
+    this.cdRef.detectChanges();
   }
 
   override onChangeQuantity(qt: number) {
