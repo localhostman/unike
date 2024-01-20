@@ -2,7 +2,6 @@
 }
 
 .o1 {
-   
     &-n1 {
         display: flex;
         align-items: center;
@@ -63,10 +62,14 @@
         color: var(--ion-color-dark);
         background: transparent;
         font-weight: 500;
-        border: 1px solid var(--ion-color-dark);
+        border: 1px solid;
         padding: 0 var(--wzz-spacing-xl);
         height: 30px;
         margin-right: var(--wzz-spacing-3xl);
+        &:disabled {
+            pointer-events: none;
+            color: var(--ion-color-medium);
+        }
     }
     &-state {
         .pending,

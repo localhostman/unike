@@ -30,7 +30,7 @@ export class ReturnDetailPage extends CompBase implements AfterViewInit {
     super(injector, cdRef);
 
     this.form = this._fb.group({
-      "ShippingMethod": [null, [Validators.required]],
+      "ShippingMethod": ["TNT", [Validators.required]],
       "ShippingTrackingNumber": [null, [Validators.required]],
     });
   }
@@ -47,7 +47,6 @@ export class ReturnDetailPage extends CompBase implements AfterViewInit {
     this.subscription.add(this.addLoginStateChangeSubscription(() => {
       this.loadingService.run(async () => {
         await this._reload();
-
         this.cdRef.detectChanges();
       });
     }));

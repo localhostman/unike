@@ -98,7 +98,7 @@ export class LoginBase extends ModalPage implements AfterViewInit, OnDestroy {
             const res = await this.service.sendVerifyCode({ Type: LOGIN_TYPE, To: to });
             if (res) {
                 this._startVcCountdown();
-                this.getMessageExt().toast(this.lang("L'operazione è troppo frequente, riprovare più tardi"));
+                this.getMessageExt().toast(this.lang("Il codice di verifica è stato inviato, si prega di aprire l'e-mail per visualizzare"));
             }
         });
     }

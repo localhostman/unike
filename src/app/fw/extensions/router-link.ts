@@ -135,14 +135,15 @@ export class RouterLinkExtension {
     };
 
     invertTranslate(params: any[] | string) {
-        if (typeof params == "string")
-            return this._langInvertCollection[params] ?? params;
+        if (typeof params == "string") {
+            params = params.split("/");
+        }
         return params.map((param) => this._langInvertCollection[param] ?? param);
     }
 
-    invertRouterLink(params: any[], language?: string) {
-        params = this.invertTranslate(params);
-        return this.getRouterLink(params, language);
+    invertRouterLink(params: any[] | string, language?: string) {
+        const o = this.invertTranslate(params);
+        return this.getRouterLink(o, language);
     }
 
     getRouterLink(params: any[], language?: string) {
@@ -243,7 +244,7 @@ export class RouterLinkExtension {
         search = o.map(item => `${item.key}=${item.value}`).join("&");
 
         link = head.querySelector("link[rel=canonical]");
-        if (link) 
+        if (link)
             renderer.setAttribute(link, "href", url = `${protocol}//${hostname}${pathname}${search ? "?" + search : ""}`);
     }
 

@@ -83,7 +83,7 @@ export class BaseService {
     return this.get("one", this.needLogin, `id=${id}`, params, opt);
   }
   async update(id: number | string, data: any, opt?: IPostOpt) {
-    return this.post("update", this.needLogin, `id=${id}&debug=1`, data, opt);
+    return this.post("update", this.needLogin, `id=${id}`, data, opt);
   }
   async remove(id: number | string, opt?: IDeleteOpt) {
     return this.delete("remove", this.needLogin, `id=${id}`, opt);

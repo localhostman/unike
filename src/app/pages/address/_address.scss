@@ -6,6 +6,7 @@
 .a1 {
     padding: var(--wzz-spacing-3-4xl) 0 var(--wzz-spacing-xxl);
     border-bottom: 1px solid var(--ion-color-light-shade);
+    cursor: pointer;
     &-n1 {
         margin-bottom: calc(var(--wzz-spacing-lg) * -1);
         > * {

@@ -140,9 +140,80 @@
               [translateParams]="{e: deliveryExt.deliveryMethod.MinimumOrderAmount}"></div>
           </div>
           <div class="d1c">
-            <div class="d1c-t">{{'Descrizione' | translate | uppercase}}</div>
-            <ng-container *ngTemplateOutlet="collectionDescTempl;">
-            </ng-container>
+            <div class="d1s">
+              <div class="d1s-t">{{'collection_desc_title_1' | translate}}</div>
+              <div class="d1s-n">
+                <div class="d1" [innerHTML]="'collection_desc_text_1_1' | translate"></div>
+                <div class="d1" [innerHTML]="'collection_desc_text_1_2' | translate"></div>
+                <div class="d1" [innerHTML]="'collection_desc_text_1_3' | translate"></div>
+                <div class="d1" [innerHTML]="'collection_desc_text_1_4' | translate"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d2c">
+        <div class="d2c-n">
+          <div class="d2c-t">{{'BIADESIVO' | translate | uppercase}}</div>
+          <div class="d2s">
+            <div class="d2s-t">{{'collection_desc_title_2' | translate}}</div>
+            <div class="d2s-n">
+              <div class="d2" [innerHTML]="'collection_desc_text_2_1' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_2_2' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_2_3' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_2_4' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_2_5' | translate"></div>
+            </div>
+          </div>
+          <div class="d1s">
+            <div class="d1s-t">{{'collection_desc_title_3' | translate}}</div>
+            <div class="d1s-n">
+              <div class="d1" [innerHTML]="'collection_desc_text_3_1' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_3_2' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_3_3' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_3_4' | translate"></div>
+            </div>
+          </div>
+          <div class="d1s">
+            <div class="d1s-t">{{'collection_desc_title_4' | translate}}</div>
+            <div class="d1s-n">
+              <div class="d1" [innerHTML]="'collection_desc_text_4_1' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_4_2' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_4_3' | translate"></div>
+            </div>
+          </div>
+        </div>
+        <div class="d2c-n">
+          <div class="d2c-t">{{'GEL SOLIDO' | translate | uppercase}}</div>
+          <div class="d2s">
+            <div class="d2s-t">{{'collection_desc_title_5' | translate}}</div>
+            <div class="d2s-n">
+              <div class="d2" [innerHTML]="'collection_desc_text_5_1' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_5_2' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_5_3' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_5_4' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_5_5' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_5_6' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_5_7' | translate"></div>
+            </div>
+          </div>
+          <div class="d1s">
+            <div class="d1s-t">{{'collection_desc_title_6' | translate}}</div>
+            <div class="d1s-n">
+              <div class="d1" [innerHTML]="'collection_desc_text_6_1' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_6_2' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_6_3' | translate"></div>
+            </div>
+          </div>
+          <div class="d1s">
+            <div class="d1s-t">{{'collection_desc_title_7' | translate}}</div>
+            <div class="d1s-n">
+              <div class="d1" [innerHTML]="'collection_desc_text_7_1' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_7_2' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_7_3' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_7_4' | translate"></div>
+              <div class="d1" [innerHTML]="'collection_desc_text_7_5' | translate"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -160,36 +231,5 @@
     <div class="p1-audit-msg">{{'申请授权通过后才可查看产品价格' | translate}}</div>
   </ng-template>
 </ion-content>
-
-<ng-template #collectionDescTempl>
-  <div class="d1s">
-    <div class="d1s-t">{{'collection_desc_title_1' | translate}}</div>
-    <div class="d1s-n">
-      <div class="d1" [innerHTML]="'collection_desc_text_1_1' | translate"></div>
-      <div class="d1" [innerHTML]="'collection_desc_text_1_2' | translate"></div>
-      <div class="d1" [innerHTML]="'collection_desc_text_1_3' | translate"></div>
-      <div class="d1" [innerHTML]="'collection_desc_text_1_4' | translate"></div>
-    </div>
-  </div>
-  <div class="d1s">
-    <div class="d1s-t">{{'collection_desc_title_2' | translate}}</div>
-    <div class="d1s-n">
-      <div class="d1" [innerHTML]="'collection_desc_text_2_1' | translate"></div>
-      <div class="d1" [innerHTML]="'collection_desc_text_2_2' | translate"></div>
-      <div class="d1" [innerHTML]="'collection_desc_text_2_3' | translate"></div>
-      <div class="d1" [innerHTML]="'collection_desc_text_2_4' | translate"></div>
-      <div class="d1" [innerHTML]="'collection_desc_text_2_5' | translate"></div>
-    </div>
-  </div>
-  <div class="d1s">
-    <div class="d1s-t">{{'collection_desc_title_3' | translate}}</div>
-    <div class="d1s-n">
-      <div class="d1" [innerHTML]="'collection_desc_text_3_1' | translate"></div>
-    </div>
-  </div>
-</ng-template>
-
-<ng-template #materialDescTempl>
-</ng-template>
 
 <ng-template #dcomp></ng-template>

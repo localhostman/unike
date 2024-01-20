@@ -99,23 +99,55 @@ export class OrderPage extends PageBase implements OnInit, AfterViewInit {
     this.updateUrl({ state: state });
   }
 
+  onTracking(item: IOrder) {
+    let shippingUrl = "";
+    const trackingNumber = item.ShippingTrackingNumber;
+
+    switch (item.ShippingMethod) {
+      case "TNT":
+        shippingUrl = "https://www.tnt.it/tracking/Tracking.do";
+        break;
+      case "FEDEX":
+        shippingUrl = "https://www.fedex.com/it-it/tracking.html";
+        break;
+      case "DHL":
+        shippingUrl = "https://www.dhl.com/it-it/home/tracciabilita.html?tracking-id=" + trackingNumber;
+        break;
+      case "SDA":
+        shippingUrl = "https://www.sda.it/wps/portal/Servizi_online/dettaglio-spedizione?locale=it&tracing.letteraVettura=" + trackingNumber;
+        break;
+      case "UPS":
+        shippingUrl = "https://www.ups.com/track?loc=it_IT&requester=ST/";
+        break;
+    }
+
+    if (shippingUrl) {
+      window.open(shippingUrl);
+    }
+  }
+
   async onDetail(item: IOrder) {
-    const modal = await this.getModalCtrl().create({
-      component: OrderDetailPage,
-      cssClass: "modal-t3",
-      componentProps: {
-        orderId: item.idno
-      }
-    });
+    if (this.state == ORDER_STATE.RESO) {
+      this.onReturnDetail(item);
+    }
+    else {
+      const modal = await this.getModalCtrl().create({
+        component: OrderDetailPage,
+        cssClass: "modal-t3",
+        componentProps: {
+          orderId: item.idno
+        }
+      });
 
-    modal.onWillDismiss().then(({ data }) => {
-      if (data) {
-        item.RefundAmount = data.RefundAmount;
-        this.cdRef.detectChanges();
-      }
-    });
+      modal.onWillDismiss().then(({ data }) => {
+        if (data) {
+          item.RefundAmount = data.RefundAmount;
+          this.cdRef.detectChanges();
+        }
+      });
 
-    await modal.present();
+      await modal.present();
+    }
   }
 
   async onCreateReturn(item: IOrder) {

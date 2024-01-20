@@ -18,7 +18,7 @@ export class MeService extends BaseService {
   }
 
   contact(data: any, opt?: IPostOpt) {
-    return this.post("contact", false, "debug=1", data, opt);
+    return this.post("contact", false, "", data, opt);
   }
   sendVerifyCode(data: any, opt?: IPostOpt) {
     return this.post("sendVerifyCode", false, "", data, opt);

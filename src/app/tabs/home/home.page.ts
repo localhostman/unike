@@ -13,6 +13,7 @@ import { InsService } from 'src/app/services/ins.service';
 import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { filter, firstValueFrom } from 'rxjs';
 import { MEDIA_WIDTH } from 'src/app/fw/const/const';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -75,6 +76,7 @@ export class HomePage extends CompBase implements AfterViewInit {
     protected categoryService: CategoryService,
     protected insService: InsService,
     protected homeService: HomeService,
+    protected navCtrl: NavController,
     protected override injector: Injector,
     public override cdRef: ChangeDetectorRef
   ) {
@@ -128,6 +130,13 @@ export class HomePage extends CompBase implements AfterViewInit {
         this.cdRef.detectChanges();
       });
     }));
+  }
+
+  onClickBanner(item: any) {
+    const text = item.Text;
+    if (text) {
+      this.navCtrl.navigateForward(this.routerLinkExt.invertRouterLink(text));
+    }
   }
 
   async onLoadInsMedias() {

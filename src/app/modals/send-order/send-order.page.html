@@ -22,6 +22,7 @@
                 <div class="a-n1">
                   <div class="a-p" style="font-weight: 500;">{{address.NameCn}}</div>
                   <div class="a-p" *ngIf="address.Phone as phone">{{phone}}</div>
+                  <div class="a-p" *ngIf="address.Email as email">{{email}}</div>
                   <div class="a-p" *ngIf="!!address.PIva">
                     <span class="a-p-label">P.IVA: </span>{{address.PIva}}
                   </div>

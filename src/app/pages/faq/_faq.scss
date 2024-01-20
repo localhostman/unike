@@ -5,6 +5,10 @@
     padding: var(--wzz-spacing-xl) 0;
     border-bottom: 1px solid var(--ion-color-light-shade);
 
+    ::ng-deep a {
+        text-decoration: underline;
+    }
+
     &:last-child {
         border-bottom-style: none;
     }

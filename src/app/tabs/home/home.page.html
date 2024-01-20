@@ -3,10 +3,10 @@
   <section class="host" *ngIf="visible">
     <figure class="host-header" *ngIf="banners?.length">
       <swiper-container #b1SwiperRef class="b1s" [pagination]="{clickable: true}">
-        <swiper-slide class="b1" *ngFor="let item of banners;">
+        <swiper-slide class="b1" *ngFor="let item of banners;" (click)="onClickBanner(item)">
           <img [src]="item.ImgPath">
-          <div class="b1-n">
-            <div class="b1-text">{{item.Text | uppercase}}</div>
+          <div class="b1-n" *ngIf="item.Title as title">
+            <div class="b1-text">{{title | uppercase}}</div>
             <button class="b1-btn">{{'vedi di più' | translate}}</button>
           </div>
         </swiper-slide>
@@ -119,8 +119,8 @@
             </div>
             <ion-spinner name="circular" [ngStyle]="{opacity: insMediaInloading ? 1 : 0}"></ion-spinner>
           </button>
-          <a class="m1opr ion-activatable" style="background: #3880CB;" href="https://www.instagram.com/fasunidy/"
-            target="_blank" rel="nofollow">
+          <a class="m1opr ion-activatable" style="background: #3880CB;"
+            href="https://www.instagram.com/fasunidy_pressonails/" target="_blank" rel="nofollow">
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon name="ins"></ion-icon>
             {{'Segui su Instagram' | translate}}

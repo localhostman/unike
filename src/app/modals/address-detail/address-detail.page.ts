@@ -15,12 +15,13 @@ import { FORM_FIELD_TYPE } from 'src/app/fw/const/const';
 export class AddressDetailPage extends ModalPage {
 
   fieldRef: IFieldRef = {
-    idno: { required: false, readOnly: true, label: "Codice cliente", type: FORM_FIELD_TYPE.STRING },
+    idno: { required: false, readOnly: true, label: "Codice cliente", type: FORM_FIELD_TYPE.STRING, hidden: true },
     NameCn: { required: true, label: "Nominativo", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci il nominativo" },
-    Phone: { required: false, label: "Telefono", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci il telefono" },
-    Email: { required: false, label: "Email", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci il email" },
-    City: { required: false, label: "Comune / Città", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci il Comune / Città" },
-    Address: { required: false, label: "Indirizzo", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci l'indirizzo" },
+    Phone: { required: true, label: "Telefono", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci il telefono" },
+    Email: { required: true, label: "Email", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci il email" },
+    City: { required: true, label: "Comune / Città", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci il Comune / Città" },
+    Zip: { required: true, label: "Codice postale / CAP", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci il Codice postale / CAP" },
+    Address: { required: true, label: "Indirizzo", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci l'indirizzo" },
     CNote: { required: false, label: "Nota", type: FORM_FIELD_TYPE.STRING, helpText: "Inserisci la nota" },
   };
 

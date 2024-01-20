@@ -229,6 +229,8 @@ export interface IOrder extends IBase {
   Products: IOrderProduct[],
   Return: any;
   CTime: string;
+  ShippingMethod: string;
+  ShippingTrackingNumber: string;
 }
 
 export interface IOrderProduct extends ICart {

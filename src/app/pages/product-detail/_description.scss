@@ -24,3 +24,54 @@
         }
     }
 }
+
+.d2c {
+    display: flex;
+    border-top: 1px solid var(--ion-color-light-shade);
+    margin: var(--wzz-spacing-5xl) var(--wzz-spacing-3-4xl);
+
+    @media (max-width: #{$wzz-width-lg}) {
+        flex-direction: column;
+    }
+
+    &-n {
+        @media (min-width: #{$wzz-width-lg}) {
+            flex: 1;
+            &:nth-child(2) {
+                margin-left: var(--wzz-spacing-7-8xl);
+            }
+        }
+    }
+    &-t {
+        font-family: "trajan", sans-serif;
+        font-weight: 500;
+        line-height: 26px;
+        padding-top: var(--wzz-spacing-5xl);
+
+        @media (min-width: #{$wzz-width-md}) {
+            font-size: 21px;
+        }
+
+        @media (max-width: #{$wzz-width-md}) {
+            font-size: 18px;
+        }
+    }
+}
+
+.d2s {
+    padding-top: var(--wzz-spacing-5xl);
+    &-t {
+        font-family: "trajan", sans-serif;
+        font-weight: 500;
+        line-height: 18px;
+    }
+}
+
+.d2 {
+    padding-top: var(--wzz-spacing-xxl);
+    ::ng-deep {
+        b {
+            font-weight: 500;
+        }
+    }
+}

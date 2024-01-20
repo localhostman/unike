@@ -101,13 +101,13 @@
       <div class="form" [formGroup]="form">
         <div class="prop">
           <div class="select">
-            <div class="select-label required">{{'Azienda di logistica' | translate}}</div>
-            <ion-select class="select-el" interface="popover" [interfaceOptions]="{cssClass: 'popover-t1'}"
-              formControlName="ShippingMethod">
-              <ion-select-option value="ALP">ALP</ion-select-option>
+            <div class="select-label required">{{'Azienda di logistica' | translate}}</div> 
+            <ion-select class="select-el" interface="popover" justify="end" [interfaceOptions]="{cssClass: 'popover-t1'}"
+              formControlName="ShippingMethod">              
               <ion-select-option value="DHL">DHL</ion-select-option>
               <ion-select-option value="FEDEX">FEDEX</ion-select-option>
               <ion-select-option value="SDA">SDA</ion-select-option>
+              <ion-select-option value="TNT">TNT</ion-select-option>
               <ion-select-option value="UPS">UPS</ion-select-option>
             </ion-select>
           </div>
