@@ -133,14 +133,14 @@ export class InitializerService {
     return new Promise<boolean>(async (resolve) => {
       let carts = await this.cartService.getDataFromStorage();
       let res: IRes = await this.ajaxService.post(Utility.generateQueryString(this.apiUrl + "&init&opr=web&code=ujson"), carts);
-      const token = res.token!;
+      const token = res?.token ?? "";
 
       if (this.envExt.token == "" || this.envExt.token != token) {
         this.envExt.token = token;
         this.ajaxService.updateHeaderAutorization(token);
       }
 
-      switch (res.type) {
+      switch (res?.type) {
         case RES_TYPE.SUCCESS:
           const {
             App,
@@ -210,7 +210,7 @@ export class InitializerService {
           await WzzStorage.setToken(res.token!);
           resolve(true);
           break;
-        case RES_TYPE.FAIL:
+        default:
           console.log(res);
           break;
       }

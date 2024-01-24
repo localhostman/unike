@@ -63,6 +63,7 @@
             <div class="p1-name-n">{{data.Name}}</div>
           </div>
           <div class="p1-idno">{{'COD' | translate}}: {{data.Code}}</div>
+          <div class="p1-detail" [innerHTML]="data.Detail"></div>
           <div class="p1-sold">
             <ion-icon name="sold"></ion-icon>
             <div translate="N Venduti" [translateParams]="{n: data.OrderedCount}"></div>
@@ -122,7 +123,6 @@
                   </ng-template>
                 </figure>
               </div>
-
             </div>
           </div>
           <div class="p3c">
@@ -140,8 +140,8 @@
               [translateParams]="{e: deliveryExt.deliveryMethod.MinimumOrderAmount}"></div>
           </div>
           <div class="d1c">
+            <div class="d1c-t">{{'collection_desc_title_1' | translate}}</div>
             <div class="d1s">
-              <div class="d1s-t">{{'collection_desc_title_1' | translate}}</div>
               <div class="d1s-n">
                 <div class="d1" [innerHTML]="'collection_desc_text_1_1' | translate"></div>
                 <div class="d1" [innerHTML]="'collection_desc_text_1_2' | translate"></div>
@@ -165,21 +165,21 @@
               <div class="d2" [innerHTML]="'collection_desc_text_2_5' | translate"></div>
             </div>
           </div>
-          <div class="d1s">
-            <div class="d1s-t">{{'collection_desc_title_3' | translate}}</div>
-            <div class="d1s-n">
-              <div class="d1" [innerHTML]="'collection_desc_text_3_1' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_3_2' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_3_3' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_3_4' | translate"></div>
+          <div class="d2s">
+            <div class="d2s-t">{{'collection_desc_title_3' | translate}}</div>
+            <div class="d2s-n">
+              <div class="d2" [innerHTML]="'collection_desc_text_3_1' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_3_2' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_3_3' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_3_4' | translate"></div>
             </div>
           </div>
-          <div class="d1s">
-            <div class="d1s-t">{{'collection_desc_title_4' | translate}}</div>
-            <div class="d1s-n">
-              <div class="d1" [innerHTML]="'collection_desc_text_4_1' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_4_2' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_4_3' | translate"></div>
+          <div class="d2s">
+            <div class="d2s-t">{{'collection_desc_title_4' | translate}}</div>
+            <div class="d2s-n">
+              <div class="d2" [innerHTML]="'collection_desc_text_4_1' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_4_2' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_4_3' | translate"></div>
             </div>
           </div>
         </div>
@@ -197,22 +197,22 @@
               <div class="d2" [innerHTML]="'collection_desc_text_5_7' | translate"></div>
             </div>
           </div>
-          <div class="d1s">
-            <div class="d1s-t">{{'collection_desc_title_6' | translate}}</div>
-            <div class="d1s-n">
-              <div class="d1" [innerHTML]="'collection_desc_text_6_1' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_6_2' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_6_3' | translate"></div>
+          <div class="d2s">
+            <div class="d2s-t">{{'collection_desc_title_6' | translate}}</div>
+            <div class="d2s-n">
+              <div class="d2" [innerHTML]="'collection_desc_text_6_1' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_6_2' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_6_3' | translate"></div>
             </div>
           </div>
-          <div class="d1s">
-            <div class="d1s-t">{{'collection_desc_title_7' | translate}}</div>
-            <div class="d1s-n">
-              <div class="d1" [innerHTML]="'collection_desc_text_7_1' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_7_2' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_7_3' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_7_4' | translate"></div>
-              <div class="d1" [innerHTML]="'collection_desc_text_7_5' | translate"></div>
+          <div class="d2s">
+            <div class="d2s-t">{{'collection_desc_title_7' | translate}}</div>
+            <div class="d2s-n">
+              <div class="d2" [innerHTML]="'collection_desc_text_7_1' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_7_2' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_7_3' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_7_4' | translate"></div>
+              <div class="d2" [innerHTML]="'collection_desc_text_7_5' | translate"></div>
             </div>
           </div>
         </div>

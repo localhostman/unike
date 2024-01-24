@@ -172,11 +172,8 @@ export class RouterLinkExtension {
     }
 
     generateSEOMeta(title: string, desc: string) {
-        if (title)
-            this._titleService.setTitle(title);
-
-        if (desc)
-            this._metaService.updateTag({ name: "description", content: desc });
+        this._titleService.setTitle(title || "Fasunidy, Fashionable and unique lady");
+        this._metaService.updateTag({ name: "description", content: desc || "Offriamo nails di lusso e professionali a prezzi accessibili" });
     }
 
     generateSEOLink(noindex: boolean, resevedParams: any[] = [], slug: string = "", slugRef: any = {}) {

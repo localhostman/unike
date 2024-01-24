@@ -11,7 +11,7 @@ const routes: Routes = [
       {
         path: 'home',
         data: {
-          title: "Fasunidy, Fashion and unique lady"
+          title: "Fasunidy, Fashionable and unique lady"
         },
         canActivate: [SeoGuard],
         loadChildren: () =>

@@ -24,7 +24,7 @@
         <div>{{shop.Name}}</div>
         <div>{{shop.Address}} {{shop.Zip}} {{shop.City}} {{shop.Province}}</div>
         <div>{{'P.Iva' | translate}} {{shop.PIva}} - {{'C.F.' | translate}}: {{shop.CF}}</div>
-        <div *ngIf="shop.Email as val">{{val}}</div>
+        <div>Email: INFO&#64;FASUNIDY.COM</div>
       </div>
     </div>
     <div class="g1">
@@ -52,7 +52,7 @@
         <a class="g1-a" [routerLink]="[language, 'faq'] | routerLink">{{'Faq' | translate}}</a>
         <a class="g1-a" [routerLink]="[language, 'tutorial'] | routerLink">{{'Istruzione' | translate}}</a>
         <a class="g1-a" [routerLink]="[language, 'shipping-rule'] | routerLink">{{'Shipping info' | translate}}</a>
-        <a class="g1-a" [routerLink]="[language, 'return-rule'] | routerLink">{{'Politica di reso' | translate}}</a>
+        <!-- <a class="g1-a" [routerLink]="[language, 'return-rule'] | routerLink">{{'Politica di reso' | translate}}</a> -->
       </div>
     </div>
     <div class="n1">

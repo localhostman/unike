@@ -38,7 +38,6 @@ export class SeoGuard implements CanActivate {
           const data = res?.topics ?? {};
           this._routerLinkExt.generateSEOMeta(data["title"], data["desc"]);
         });
-
       }
     }
     else {

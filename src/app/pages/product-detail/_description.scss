@@ -8,7 +8,6 @@
 }
 
 .d1s {
-    padding-top: var(--wzz-spacing-5xl);
     &-t {
         font-family: "trajan", sans-serif;
         font-weight: 500;
@@ -59,8 +58,8 @@
 }
 
 .d2s {
-    padding-top: var(--wzz-spacing-5xl);
     &-t {
+        padding-top: var(--wzz-spacing-5xl);
         font-family: "trajan", sans-serif;
         font-weight: 500;
         line-height: 18px;

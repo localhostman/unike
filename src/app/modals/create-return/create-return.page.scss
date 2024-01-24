@@ -4,6 +4,12 @@
 @import "./_product";
 @import "./_file";
 
+ion-select {
+    &::part(icon) {
+        height: 100% !important;
+    }
+}
+
 ion-toolbar {
     --min-height: 60px;
 }
@@ -47,7 +53,6 @@ ion-title {
 }
 
 .submit-btn {
-    
     font-weight: 500;
     border: 1px solid var(--ion-color-dark);
     padding: 0 var(--wzz-spacing-3-4xl);

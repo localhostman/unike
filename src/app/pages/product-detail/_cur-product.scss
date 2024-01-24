@@ -116,6 +116,15 @@
         margin-top: 6px;
         color: var(--ion-color-dark-tint);
     }
+    &-detail {
+        margin-top: 6px;
+        white-space: pre-line;
+        ::ng-deep {
+            b {
+                font-weight: 500;
+            }
+        }
+    }
     &-sold {
         display: flex;
         align-items: center;

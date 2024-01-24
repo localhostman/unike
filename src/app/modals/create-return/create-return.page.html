@@ -15,7 +15,7 @@
 </ion-header>
 <ion-content>
   <section class="host" *ngIf="visible">
-    <swiper-container #b1SwiperRef> 
+    <swiper-container #b1SwiperRef>
       <swiper-slide>
         <div class="t1">{{'create_return_text_1' | translate}}</div>
         <div class="p2s">
@@ -41,7 +41,7 @@
           <div class="prop">
             <div class="select">
               <div class="select-label required">{{'Motivazione' | translate}}:</div>
-              <ion-select class="select-el" formControlName="Reason" interface="popover"
+              <ion-select class="select-el" formControlName="Reason" interface="popover" label-placement="floating"
                 [interfaceOptions]="{cssClass: 'popover-t1'}" [placeholder]="'Seleziona un motivo' | translate">
                 <ion-select-option value="return_reason_1">
                   {{'return_reason_1' | translate}}

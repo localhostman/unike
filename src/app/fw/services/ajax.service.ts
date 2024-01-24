@@ -74,7 +74,7 @@ export class AjaxService {
       let lang = this._envExt.language;
       headers = headers.set("app", environment.app);
       headers = headers.set(LANG_KEY, lang);
-      headers = headers.set('from', FROM.PC);
+      headers = headers.set('from', this._envExt.mobile ? FROM.MWEB : FROM.PC);
 
       this._headers = headers;
       this.updateHeaderAutorization();
