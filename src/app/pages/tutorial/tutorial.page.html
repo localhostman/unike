@@ -5,64 +5,38 @@
   <wzz-subheader></wzz-subheader>
   <section class="host" *ngIf="visible">
     <div class="host-inner">
-      <div class="v1">
-        <div class="t1">{{'Video tutorial' | translate | uppercase}}</div>
-        <div class="v1-n">
-          <video [controls]="!v1VideoEl?.paused" #v1VideoRef>
-            <source src="assets/sources/tutorial.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <div class="v1-btn" (click)="v1VideoEl?.play(); cdRef.detectChanges();" *ngIf="v1VideoEl?.paused">
-            <ion-icon name="video-play"></ion-icon> 
+      <div class="t1">{{'ISTRUZIONI' | translate | uppercase}}</div>
+      <div class="v1s">
+        <div class="v1">
+          <div class="v1-t1">{{'Fasunidy gel solido' | translate}}</div>
+          <div class="v1-frame">
+            <iframe src="https://www.youtube.com/embed/g1elqIS99mM" title="Gel solido how to apply" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="v1-t2">{{'Nota bene' | translate | uppercase}}</div>
+          <div class="v1-t3" [innerHTML]="'instruction_text_1' | translate"></div>
+          <div class="v1-frame">
+            <iframe src="https://www.youtube.com/embed/c4h9jZSgI7E" title="Gel solito how to remove" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
           </div>
         </div>
-      </div>
-      <div class="i1c">
-        <div class="t1">{{'Istruzioni' | translate | uppercase}}</div>
-        <div class="i1s">
-          <div class="i1">
-            <figure class="i1-image">
-              <img src="assets/imgs/pages/tutorial/instruction_1.jpg">
-            </figure>
-            <div class="i1-step">1</div>
-            <div class="i1-text">{{'instruction_text_1' | translate}}</div>
+        <div class="v1">
+          <div class="v1-t1">{{'Biadesivo' | translate}}</div>
+          <div class="v1-frame">
+            <iframe src="https://www.youtube.com/embed/FC1Lw97Y5ng" title="Biadesivo how to apply" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
           </div>
-          <div class="i1">
-            <figure class="i1-image">
-              <img src="assets/imgs/pages/tutorial/instruction_2.jpg">
-            </figure>
-            <div class="i1-step">2</div>
-            <div class="i1-text">{{'instruction_text_2' | translate}}</div>
+          <div class="v1-t2">{{'Nota bene' | translate | uppercase}}</div>
+          <div class="v1-t3" [innerHTML]="'instruction_text_1' | translate"></div>
+          <div class="v1-frame">
+            <iframe src="https://www.youtube.com/embed/yp2d_RY8kv8"
+              title="Biadesivo how to remove" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
           </div>
-          <div class="i1">
-            <figure class="i1-image">
-              <img src="assets/imgs/pages/tutorial/instruction_3.jpg">
-            </figure>
-            <div class="i1-step">3</div>
-            <div class="i1-text">{{'instruction_text_3' | translate}}</div>
-          </div>
-          <div class="i1">
-            <figure class="i1-image">
-              <img src="assets/imgs/pages/tutorial/instruction_4.jpg">
-            </figure>
-            <div class="i1-step">4</div>
-            <div class="i1-text">{{'instruction_text_4' | translate}}</div>
-          </div>
-          <div class="i1">
-            <figure class="i1-image">
-              <img src="assets/imgs/pages/tutorial/instruction_5.jpg">
-            </figure>
-            <div class="i1-step">5</div>
-            <div class="i1-text">{{'instruction_text_5' | translate}}</div>
-          </div>
-        </div>
-      </div>
-      <div class="n1">
-        <div class="n1-t">{{'Nota bene' | translate | uppercase}}:</div>
-        <div class="n1-n">
-          <div class="n1-text">{{'instruction_note_1' | translate}}</div>
-          <div class="n1-text">{{'instruction_note_2' | translate}}</div>
-          <div class="n1-text">{{'instruction_note_3' | translate}}</div>
         </div>
       </div>
     </div>

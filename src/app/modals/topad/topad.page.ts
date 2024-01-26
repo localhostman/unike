@@ -13,6 +13,7 @@ export class TopadPage extends CompBase implements AfterViewInit {
 
   @Input() event!: IPromo;
   @Input() d!: IDeliveryMethod;
+  giftThreshold: number = 0;
 
   constructor(
     protected override injector: Injector,
@@ -22,6 +23,10 @@ export class TopadPage extends CompBase implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.cdRef.detach();
+    
+    this.giftThreshold = this.envExt.giftThreshold;
+    this.cdRef.detectChanges();
   }
 
   onClose() {

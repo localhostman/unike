@@ -11,8 +11,8 @@
 <ion-content>
   <section class="host" *ngIf="visible">
     <div class="t1">{{'return_text_1' | translate}}</div>
-    <div class="t2" (click)="showShippingModal=true;">{{'Aggiungi il numero di tracciabilità del reso' | translate}}
-    </div>
+    <!-- <div class="t2" (click)="showShippingModal=true;">{{'Aggiungi il numero di tracciabilità del reso' | translate}}
+    </div> -->
     <div class="p1c">
       <div class="p1c-t">{{'Stato ordine' | translate}}</div>
       <div class="p1s">
@@ -31,6 +31,14 @@
         <div class="p1">
           <div class="p1-label">{{'Metodo del rimborso' | translate}}: </div>
           <div class="p1-value">{{'Conto di pagamento originale' | translate}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Metodo del spedizione' | translate}}: </div>
+          <div class="p1-value">{{return.ShippingMethod || '- -'}}</div>
+        </div>
+        <div class="p1">
+          <div class="p1-label">{{'Numero di tracciabilità' | translate}}: </div>
+          <div class="p1-value">{{return.ShippingTrackingNumber || '- -'}}</div>
         </div>
       </div>
     </div>
@@ -101,9 +109,9 @@
       <div class="form" [formGroup]="form">
         <div class="prop">
           <div class="select">
-            <div class="select-label required">{{'Azienda di logistica' | translate}}</div> 
-            <ion-select class="select-el" interface="popover" justify="end" [interfaceOptions]="{cssClass: 'popover-t1'}"
-              formControlName="ShippingMethod">              
+            <div class="select-label required">{{'Azienda di logistica' | translate}}</div>
+            <ion-select class="select-el" interface="popover" justify="end"
+              [interfaceOptions]="{cssClass: 'popover-t1'}" formControlName="ShippingMethod">
               <ion-select-option value="DHL">DHL</ion-select-option>
               <ion-select-option value="FEDEX">FEDEX</ion-select-option>
               <ion-select-option value="SDA">SDA</ion-select-option>

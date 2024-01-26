@@ -3,8 +3,6 @@
 @import "src/app/fw/styles/_image";
 
 @import "./_video";
-@import "./_instruction";
-@import "./_note";
 
 .host {
     &-inner {
@@ -21,6 +19,7 @@
     text-align: center;
     font-family: "trajan", sans-serif;
     font-weight: 500;
+    padding-top: var(--wzz-spacing-5-6xl);
 
     @media (min-width: #{$wzz-width-lg}) {
         font-size: 28px;

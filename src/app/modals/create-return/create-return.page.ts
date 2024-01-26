@@ -41,7 +41,7 @@ export class CreateReturnPage extends CompBase implements AfterViewInit {
     super(injector, cdRef);
 
     this.form = this.fb.group({
-      "Reason": [null, Validators.required],
+      "Reason": ['return_reason_1', Validators.required],
       "Note": [null]
     });
   }

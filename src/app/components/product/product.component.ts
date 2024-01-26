@@ -7,6 +7,7 @@ import { ChangeDetectionStrategy, Component, Input, ChangeDetectorRef, Injector,
 import { NavController } from '@ionic/angular';
 import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { GiftPropPage } from 'src/app/modals/gift-prop/gift-prop.page';
+import { DEFAULT_IMAGE } from 'src/app/fw/const/const';
 
 @Component({
   selector: 'product',
@@ -44,6 +45,10 @@ export class ProductComponent extends CompBase implements OnChanges, AfterViewIn
   async ngAfterViewInit() {
     this.discount = this.data.Discount!;
     this.cdRef.detectChanges();
+  }
+
+  onImageError(evt: any) {
+    evt.target.src=DEFAULT_IMAGE;
   }
 
   @HostListener("click")

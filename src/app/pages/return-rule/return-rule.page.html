@@ -1,12 +1,58 @@
 <ion-header mode="ios" collapse="fade">
-  <wzz-header [title]="'Ordine e Reso' | translate" [defaultHref]="[language, 'home'] | routerLink"></wzz-header>
+  <wzz-header [title]="'Politica di reso' | translate" [defaultHref]="[language, 'home'] | routerLink"></wzz-header>
 </ion-header>
 <ion-content #content class="root-content">
   <wzz-subheader></wzz-subheader>
   <section class="host" *ngIf="visible">
     <div class="host-inner">
       <div class="t1">{{'Politica di reso' | translate | uppercase}}</div>
-      <div class="t2">{{'return_text_0' | translate}}</div>
+      <div class="t2">{{'return_text_7_1' | translate}}</div>
+      <div class="t2">{{'return_text_7_2' | translate}}</div>
+      <div class="t2">{{'return_text_7_3' | translate}}</div>
+      <div class="t2" style="margin-top: var(--wzz-spacing-3-4xl);">{{'return_text_7_4' | translate}}</div>
+      <div class="r1c">
+        <div class="r1s">
+          <div class="r1">
+            <ul class="r1-n">
+              <li class="r1-t2" [innerHTML]="'return_text_7_4_1' | translate"></li>
+              <li class="r1-t2" [innerHTML]="'return_text_7_4_2' | translate"></li>
+              <li class="r1-t2" [innerHTML]="'return_text_7_4_3' | translate"></li>
+              <li class="r1-t2" [innerHTML]="'return_text_7_4_4' | translate"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="r1c">
+        <div class="r1s">
+          <div class="r1">
+            <div class="r1-t1">{{'return_text_8_1' | translate}}</div>
+            <ul class="r1-n">
+              <li class="r1-t2" [innerHTML]="'return_text_8_1_1' | translate"></li>
+            </ul>
+          </div>
+          <div class="r1">
+            <div class="r1-t1">{{'return_text_8_2' | translate}}</div>
+            <ul class="r1-n">
+              <li class="r1-t2" [innerHTML]="'return_text_8_2_1' | translate"></li>
+            </ul>
+          </div>
+          <div class="r1">
+            <div class="r1-t1">{{'return_text_8_3' | translate}}</div>
+            <ul class="r1-n">
+              <li class="r1-t2" [innerHTML]="'return_text_8_3_1' | translate"></li>
+              <li class="r1-t2" [innerHTML]="'return_text_8_3_2' | translate"></li>
+              <li class="r1-t2" [innerHTML]="'return_text_8_3_3' | translate"></li>
+            </ul>
+          </div>
+          <div class="r1">
+            <div class="r1-t1">{{'return_text_8_4' | translate}}</div>
+            <ul class="r1-n">
+              <li class="r1-t2" [innerHTML]="'return_text_8_4_1' | translate"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div class="r1c">
         <div class="r1c-t">{{'Istruzioni per il reso' | translate | uppercase}}</div>
         <div class="r1s">

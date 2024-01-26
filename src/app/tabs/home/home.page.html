@@ -78,17 +78,28 @@
       </ng-container>
       <div class="r1">
         <div class="t1">{{'Video tutorial' | translate | uppercase}}</div>
-        <div class="v1">
-          <div class="v1-n">
-            <video [controls]="!v1VideoEl?.paused" #v1VideoRef>
-              <source src="assets/sources/tutorial.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <div class="v1-btn" (click)="v1VideoEl?.play(); cdRef.detectChanges();" *ngIf="v1VideoEl?.paused">
-              <ion-icon name="video-play"></ion-icon>
+        <div class="v1s">
+          <div class="v1">
+            <div class="v1-t1">{{'Fasunidy gel solido' | translate}}</div>
+            <div class="v1-frame">
+              <iframe src="https://www.youtube.com/embed/g1elqIS99mM" title="Gel solido how to apply" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="v1">
+            <div class="v1-t1">{{'Biadesivo' | translate}}</div>
+            <div class="v1-frame">
+              <iframe src="https://www.youtube.com/embed/FC1Lw97Y5ng" title="Biadesivo how to apply" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
             </div>
           </div>
         </div>
+        <a class="r1-more-btn ion-activatable" [routerLink]="[language, 'tutorial'] | routerLink">
+          <ion-ripple-effect></ion-ripple-effect>
+          {{'Visualizza Tutorial' | translate | uppercase}}
+        </a>
       </div>
       <div class="r1" *ngIf="insMedias?.length">
         <div class="t1">{{'Follow us on Instagram' | translate | uppercase}}</div>

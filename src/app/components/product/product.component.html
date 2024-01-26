@@ -1,6 +1,6 @@
 <ng-container *ngIf="data">
   <a class="image" [routerLink]="[language, 'product-detail', data.id, data.idno] | routerLink">
-    <img [src]="data.ImgPath" [alt]="data.Name">
+    <img [src]="data.ImgPath" [alt]="data.Name" (error)="onImageError($event)">
     <div class="sale" *ngIf="!asGift && discount">{{'Sale' | translate | uppercase}}</div>
     <ng-content select="[slot=num]"></ng-content>
   </a>

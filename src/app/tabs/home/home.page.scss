@@ -45,8 +45,19 @@
 
 .r1 {
     position: relative;
-    padding: var(--wzz-spacing-6-7xl) 0 0; 
-} 
+    padding: var(--wzz-spacing-6-7xl) 0 0;
+    &-more-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 var(--wzz-spacing-3-4xl);
+        width: 190px;
+        height: 40px;
+        color: #fff;
+        background: var(--ion-color-dark);
+        margin: var(--wzz-spacing-3-4xl) auto 0;
+    }
+}
 
 .t1 {
     display: flex;

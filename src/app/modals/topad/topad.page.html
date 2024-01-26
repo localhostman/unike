@@ -8,7 +8,7 @@
     </div>
     <div class="a-r2">{{'Ciao, benvenuti nel sito fasunidy' | translate}}</div>
     <div class="a-ps">
-      <div class="a-p" *ngIf="event">
+      <!-- <div class="a-p" *ngIf="event">
         <div class="a-p-title">
           {{'Sconto D' | translate: {d:
           (event.Bonus>=1 ?
@@ -17,6 +17,15 @@
           ) } }}
         </div>
         <div class="a-p-text">{{'topad_event_text_1' | translate}}</div>
+      </div> -->
+      <div class="a-p">
+        <div class="a-p-title">{{'BUY N GET 1 FREE' | translate: {n: giftThreshold} }}</div>
+        <div class="a-p-text">{{'topad_gift_text_1' | translate }}</div>
+        <div class="a-p-text" style="font-weight: 500; margin-top: var(--wzz-spacing-xxl);">
+          {{'topad_gift_text_2' | translate }}
+        </div>
+        <div class="a-p-text" style="margin-top: var(--wzz-spacing-md);">{{'topad_gift_text_3' | translate }}</div>
+        <div class="a-p-text">{{'topad_gift_text_4' | translate }}</div>
       </div>
       <div class="a-p" *ngIf="d">
         <div class="a-p-title">
