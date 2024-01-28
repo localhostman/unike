@@ -1,5 +1,5 @@
 <ion-app ngSkipHydration>
-  <ion-router-outlet [id]="contentId" [animated]="!resizeExt.isLG"></ion-router-outlet>
+  <ion-router-outlet [id]="contentId" [animated]="false"></ion-router-outlet>
 </ion-app>
 
 <ion-menu side="start" [menuId]="menuId" [contentId]="contentId" [swipeGesture]="false" *ngIf="!ssr">

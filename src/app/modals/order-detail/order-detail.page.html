@@ -31,11 +31,11 @@
         </div>
         <div class="p1">
           <div class="p1-label">{{'Metodo di spedizione' | translate}}:</div>
-          <div class="p1-value">{{data.ShippingMethod}}</div>
+          <div class="p1-value">{{data.ShippingMethod || '- -'}}</div>
         </div>
         <div class="p1">
           <div class="p1-label">{{'Numero di tracking' | translate}}:</div>
-          <div class="p1-value">{{data.ShippingTrackingNumber}}</div>
+          <div class="p1-value">{{data.ShippingTrackingNumber || '- -'}}</div>
         </div>
       </div>
     </div>
@@ -98,9 +98,18 @@
     </div>
   </section>
 </ion-content>
-<ion-footer mode="ios">
+<ion-footer mode="ios" *ngIf="visible">
   <footer class="footer">
-    <button class="btn shipping">{{'Tracciare' | translate}}</button>
-    <button class="btn return" (click)="onCreateReturn()">{{'Restituire articolo' | translate}}</button>
+    <button class="btn shipping" (click)="onTracking()" [disabled]="!data.ShippingMethod">
+      {{'Tracciare' | translate}}
+    </button>
+    <button class="btn return" (click)="onCreateReturn()" *ngIf="!data.RefundAmount; else refundedTempl;">
+      {{'Restituire articolo' | translate}}
+    </button>
+    <ng-template #refundedTempl>
+      <button class="btn return" (click)="onReturnDetail()">
+        {{'Dettagli reso' | translate}}
+      </button>
+    </ng-template>
   </footer>
 </ion-footer>

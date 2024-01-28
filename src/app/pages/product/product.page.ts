@@ -260,7 +260,7 @@ export class ProductPage extends PageBase implements AfterViewInit {
         category: this.categoryIdno,
         page: this.page == 1 ? null : this.page
       }, params)
-    ));
+    ), { replaceUrl: true });
   }
 
   pricePinFormatter(value: number) {

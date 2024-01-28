@@ -37,6 +37,11 @@
             line-height: 1.5;
         }
     }
+    &-btns {
+        position: sticky;
+        bottom: var(--wzz-spacing-5-6xl);
+        background: #fff;
+    }
     &-btn {
         padding: 0 var(--wzz-spacing-5xl);
         height: 48px;

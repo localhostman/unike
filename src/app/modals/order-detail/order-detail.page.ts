@@ -3,6 +3,7 @@ import { CompBase } from 'src/app/fw/bases/comp/comp.base';
 import { IOrder, IAddress, IOrderProduct } from 'src/app/interfaces/i-data';
 import { OrderService } from 'src/app/services/order.service';
 import { CreateReturnPage } from '../create-return/create-return.page';
+import { ReturnDetailPage } from '../return-detail/return-detail.page';
 
 @Component({
   selector: 'app-order-detail',
@@ -64,6 +65,45 @@ export class OrderDetailPage extends CompBase implements AfterViewInit {
     });
 
     await modal.present();
+  }
+
+  async onReturnDetail() {
+    const modal = await this.getModalCtrl().create({
+      component: ReturnDetailPage,
+      cssClass: "modal-t3",
+      componentProps: {
+        orderId: this.data.idno
+      }
+    });
+
+    await modal.present();
+  }
+
+  onTracking() {
+    let shippingUrl = "";
+    const trackingNumber = this.data.ShippingTrackingNumber;
+
+    switch (this.data.ShippingMethod) {
+      case "TNT":
+        shippingUrl = "https://www.tnt.it/tracking/Tracking.do";
+        break;
+      case "FEDEX":
+        shippingUrl = "https://www.fedex.com/it-it/tracking.html";
+        break;
+      case "DHL":
+        shippingUrl = "https://www.dhl.com/it-it/home/tracciabilita.html?tracking-id=" + trackingNumber;
+        break;
+      case "SDA":
+        shippingUrl = "https://www.sda.it/wps/portal/Servizi_online/dettaglio-spedizione?locale=it&tracing.letteraVettura=" + trackingNumber;
+        break;
+      case "UPS":
+        shippingUrl = "https://www.ups.com/track?loc=it_IT&requester=ST/";
+        break;
+    }
+
+    if (shippingUrl) {
+      window.open(shippingUrl);
+    }
   }
 
   private async _reload() {

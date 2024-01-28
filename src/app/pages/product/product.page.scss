@@ -91,6 +91,7 @@ page {
     display: flex;
     align-items: center;
     border: 1px solid var(--ion-color-light-shade);
+    color: inherit;
     background: transparent;
 
     @media (min-width: #{$wzz-width-lg}) {

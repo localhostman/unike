@@ -3,7 +3,7 @@ import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
 import { ResizeExtension } from '../../fw/extensions/resize';
 import { ProductPropComponent } from './../../components/product-prop/product-prop.component';
 import { ProductPropService } from './../../services/product-prop.service';
-import { Component, ChangeDetectorRef, ChangeDetectionStrategy, AfterViewInit, ViewChild, Injector, ElementRef, ViewContainerRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, AfterViewInit, ViewChild, Injector, ElementRef, ViewContainerRef, OnInit } from '@angular/core';
 import { CompBase } from 'src/app/fw/bases/comp/comp.base';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct, IProductProp, ICart } from 'src/app/interfaces/i-data';
@@ -26,8 +26,9 @@ const IMAGE_THUMB_NUM = 6.5;
   styleUrls: ['./product-detail.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductDetailPage extends CompBase implements AfterViewInit {
+export class ProductDetailPage extends CompBase implements OnInit, AfterViewInit {
 
+  giftThreshold!: number;
   showThumbDirBtn!: boolean;
 
   props!: { [key: string]: IProductProp };
@@ -70,6 +71,10 @@ export class ProductDetailPage extends CompBase implements AfterViewInit {
     public override cdRef: ChangeDetectorRef
   ) {
     super(injector, cdRef);
+  }
+
+  ngOnInit() {
+    this.giftThreshold = this.envExt.giftThreshold;
   }
 
   async ngAfterViewInit() {

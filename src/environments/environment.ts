@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   app: "app_unikey",
-  url: "http://localhost:8070/",
+  url: "http://192.168.0.22:8070/",
   // url: "https://i.istarl.com/",
   firebaseConfig: {
     apiKey: "AIzaSyA6tHqmLzvhUYcCYEDyKQfEtGpjitRlAdE",

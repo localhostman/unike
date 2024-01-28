@@ -109,11 +109,11 @@
           <div class="g1c" *ngIf="data.AddGift" [routerLink]="[language, 'gift'] | routerLink">
             <div class="g1c-t1">
               <div class="g1c-t1-n">
-                {{'Acquista 3 prendi uno gratis' | translate}}
+                {{'Acquista N prendi uno gratis' | translate: {n: giftThreshold} }}
               </div>
               <button class="g1c-btn">{{'vedi di più' | translate}} ></button>
             </div>
-            <div class="g1c-t2">{{'gift_desc_1' | translate}}</div>
+            <div class="g1c-t2">{{'gift_desc_1' | translate: {n: giftThreshold} }}</div>
             <div class="g1s">
               <div class="g1" *ngFor="let item of gifts;">
                 <figure class="g1-image">

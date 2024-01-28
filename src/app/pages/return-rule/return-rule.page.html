@@ -6,10 +6,10 @@
   <section class="host" *ngIf="visible">
     <div class="host-inner">
       <div class="t1">{{'Politica di reso' | translate | uppercase}}</div>
-      <div class="t2">{{'return_text_7_1' | translate}}</div>
-      <div class="t2">{{'return_text_7_2' | translate}}</div>
-      <div class="t2">{{'return_text_7_3' | translate}}</div>
-      <div class="t2" style="margin-top: var(--wzz-spacing-3-4xl);">{{'return_text_7_4' | translate}}</div>
+      <div class="t2" [innerHTML]="'return_text_7_1' | translate"></div>
+      <div class="t2" [innerHTML]="'return_text_7_2' | translate"></div>
+      <div class="t2" style="margin-top: var(--wzz-spacing-3-4xl);" [innerHTML]="'return_text_7_3' | translate"></div>
+      <div class="t2" style="margin-top: var(--wzz-spacing-3-4xl);" [innerHTML]="'return_text_7_4' | translate"></div>
       <div class="r1c">
         <div class="r1s">
           <div class="r1">

@@ -32,4 +32,10 @@
 
 .t2 {
     color: var(--ion-color-dark-tint);
+    ::ng-deep {
+        b {
+            color: var(--ion-color-dark);
+            font-weight: 500;
+        }
+    }
 }

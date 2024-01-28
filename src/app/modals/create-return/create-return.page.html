@@ -37,7 +37,7 @@
       </swiper-slide>
       <swiper-slide>
         <div class="form" [formGroup]="form">
-          <div class="t2">{{'create_return_text_2' | translate}}</div>
+          <div class="t2" [innerHTML]="'create_return_text_2' | translate"></div>
           <div class="prop">
             <div class="select">
               <div class="select-label required">{{'Motivazione' | translate}}:</div>

@@ -251,7 +251,7 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
     this.totalQuantity = 0;
     this.totalWeight = 0;
 
-    let giftNum = 0;
+    let addGiftNum = 0;
 
     const giftTreshold = this.envExt.giftThreshold;
 
@@ -273,7 +273,7 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
       this.totalWeight += quantity * (item.Weight || 0);
 
       if (giftTreshold && item.AddGift) {
-        giftNum += Math.floor(quantity / giftTreshold);
+        addGiftNum += quantity;
       }
     });
 
@@ -290,7 +290,7 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
     this.note = this.orderService.getNote();
 
     this._cartRef = cartRef;
-    this.giftNum = giftNum;
+    this.giftNum = Math.floor(addGiftNum / giftTreshold);
 
     [this.enableSendOrder, this.transportFare, this.diffAmount] = await this.dExt.getSum(this.vAmount, this.totalWeight);
     this.mExt.inizialize(autoGetsPromos, usablePromos, this.dExt.amount);

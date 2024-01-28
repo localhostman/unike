@@ -18,7 +18,7 @@ ion-title {
     padding: 0 var(--wzz-spacing-3-4xl);
 }
 
-.t1 { 
+.t1 {
     font-size: var(--wzz-font-size-xl);
     font-weight: 500;
 }
@@ -66,7 +66,7 @@ ion-title {
 
 .footer {
     display: flex;
-    
+
     padding: var(--wzz-spacing-xxl) var(--wzz-spacing-3-4xl);
     border-top: 1px solid var(--ion-color-light-shade);
 }
@@ -82,8 +82,14 @@ ion-title {
         color: var(--ion-color-dark);
         background: #fff;
     }
-    &.return {        
+    &.return {
         color: #fff;
         background: var(--ion-color-dark);
+    }
+
+    &:disabled {
+        pointer-events: none;
+        color: var(--ion-color-medium);
+        border-color: currentColor;
     }
 }
