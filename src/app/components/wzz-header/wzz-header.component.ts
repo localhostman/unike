@@ -12,6 +12,7 @@ import { DeliveryExtension } from 'src/app/extensions/delivery';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { SearchExtension } from 'src/app/extensions/search';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'wzz-header',
@@ -47,6 +48,7 @@ export class WzzHeaderComponent extends CompBase implements AfterViewInit {
   d?: IDeliveryMethod;
   collectionIdno = COLLECTION_IDNO;
   collectionCategories: ICategory[] = [];
+  cartNum: number = 0;
 
   searchActive = false;
 
@@ -59,6 +61,7 @@ export class WzzHeaderComponent extends CompBase implements AfterViewInit {
     public routerLinkExt: RouterLinkExtension,
     public langExt: LangExtension,
     public dExt: DeliveryExtension,
+    private _cartService: CartService,
     private _categoryService: CategoryService,
     protected router: Router,
     protected override injector: Injector,
@@ -76,6 +79,8 @@ export class WzzHeaderComponent extends CompBase implements AfterViewInit {
       this.searchActive = true;
     }
 
+    [this.cartNum] = this._cartService.getSum();
+
     this.cdRef.detectChanges();
 
     this.subscription.add(this.resizeExt.resize$.subscribe(() => {
@@ -87,6 +92,11 @@ export class WzzHeaderComponent extends CompBase implements AfterViewInit {
       this.collectionCategories = ref[COLLECTION_IDNO]?.Children ?? [];
       this.materialCategories = ref[MATETIAL_IDNO]?.Children ?? [];
 
+      this.cdRef.detectChanges();
+    }));
+
+    this.subscription.add(this._cartService.update$.subscribe(() => {
+      [this.cartNum] = this._cartService.getSum();
       this.cdRef.detectChanges();
     }));
   }

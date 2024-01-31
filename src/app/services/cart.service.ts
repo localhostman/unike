@@ -25,7 +25,7 @@ export class CartService extends BaseService {
   private carts: ICartRef = {};
   protected proNumRef: { [key: string]: number } = {};
 
-  update$ = new Subject<{ product: ICart, qt?: number }>();
+  update$ = new Subject<{ product?: ICart, qt?: number }>();
   clear$ = new Subject<void>();
 
   constructor(
@@ -129,6 +129,9 @@ export class CartService extends BaseService {
             this.carts[key].Quantity = qt2;
             Product.generateTotal(item);
             item.ValuableMoaFinal = Product.isValuableMoa(item, d);
+            item.RemovedQuantity = qt1 - qt2;
+
+            removeds.push(item);
           }
 
           if (callback) {
@@ -139,6 +142,8 @@ export class CartService extends BaseService {
           offset = 0;
           this.data.splice(i2, 1);
           delete this.carts[key];
+
+          item.RemovedQuantity = qt1;
           removeds.push(item);
         }
       }
@@ -152,6 +157,7 @@ export class CartService extends BaseService {
     WzzStorage.set(STORAGE_KEY, this.carts);
 
     this.generateSum();
+    this.update$.next({});
 
     return [newRef, removeds];
   }

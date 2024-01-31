@@ -37,26 +37,41 @@ export class SelectGiftPage extends GiftPage {
     this.getModalCtrl().dismiss();
   }
 
+  get reachedMaxNum() {
+    return this.giftService.actNum == this.num;
+  }
+
   get proNumRef() {
     return this.giftService.getProNumRef();
   }
 
-  onUpdate() {
-    this.cdRef.detectChanges();
+  onUpdate(autoclose?: boolean) {
+    if (autoclose) {
+      this.onSubmit();
+    }
+    else {
+      this.cdRef.detectChanges();
+    }
   }
 
   async onSubmit() {
-    const data = await this.giftService.getData();
     const actNum = this.giftService.actNum;
-    if (this.giftService.actNum != this.num) {
-      this.getMessageExt().alert(this.lang(
-        "Ci sono un totale di N1 omaggi tra cui scegliere, e tu hai già scelto N2 omaggi",
-        { n1: this.num, n2: actNum }
-      ));
-
-      return;
+    if (!this.reachedMaxNum) {
+      this.getMessageExt().confirm({
+        message: this.lang(
+          "Ci sono un totale di N1 omaggi tra cui scegliere, e tu hai già scelto N2 omaggi",
+          { n1: this.num, n2: actNum }
+        ),
+        successText: this.lang("Conferma i selezionati"),
+        cancelText: this.lang("Rimanga su pagina"),
+        success: () => {
+          this.getModalCtrl().dismiss();
+        }
+      });
     }
-    this.getModalCtrl().dismiss(data);
+    else {
+      this.getModalCtrl().dismiss();
+    }
   }
 
 }

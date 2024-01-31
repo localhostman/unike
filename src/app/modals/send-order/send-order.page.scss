@@ -37,6 +37,12 @@ ion-title {
   }
 }
 
+empty {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: var(--wzz-spacing-5-6xl) 0;
+}
+
 .host {
   user-select: none;
   &-inner {
@@ -70,6 +76,8 @@ ion-title {
 }
 
 .t1 {
+  display: flex;
+  justify-content: space-between;
   font-size: var(--wzz-font-size-xl);
   font-weight: 500;
 }

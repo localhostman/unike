@@ -23,7 +23,7 @@ export class ProductComponent extends CompBase implements OnChanges, AfterViewIn
   @Input() giftReadonly: boolean = false;
 
   discount: number = 0;
-  @Output() wzzUpdate = new EventEmitter<void>();
+  @Output() wzzUpdate = new EventEmitter<boolean>();
 
   constructor(
     public dExt: DeliveryExtension,
@@ -48,7 +48,7 @@ export class ProductComponent extends CompBase implements OnChanges, AfterViewIn
   }
 
   onImageError(evt: any) {
-    evt.target.src=DEFAULT_IMAGE;
+    evt.target.src = DEFAULT_IMAGE;
   }
 
   @HostListener("click")
@@ -63,9 +63,9 @@ export class ProductComponent extends CompBase implements OnChanges, AfterViewIn
         }
       });
 
-      modal.onWillDismiss().then(() => {        
+      modal.onDidDismiss().then(({ data }) => {
         this.cdRef.detectChanges();
-        this.wzzUpdate.next();
+        this.wzzUpdate.next(data);
       });
 
       await modal.present();

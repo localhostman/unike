@@ -80,6 +80,12 @@
         {{'Visualizza' | translate}}
       </button>
     </div>
+    <div class="o1-oprs">
+      <button class="o1-opr ion-activatable" (click)="onTracking(item)" [disabled]="!item.ShippingMethod">
+        <ion-ripple-effect></ion-ripple-effect>
+        {{'Tracciare' | translate}}
+      </button>
+    </div>
     <!-- <div class="o1-oprs">
       <button class="o1-opr ion-activatable" (click)="onTracking(item)" [disabled]="!item.ShippingMethod">
         <ion-ripple-effect></ion-ripple-effect>

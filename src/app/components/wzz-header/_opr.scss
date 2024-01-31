@@ -5,6 +5,7 @@
 }
 
 .o1 {
+    position: relative;
     display: flex;
     align-items: center;
     padding: var(--wzz-spacing-md) var(--wzz-spacing-x-xxl);
@@ -18,5 +19,23 @@
     &.disabled {
         opacity: 0;
         pointer-events: none;
+    }
+
+    &-num {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background: var(--ion-color-danger);
+        font-size: 12px;
+        line-height: 1;
+        min-width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        padding: 0 3px;
+        transform: scale(0.85);
     }
 }

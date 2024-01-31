@@ -60,6 +60,7 @@ export interface ICategory extends IBase {
 export interface IProduct extends IBase {
   idno: string;
   Quantity: number;
+  RemovedQuantity: number;
   Code: string;
   CategoryId: string;
   CategoryId2: string;

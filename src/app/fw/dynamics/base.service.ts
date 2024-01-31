@@ -93,7 +93,8 @@ export class BaseService {
     return this.checkRes(res, true, !!opt?.ignoreCheckRes);
   }
   protected async post(opr: string, needLogin: boolean, url: string, data: any, opt?: IPostOpt) {
-    const res = await this.ajaxService.post(`${this.apiUrl}&${this.controllerName}&opr=${opr}&code=${needLogin ? "json" : "ujson"}${url ? "&" + url : ""}`, data, opt);
+    const res = await this.ajaxService.post(
+      `${this.apiUrl}&${this.controllerName}&opr=${opr}&code=${needLogin ? "json" : "ujson"}${url ? "&" + url : ""}`, data, opt);
     return this.checkRes(res, false, !!opt?.ignoreCheckRes);
   }
   protected async delete(opr: string, needLogin: boolean, url: string = "", params: any = null, opt?: IDeleteOpt) {

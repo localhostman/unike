@@ -72,7 +72,22 @@ export class GiftPropPage extends ProductPropPage implements AfterViewInit {
   }
 
   override onChangeQuantity(qt: number) {
-    this.productPropEl.changeQuantity(qt);
+    this.productPropEl.changeQuantity(qt); 
+    if (this.giftService.actNum == this.giftService.maxNum) {
+      this.getMessageExt().confirm({
+        message: this.lang(
+          "Ci sono un totale di N1 omaggi tra cui scegliere, e tu hai già scelto N2 omaggi",
+          {
+            n1: this.giftService.maxNum,
+            n2: this.giftService.actNum
+          }),
+        successText: this.lang("Conferma i selezionati"),
+        cancelText: this.lang("Rimanga su pagina"),
+        success: () => {
+          this.getModalCtrl().dismiss(true);
+        }
+      });
+    }
   }
 
 }

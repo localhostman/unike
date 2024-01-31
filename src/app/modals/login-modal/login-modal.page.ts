@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ChangeDetectionStrategy, Inject, Injector } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, Inject, Injector, OnInit } from '@angular/core';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { MeService } from 'src/app/services/me.service';
 import { ShopService } from 'src/app/services/shop.service';
@@ -12,7 +12,9 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./login-modal.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginModalPage extends LoginBase { 
+export class LoginModalPage extends LoginBase implements OnInit {
+
+  giftThreshold: number = 0;
 
   constructor(
     @Inject("baseUrl") protected override baseUrl: string,
@@ -25,6 +27,10 @@ export class LoginModalPage extends LoginBase {
     public override cdRef: ChangeDetectorRef
   ) {
     super(baseUrl, platform, shopService, authService, service, fb, injector, cdRef);
+  }
+
+  ngOnInit() {
+    this.giftThreshold = this.envExt.giftThreshold;
   }
 
 }

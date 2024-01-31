@@ -181,6 +181,9 @@
     "rejected": "Rifiutato",
     "pending": "In corso",
     "return_text_1": "Dopo aver richiesto un reso, il nostro servizio clienti vi contatterà entro 24 ore via e-mail o WhatsApp per la conferma, dopodiché il personale del servizio clienti vi informerà sulla procedura di reso. I rimborsi saranno effettuati entro 14 giorni dalla ricezione della merce. Per ulteriori informazioni, vedere la POLITICA DI RESO",
+    "带星号部分不能为空": "La parte con l'asterisco non può essere vuota",
+    "网络连接失败, 请稍后重试": "Connessione di rete non riuscita, riprova più tardi",
+    "未找到可用数据": "Nessun dato disponibile trovato",
     "货到付款": "Pagamento alla consegna",
     "微信支付": "WeChat Pay",
     "线下付款": "Pagamento offline",
@@ -266,5 +269,8 @@
     "Meno di M": "Meno di {{m}}€",
     "M e oltre": "{{m}}€ e oltre",
     "BUY N GET 1 FREE": "BUY {{n}} GET 1 FREE",
-    "Acquista N prendi uno gratis": "Acquista {{n}} prendi uno gratis"
+    "Acquista N prendi uno gratis": "Acquista {{n}} prendi uno gratis",
+    "Stai eliminando l'omaggio \"N\"": "Stai eliminando l'omaggio \"{{n}}\"",
+    "Omaggi selezionati: N1 su N2": "Omaggi selezionati: {{n1}} su {{n2}}",
+    "Mancano N omaggi": "Mancano {{n}} omaggi"
 }

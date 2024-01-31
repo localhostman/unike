@@ -45,7 +45,10 @@ export class CategoryService extends BaseService {
 
   toRef(data: ICategory[], ref: any) {
     data.forEach((item: ICategory) => {
-      ref[item.idno!] = item;
+      const idno = item.idno!;
+      if (!ref[idno])
+        ref[idno] = item;
+      
       if (item.Children?.length)
         this.toRef(item.Children, ref);
     });

@@ -6,13 +6,15 @@ import { IonicModule } from '@ionic/angular';
 
 import { SendOrderPage } from './send-order.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { EmptyComponentModule } from 'src/app/fw/components/empty/empty.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TranslateModule
+    TranslateModule,
+    EmptyComponentModule
   ],
   declarations: [SendOrderPage]
 })

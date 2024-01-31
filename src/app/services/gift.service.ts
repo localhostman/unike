@@ -42,11 +42,11 @@ export class GiftService extends CartService {
     const timestamp: number = Date.now();
 
     if (this.actNum + qt > this.maxNum) {
-      this.eventsService.showAlert$.next(this.translateService.instant(
-        "Ci sono un totale di N1 omaggi tra cui scegliere, e tu hai già scelto N2 omaggi", {
-        n1: this.maxNum,
-        n2: this.actNum
-      }));
+      // this.eventsService.showAlert$.next(this.translateService.instant(
+      //   "Ci sono un totale di N1 omaggi tra cui scegliere, e tu hai già scelto N2 omaggi", {
+      //   n1: this.maxNum,
+      //   n2: this.actNum
+      // }));
       return 0;
     }
 

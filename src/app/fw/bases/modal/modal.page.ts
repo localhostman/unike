@@ -52,6 +52,11 @@ export class ModalPage extends CompBase implements AfterViewInit {
     this.cdRef.reattach();
   }
 
+  override ngOnDestroy() {
+    super.ngOnDestroy();
+    this.popModalState();
+  }
+
   protected async init() {
 
   }

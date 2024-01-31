@@ -28,7 +28,7 @@ export class CartComponent extends DcompComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.subscription.add(this.service.update$.subscribe(({ product }) => {
-      if (product.uniqueKey == this.data.uniqueKey) {
+      if (product?.uniqueKey == this.data.uniqueKey) {
         this.data.Quantity = product.Quantity;
         this.data.Total = product.Total;
         this.cdRef.detectChanges();

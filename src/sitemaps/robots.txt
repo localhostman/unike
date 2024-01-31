@@ -1,0 +1,4 @@
+user-agent: *
+Crawl-delay: 10
+Allow: /
+Sitemap: https://fasunidy.com/sitemap.xml

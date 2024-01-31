@@ -36,9 +36,9 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
   phone!: string;
 
   private _cartRef!: ICartRef;
-  carts!: ICart[];
+  carts: ICart[] = [];
 
-  gifts!: ICart[];
+  gifts: ICart[] = [];
   giftNum!: number;
 
   note?: string;
@@ -70,7 +70,7 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
     public dExt: DeliveryExtension,
     public pExt: PaymentExtension,
     public mExt: PromoExtension,
-    private giftService: GiftService,
+    public giftService: GiftService,
     private orderService: OrderService,
     private promoService: PromoService,
     private addressService: AddressService,
@@ -101,26 +101,7 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
 
       if (this.giftNum) {
         this.giftService.init(this.giftNum);
-        const modal = await this.createModal({
-          cssClass: "modal-t3",
-          backdropDismiss: false,
-          component: SelectGiftPage,
-          componentProps: {
-            num: this.giftNum
-          }
-        });
-
-        modal.onDidDismiss().then(({ data }) => {
-          if (data) {
-            this.gifts = data;
-            this.cdRef.detectChanges();
-          }
-          else if (!this.gifts?.length) {
-            this.getModalCtrl().dismiss();
-          }
-        });
-
-        await modal.present();
+        await this.onSelectGift();
       }
 
       this.visible = true;
@@ -150,8 +131,40 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
     }));
   }
 
+  override ngOnDestroy() {
+    super.ngOnDestroy();
+    this.popModalState();
+  }
   async onClose() {
     return await this.modalCtrl.dismiss();
+  }
+
+  async onSelectGift() {
+    const modal = await this.createModal({
+      cssClass: "modal-t3",
+      backdropDismiss: false,
+      component: SelectGiftPage,
+      componentProps: {
+        num: this.giftNum
+      }
+    });
+
+    modal.onDidDismiss().then(async () => {
+      this.gifts = await this.giftService.getData();
+      this.cdRef.detectChanges();
+    });
+
+    await modal.present();
+  }
+
+  async onRemove(item: ICart) {
+    this.getMessageExt().confirm({
+      message: this.lang("Stai eliminando l'omaggio \"N\"", { n: item.Name }),
+      success: () => {
+        this.giftService.toCart(item, -item.Quantity);
+        this.cdRef.detectChanges();
+      }
+    });
   }
 
   async onGotoAddress() {
@@ -298,7 +311,7 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
     if (removeds.length) {
       let msg = "";
       removeds.forEach((item) => {
-        msg += `${item.Name}${item.Note ? " [" + item.Note + "]" : ""}\n`;
+        msg += `${item.Name}${item.Note ? " [" + item.Note + "]" : ""}, Quantità rimosse: ${item.RemovedQuantity}\n`;
       });
 
       if (msg) {
@@ -333,78 +346,101 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
       return;
     }
 
-    this.getMessageExt().confirm({
-      message: this.lang("Fare clic su 'Conferma' per confermare e inviare l'ordine"),
-      success: async () => {
-        const address: number = this.address?.id;
-
-        if (this.carts.length == 0) {
-          this.getMessageExt().alert('Il carrello è ancora vuoto, seleziona almeno un articolo');
-          return;
+    if (this.giftService.actNum !== this.giftService.maxNum) {
+      this.getMessageExt().confirm({
+        header: this.lang("Mancano N omaggi", { n: this.giftService.maxNum - this.giftService.actNum }),
+        message: this.lang(
+          "Ci sono un totale di N1 omaggi tra cui scegliere, e tu hai già scelto N2 omaggi",
+          { n1: this.giftService.actNum, n2: this.giftService.maxNum }
+        ),
+        successText: this.lang("Procedi pagamenti comunque"),
+        failText: this.lang("Selezionano subito"),
+        success: () => {
+          this._checkout();
+        },
+        fail: () => {
+          this.onSelectGift();
         }
+      });
+    }
+    else {
+      this.getMessageExt().confirm({
+        message: this.lang("Fare clic su 'Conferma' per confermare e inviare l'ordine"),
+        success: async () => {
+          this._checkout();
+        }
+      });
+    }
+  }
 
-        const res = await this.loadingService.run(() => {
-          const paymentMethodId = this.pExt.paymentMethod.id;
+  private async _checkout() {
+    const address: number = this.address?.id;
 
-          return this.orderService.update(0, {
-            LocalId: Date.now(),
-            DeliveryMethodId: this.dExt.deliveryMethod.id,
-            PaymentMethodId: paymentMethodId,
-            TradeType: 'NATIVE',
-            Address: address,
-            Phone: this.phone,
-            PromoIds: this.mExt.ids,
-            CNote: this.note,
-            Carts: this._cartRef,
-            Gifts: this.gifts
-          });
-        });
+    if (this.carts.length == 0) {
+      this.getMessageExt().alert('Il carrello è ancora vuoto, seleziona almeno un articolo');
+      return;
+    }
 
-        const topic: IOrder = res?.topics;
-        if (!topic)
-          return;
+    const res = await this.loadingService.run(() => {
+      const paymentMethodId = this.pExt.paymentMethod.id;
 
-        let orderProducts: IOrderProduct[] = topic.Products;
+      return this.orderService.update(0, {
+        LocalId: Date.now(),
+        DeliveryMethodId: this.dExt.deliveryMethod.id,
+        PaymentMethodId: paymentMethodId,
+        TradeType: 'NATIVE',
+        Address: address,
+        Phone: this.phone,
+        PromoIds: this.mExt.ids,
+        CNote: this.note,
+        Carts: this._cartRef,
+        Gifts: this.gifts
+      });
+    });
 
-        let msg: string = res.msg;
-        let [, props, payInfo] = res.extra;
+    const topic: IOrder = res?.topics;
+    if (!topic)
+      return;
 
-        try {
-          await this.pExt.pay(topic, payInfo);
-          this.updateProducts(orderProducts);
-          let modal: HTMLIonModalElement | undefined;
+    let orderProducts: IOrderProduct[] = topic.Products;
 
-          do {
-            modal = await this.modalCtrl.getTop();
-            if (!!modal)
-              await modal.dismiss();
+    let msg: string = res.msg;
+    let [, props, payInfo] = res.extra;
 
-          } while (!!modal);
+    try {
+      await this.pExt.pay(topic, payInfo);
+      this.updateProducts(orderProducts);
+      let modal: HTMLIonModalElement | undefined;
 
-          this.dExt.update();
+      do {
+        modal = await this.modalCtrl.getTop();
+        if (!!modal)
+          await modal.dismiss();
 
-          this.getMessageExt().confirm({
-            header: this.lang('Ordine con successo'),
-            message: msg,
-            cancelText: this.lang('OK'),
-            successText: this.lang('Dettagli ordine'),
-            success: async () => {
-              const modal = await this.createModal({
-                component: OrderDetailPage,
-                cssClass: 'modal-t3',
-                componentProps: {
-                  orderId: topic.idno
-                }
-              });
+      } while (!!modal);
 
-              await modal.present();
+      this.dExt.update();
+
+      this.getMessageExt().confirm({
+        header: this.lang('Ordine con successo'),
+        message: msg,
+        cancelText: this.lang('OK'),
+        successText: this.lang('Dettagli ordine'),
+        success: async () => {
+          const modal = await this.createModal({
+            component: OrderDetailPage,
+            cssClass: 'modal-t3',
+            componentProps: {
+              orderId: topic.idno
             }
           });
-        } catch (e) {
-          await this.resetProps(props);
+
+          await modal.present();
         }
-      }
-    });
+      });
+    } catch (e) {
+      await this.resetProps(props);
+    }
   }
 
   private async resetProps(props: { [key: string]: IProductProp } | boolean) {

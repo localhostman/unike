@@ -110,7 +110,7 @@ export class ProductDetailPage extends CompBase implements OnInit, AfterViewInit
 
 
     this.subscription.add(this.cartService.update$.subscribe(({ product }) => {
-      if (product.uniqueKey == this.lastCart.uniqueKey) {
+      if (product?.uniqueKey == this.lastCart.uniqueKey) {
         this.lastCart.Quantity = product.Quantity;
         this.lastCart.Total = product.Total;
         this.cdRef.detectChanges();

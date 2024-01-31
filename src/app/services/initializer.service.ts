@@ -3,9 +3,9 @@ import { RouterLinkExtension } from '../fw/extensions/router-link';
 import { LangExtension } from './../extensions/lang';
 import { Platform } from '@ionic/angular';
 import { EnvExtension } from './../extensions/env';
-import { PLATFORM_ID } from '@angular/core';
+import { Optional, PLATFORM_ID } from '@angular/core';
 import { Injectable, Injector, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { AjaxService } from '../fw/services/ajax.service';
 import { Env } from '../fw/dynamics/env';
@@ -24,7 +24,7 @@ import { SHOP_SETTING } from '../const/const';
 import { CategoryService } from './category.service';
 import { SearchExtension } from '../extensions/search';
 import { CookieService } from 'ngx-cookie-service';
-import { SsrCookieService } from 'ngx-cookie-service-ssr';
+import { SsrCookieService, REQUEST as SSR_REQUEST } from 'ngx-cookie-service-ssr';
 
 const themeToString = function (theme: { [key: string]: string }) {
   let o: string = "";
@@ -44,6 +44,7 @@ export class InitializerService {
     @Inject("apiUrl") private apiUrl: string,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) protected platformId: any,
+    @Optional() @Inject(SSR_REQUEST) protected request: any,
     protected routerLinkExt: RouterLinkExtension,
     private deliveryExt: DeliveryExtension,
     protected langExt: LangExtension,
@@ -68,7 +69,14 @@ export class InitializerService {
     let { origin, protocol, href, hash } = this.document.location;
     let token: string = "";
     let language: string = "";
-    const mobile = this.platform.is("mobile") || this.platform.is("android") || this.platform.is("ios");
+
+    let mobile: boolean = false;
+    if (isPlatformBrowser(this.platformId)) {
+      mobile = this.platform.is("mobile") || this.platform.is("android") || this.platform.is("ios");
+    }
+    else {
+      mobile = Utility.mobile(this.request.headers["user-agent"]);
+    }
 
     this.envExt.protocol = protocol;
     this.envExt.mobile = mobile;

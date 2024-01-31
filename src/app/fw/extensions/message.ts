@@ -42,11 +42,9 @@ export class MessageExtension extends LangBase {
         const buttons: Array<any> = [];
 
         buttons.push({
-            text: params.cancelText ? params.cancelText : this.lang("Annulla"),
-            role: 'cancel',
+            text: params.successText ? params.successText : this.lang("Conferma"),
             handler: () => {
-                if (params.cancel)
-                    params.cancel();
+                params.success();
             }
         });
 
@@ -59,12 +57,13 @@ export class MessageExtension extends LangBase {
             });
 
         buttons.push({
-            text: params.successText ? params.successText : this.lang("Conferma"),
+            text: params.cancelText ? params.cancelText : this.lang("Annulla"),
+            role: 'cancel',
             handler: () => {
-                params.success();
+                if (params.cancel)
+                    params.cancel();
             }
         });
-
 
         const confirm = await this._alertCtrl.create({
             header: params.header ? params.header : this.lang("Avviso"),
@@ -88,18 +87,18 @@ export class MessageExtension extends LangBase {
             inputs: [{ type: "password", name: "password" }],
             buttons: [
                 {
+                    text: params.successText ? params.successText : this.lang("Conferma"),
+                    handler: ({ password }: any) => {
+                        password = Md5.hashStr(password);
+                        params.success(password);
+                    }
+                },
+                {
                     text: params.cancelText ? params.cancelText : this.lang("Annulla"),
                     role: 'cancel',
                     handler: (data: any) => {
                         if (params.cancel)
                             params.cancel(data);
-                    }
-                },
-                {
-                    text: params.successText ? params.successText : this.lang("Conferma"),
-                    handler: ({ password }: any) => {
-                        password = Md5.hashStr(password);
-                        params.success(password);
                     }
                 }
             ]
@@ -140,17 +139,17 @@ export class MessageExtension extends LangBase {
             inputs: params.inputs,
             buttons: [
                 {
+                    text: params.successText ? params.successText : this.lang("Conferma"),
+                    handler: (data: any) => {
+                        params.success(data);
+                    }
+                },
+                {
                     text: params.cancelText ? params.cancelText : this.lang("Annulla"),
                     role: 'cancel',
                     handler: (data: any) => {
                         if (params.cancel)
                             params.cancel(data);
-                    }
-                },
-                {
-                    text: params.successText ? params.successText : this.lang("Conferma"),
-                    handler: (data: any) => {
-                        params.success(data);
                     }
                 }
             ]

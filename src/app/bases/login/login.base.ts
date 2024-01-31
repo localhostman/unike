@@ -94,6 +94,10 @@ export class LoginBase extends ModalPage implements AfterViewInit, OnDestroy {
             return;
         }
 
+        if (this.vcInterval > 0) {
+            return;
+        }
+
         await this.loadingService.run(async () => {
             const res = await this.service.sendVerifyCode({ Type: LOGIN_TYPE, To: to });
             if (res) {
@@ -180,7 +184,6 @@ export class LoginBase extends ModalPage implements AfterViewInit, OnDestroy {
 
         this._tid = setInterval(() => {
             this.vcInterval--;
-            console.log(this.vcInterval);
             if (this.vcInterval <= 0) {
                 clearInterval(this._tid);
             }

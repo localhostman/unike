@@ -33,6 +33,11 @@
                 "glob": "**/*.svg",
                 "input": "src/assets/svg",
                 "output": "./svg"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/sitemaps/",
+                "output": "/"
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],

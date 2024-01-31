@@ -2,12 +2,15 @@
   <ion-toolbar>
     <ion-title>
       <div class="t1">{{'Accedi/Registrati' | translate | uppercase}}</div>
-      <div class="t2" *ngIf="event">{{'-D da M d\'acquisto sul primo ordine' | translate: {
+      <!-- <div class="t2" *ngIf="event">{{'-D da M d\'acquisto sul primo ordine' | translate: {
         m: event.Moa | currency: 'EUR',
         d: (event.Bonus>=1 ?
         (event.Bonus | currency: 'EUR') :
         (event.Bonus | percent)
-        ) } }}</div>
+        ) } }}</div> -->
+      <div class="t2">
+        {{'BUY N GET 1 FREE' | translate: {n: giftThreshold} }}
+      </div>
     </ion-title>
     <ion-buttons slot="end">
       <button class="modal-back-btn" (click)="onClose()">

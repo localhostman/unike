@@ -42,7 +42,7 @@ export class ProductPropPage extends CompBase implements AfterViewInit {
     this.cdRef.detectChanges();
 
     this.subscription.add(this.cartService.update$.subscribe(({ product }) => {
-      if (product.id = this.data.id)
+      if (product?.id == this.data.id)
         this.productPropEl.refresh();
     }));
   }

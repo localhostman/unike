@@ -3,7 +3,7 @@
     <div class="s1">
       <div class="s1-n1">
         <ion-icon name="search" class="s1-icon"></ion-icon>
-        <input class="s1-el" [(ngModel)]="q" (keyup.ENTER)="onSearch(q)"
+        <input class="s1-el" type="search" autocapitalize="none" [(ngModel)]="q" (keyup.ENTER)="onSearch(q)"
           [placeholder]="'Inserisci le parole chiave' | translate">
       </div>
       <ion-back-button color="medium" class="s1-close" icon="close" [defaultHref]="[language, 'home'] | routerLink">

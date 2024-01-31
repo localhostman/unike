@@ -11,6 +11,8 @@
 }
 
 .p1 {
+    transition: all 0.2;
+
     @media (min-width: #{$wzz-width-lg}) {
         flex: 0 0 25%;
         padding: 0 var(--wzz-spacing-x-xxl) var(--wzz-spacing-3-4xl);
@@ -31,5 +33,9 @@
         border-radius: 50%;
         color: #fff;
         background: var(--ion-color-danger);
+    }
+    &.unselected {
+        filter: grayscale(1);
+        opacity: 0.5;
     }
 }

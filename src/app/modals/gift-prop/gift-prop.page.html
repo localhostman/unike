@@ -25,6 +25,9 @@
 <ion-footer mode="ios" *ngIf="!readonly">
   <footer class="footer">
     <div class="o1" *ngIf="lastCart as lastCart">
+      <div class="o1-t">
+        {{'Omaggi selezionati: N1 su N2' | translate: {n1: giftService.actNum, n2: giftService.maxNum } }}
+      </div>
       <ng-container *ngIf="lastCart.Quantity as quantity; else toCartTempl">
         <div class="o1-n">
           <ion-icon name="cart-remove" (click)="onChangeQuantity(-data.PackQuantity)"></ion-icon>

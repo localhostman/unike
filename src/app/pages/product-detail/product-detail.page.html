@@ -64,10 +64,10 @@
           </div>
           <div class="p1-idno">{{'COD' | translate}}: {{data.Code}}</div>
           <div class="p1-detail" [innerHTML]="data.Detail"></div>
-          <div class="p1-sold">
+          <!-- <div class="p1-sold">
             <ion-icon name="sold"></ion-icon>
             <div translate="N Venduti" [translateParams]="{n: data.OrderedCount}"></div>
-          </div>
+          </div> -->
           <ng-container *ngIf="lastCart">
             <div class="p1-price" *ngIf="data.Accessible; else noAccessibleTempl">
               <ng-container *ngIf="lastCart.Price as price">

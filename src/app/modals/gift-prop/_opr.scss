@@ -1,37 +1,38 @@
 .o1 {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    justify-content: space-between;
+    align-items: center;
     user-select: none;
     cursor: pointer;
 
     &-t {
-        color: #000;
-        font-size: var(--wzz-font-size-lg);
+        color: var(--ion-color-danger);
+        font-size: var(--wzz-font-size-lg-l);
     }
 
     &-n {
         display: flex;
+        width: 140px;
         border: 1px solid var(--ion-color-light-shadest);
         > ion-icon {
             font-size: 22px;
-            padding: var(--wzz-spacing-x-xxl) var(--wzz-spacing-xxl);
+            padding: var(--wzz-spacing-xxl) var(--wzz-spacing-xxl);
         }
     }
 
     &-input {
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
         font-size: var(--wzz-font-size-xl);
         padding: 0 var(--wzz-spacing-xxl);
     }
     &-tocart {
         color: #fff;
         background: var(--ion-color-dark);
-        width: 100%;
-        height: 44px;
+        width: 140px;
+        height: 48px;
     }
 }

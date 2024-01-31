@@ -22,7 +22,7 @@
                 <div class="a-n1">
                   <div class="a-p" style="font-weight: 500;">{{address.NameCn}}</div>
                   <div class="a-p" *ngIf="address.Phone as phone">{{phone}}</div>
-                  <div class="a-p" *ngIf="address.Email as email">{{email}}</div>
+                  <div class="a-p" *ngIf="address.Email as email" style="word-break: break-all;">{{email}}</div>
                   <div class="a-p" *ngIf="!!address.PIva">
                     <span class="a-p-label">P.IVA: </span>{{address.PIva}}
                   </div>
@@ -78,18 +78,30 @@
             *ngTemplateOutlet="cartsTempl; context: {$implicit: nvCarts, title: '未计入起订量商品', amount: nvAmount}">
           </ng-container>
         </div>
-        <div class="b1" *ngIf="gifts?.length">
-          <div class="t1">{{'Elenco degli omaggi' | translate}}</div>
-          <div class="g1s">
-            <div class="g1" *ngFor="let item of gifts;">
-              <figure class="g1-image">
-                <img [src]="item.ImageCount>0 ? item.ImgPath : defaultImage">
-              </figure>
-              <div class="g1-c1">
-                <div class="g1-name">{{item.Name}}</div>
-                <div class="g1-note" *ngIf="item.Note as note">[ {{note}} ]</div>
-                <div class="g1-tag">{{'Gratis' | translate}}</div>
-                <div class="g1-qt">x{{item.Quantity}}</div>
+        <div class="b1" *ngIf="giftNum">
+          <div class="t1">
+            <div>
+              {{'Omaggi selezionati: N1 su N2' | translate: {n1: giftService.actNum, n2: giftService.maxNum } }}
+            </div>
+            <button class="g1c-btn" (click)="onSelectGift()">{{'Lista omaggi' | translate}}</button>
+          </div>
+          <div class="g1c">
+            <div class="g1s" *ngIf="gifts.length; else emptyTempl">
+              <div class="g1" *ngFor="let item of gifts;">
+                <figure class="g1-image">
+                  <img [src]="item.ImageCount>0 ? item.ImgPath : defaultImage">
+                </figure>
+                <div class="g1-c1">
+                  <div class="g1-name">{{item.Name}}</div>
+                  <div class="g1-note" *ngIf="item.Note as note">[ {{note}} ]</div>
+                  <div class="g1-tag">{{'Gratis' | translate}}</div>
+                  <div class="g1-opr">
+                    <div class="g1-qt">x{{item.Quantity}}</div>
+                    <button class="g1-remove" (click)="onRemove(item)">
+                      <ion-icon name="remove"></ion-icon>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -124,6 +136,10 @@
     </button>
   </footer>
 </ion-footer>
+
+<ng-template #emptyTempl>
+  <empty></empty>
+</ng-template>
 
 <ng-template #cartsTempl let-carts let-amount="amount" let-title="title">
   <div class="t1">{{title | translate}}</div>

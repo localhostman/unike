@@ -7,19 +7,14 @@
       <div class="t2" [innerHTML]="'Ci sono un totale di N omaggi tra cui scegliere' | translate: {n: num}">
       </div>
     </ion-title>
-    <ion-buttons slot="end">
-      <button class="modal-back-btn" (click)="onClose()">
-        <ion-icon name="close"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <section class="host" *ngIf="visible">
     <div class="host-inner">
       <div class="p1s">
-        <product class="p1" *ngFor="let item of data;" [data]="item" [ltime]="item.LTime" [asGift]="true" 
-          (wzzUpdate)="onUpdate()">
+        <product class="p1" [ngClass]="{unselected: reachedMaxNum && !proNumRef[item.idno]}" *ngFor="let item of data;"
+          [data]="item" [ltime]="item.LTime" [asGift]="true" (wzzUpdate)="onUpdate($event)">
           <div class="p1-num" slot="num" *ngIf="proNumRef[item.idno] as num">{{num}}</div>
         </product>
       </div>
@@ -28,7 +23,9 @@
 </ion-content>
 <ion-footer mode="ios">
   <footer class="footer">
-    <div class="sum">{{'Selezionati' | translate}}: {{giftService.actNum}}</div>
+    <div class="sum">
+      {{'Omaggi selezionati: N1 su N2' | translate: {n1: giftService.actNum, n2: giftService.maxNum } }}
+    </div>
     <button class="submit-btn" (click)="onSubmit()">{{'Conferma' | translate | uppercase}}</button>
   </footer>
 </ion-footer>

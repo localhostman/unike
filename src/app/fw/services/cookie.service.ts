@@ -1,7 +1,6 @@
 import { DOCUMENT, isPlatformServer } from "@angular/common";
-import { Inject, Injectable, Optional, PLATFORM_ID } from "@angular/core";
+import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
 // import { REQUEST } from '@nguniversal/express-engine/tokens';
-import { Request } from 'express';
 
 export const LANG_COOKIE = "lang";
 export const ACCESS_TOKEN_COOKIE = "access_token";
