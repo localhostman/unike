@@ -136,8 +136,8 @@
           </div>
           <div class="s1c">
             <div class="s1c-t1">{{'Spedizione' | translate | uppercase}}</div>
-            <div class="s1c-t2" translate="shipping_desc_1"
-              [translateParams]="{e: deliveryExt.deliveryMethod.MinimumOrderAmount}"></div>
+            <div class="s1c-t2"
+              [innerHTML]="'shipping_desc_1' | translate: {e: deliveryExt.deliveryMethod.MinimumOrderAmount}"></div>
           </div>
           <div class="d1c">
             <div class="d1c-t">{{'collection_desc_title_1' | translate}}</div>

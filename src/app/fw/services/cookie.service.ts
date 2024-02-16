@@ -54,7 +54,7 @@ export class CookieService {
         d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
         let expires: string = `expires=${d.toUTCString()}`;
         let cpath: string = path ? `; path=${path}` : '';
-        value = `${name}=${value}; ${expires}${cpath}; SameSite=None; Secure`;
+        value = `${name}=${value}; ${expires}${cpath}; SameSite=Lax; Secure`;
 
         if (isPlatformServer(this.platformId)) {
             // this.req.cookies[name] = value;

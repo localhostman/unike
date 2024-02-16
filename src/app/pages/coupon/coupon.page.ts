@@ -72,6 +72,8 @@ export class CouponPage extends PageBase implements OnInit, AfterViewInit {
       this.cdRef.detectChanges();
     }, false);
 
+    this.updateUrl(null, true);
+
     this.subscription.add(this.resizeExt.resize$.subscribe(() => {
       this.cdRef.detectChanges();
     }));
@@ -81,7 +83,7 @@ export class CouponPage extends PageBase implements OnInit, AfterViewInit {
 
       const page = data["page"] ?? 1;
       if (isNaN(state))
-        state = PROMO_STATE.AVAILABLE;
+        state = PROMO_STATE.GOT;
 
       if (state == this.state && page == this.page)
         return;
@@ -138,14 +140,14 @@ export class CouponPage extends PageBase implements OnInit, AfterViewInit {
   }
 
   //@override
-  protected updateUrl(params?: any) {
+  protected updateUrl(params?: any, replaceUrl?: boolean) {
     this.router.navigateByUrl(this.routerLinkExt.normalize(
       this.router.createUrlTree([], { relativeTo: this.route }).toString(),
       Object.assign({
         state: this.state,
         page: this.page == 1 ? null : this.page
       }, params)
-    ));
+    ), { replaceUrl: !!replaceUrl });
   }
 
 }

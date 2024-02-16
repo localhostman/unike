@@ -44,10 +44,10 @@ export class WzzStorage {
     value = JSON.stringify(value);
     if (isPlatformBrowser(this._platformId)) {
       await Preferences.set({ key: key, value: value });
-      this._cookieService.set(key, value, { expires: 28, path: "/", sameSite: "None", secure: true });
+      this._cookieService.set(key, value, { expires: 28, path: "/", sameSite: "Lax", secure: true });
     }
     else {
-      this._ssrCookieService.set(key, value, { expires: 28, path: "/", sameSite: "None", secure: true });
+      this._ssrCookieService.set(key, value, { expires: 28, path: "/", sameSite: "Lax", secure: true });
     }
 
     return true;

@@ -34,7 +34,7 @@ ion-toolbar {
 
 .form {
     flex: 1;
-    padding: var(--wzz-spacing-3xl) var(--wzz-spacing-5xl);
+    padding: var(--wzz-spacing-3xl) var(--wzz-spacing-5-6xl);
 }
 
 .input {
@@ -54,6 +54,12 @@ ion-toolbar {
         height: 100%;
         text-align: right;
     }
+}
+
+.warning {
+    flex: 0 0 100%;
+    color: var(--ion-color-danger);
+    padding: var(--wzz-spacing-x-xxl);
 }
 
 .submit-btn {

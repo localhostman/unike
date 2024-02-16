@@ -17,7 +17,7 @@
 <ng-template #hostTempl>
   <section class="host" *ngIf="visible">
     <header class="host-header">
-      <ion-segment mode="md" class="s1s" [ngModel]="state" (ionChange)="onChangeState($event)">
+      <ion-segment mode="md" [scrollable]="true" class="s1s" [ngModel]="state" (ionChange)="onChangeState($event)">
         <ion-segment-button class="s1" [value]="all">
           {{'Tutti ordini' | translate}}
         </ion-segment-button>

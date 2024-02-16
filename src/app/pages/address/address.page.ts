@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Injector, Input, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Injector, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeExtension } from 'src/app/fw/extensions/resize';
 import { RouterLinkExtension } from 'src/app/fw/extensions/router-link';
@@ -15,7 +15,7 @@ import { AddressService } from 'src/app/services/address.service';
   styleUrls: ['./address.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddressPage extends PageBase implements OnInit, AfterViewInit {
+export class AddressPage extends PageBase implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() override modalMode: boolean = false;
   tabMode: boolean = false;
@@ -43,7 +43,7 @@ export class AddressPage extends PageBase implements OnInit, AfterViewInit {
 
   async ngAfterViewInit() {
     this.cdRef.detach();
-
+    
     if (this.modalMode) {
       this.pushState();
       this._renderer.addClass(this._hostEl.nativeElement, "modal");
@@ -62,6 +62,13 @@ export class AddressPage extends PageBase implements OnInit, AfterViewInit {
     this.subscription.add(this.resizeExt.resize$.subscribe(() => {
       this.cdRef.detectChanges();
     }));
+  }
+
+  override ngOnDestroy(): void {
+      super.ngOnDestroy();
+      if(this.modalMode) {
+        this.popModalState();
+      }
   }
 
   onClose() {

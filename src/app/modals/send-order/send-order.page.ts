@@ -351,10 +351,10 @@ export class SendOrderPage extends CompBase implements AfterViewInit {
         header: this.lang("Mancano N omaggi", { n: this.giftService.maxNum - this.giftService.actNum }),
         message: this.lang(
           "Ci sono un totale di N1 omaggi tra cui scegliere, e tu hai già scelto N2 omaggi",
-          { n1: this.giftService.actNum, n2: this.giftService.maxNum }
+          { n1: this.giftService.maxNum, n2: this.giftService.actNum }
         ),
         successText: this.lang("Procedi pagamenti comunque"),
-        failText: this.lang("Selezionano subito"),
+        failText: this.lang("Seleziona subito"),
         success: () => {
           this._checkout();
         },

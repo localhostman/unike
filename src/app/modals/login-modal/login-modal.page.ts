@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ChangeDetectionStrategy, Inject, Injector, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, Inject, Injector, OnInit, AfterViewInit } from '@angular/core';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { MeService } from 'src/app/services/me.service';
 import { ShopService } from 'src/app/services/shop.service';
@@ -12,7 +12,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./login-modal.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginModalPage extends LoginBase implements OnInit {
+export class LoginModalPage extends LoginBase implements OnInit, AfterViewInit {
 
   giftThreshold: number = 0;
 
@@ -31,6 +31,11 @@ export class LoginModalPage extends LoginBase implements OnInit {
 
   ngOnInit() {
     this.giftThreshold = this.envExt.giftThreshold;
+  }
+
+  override async ngAfterViewInit() {
+    this.pushState();
+    await super.ngAfterViewInit();    
   }
 
 }

@@ -137,13 +137,19 @@ export class AppComponent extends CompBase implements AfterViewInit {
     });
 
   }
-  @HostListener('window:popstate')
-  async overrideHardwareBackAction() {
-    let modal = await this.modalCtrl.getTop();
-    if (!!modal)
-      modal.dismiss();
-    return false;
+
+  @HostListener("window:popstate", ['$event'])
+  async onPopState(evt: any) {
+    try {
+      if (Date.now() - this.envExt.historyPopTime > 100) {
+        const modal = await this.getModalCtrl().getTop();
+        if (modal && !modal.classList.contains("modal-full")) {
+          await modal.dismiss();
+        }
+      }
+    } catch (e) { }
   }
+
 
   async onCloseMenu(menuId: string) {
     await this._menuCtrl.close(menuId);

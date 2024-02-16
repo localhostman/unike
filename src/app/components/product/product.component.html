@@ -2,7 +2,9 @@
   <a class="image" [routerLink]="[language, 'product-detail', data.id, data.idno] | routerLink"
     [skipLocationChange]="true">
     <img [src]="data.ImgPath" [alt]="data.Name" (error)="onImageError($event)">
-    <div class="sale" *ngIf="!asGift && discount">{{'Sale' | translate | uppercase}}</div>
+    <ng-container *ngIf="!data.EnableStock || data.Stock>0; else saleoutTempl;">
+      <div class="sale" *ngIf="!asGift && discount">{{'Sale' | translate | uppercase}}</div>
+    </ng-container>
     <ng-content select="[slot=num]"></ng-content>
   </a>
   <div class="inner">
@@ -18,3 +20,7 @@
     </ng-container>
   </div>
 </ng-container>
+
+<ng-template #saleoutTempl>
+  <div class="saleout">{{'Sale out' | translate | uppercase}}</div>
+</ng-template>
