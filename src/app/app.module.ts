@@ -113,7 +113,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CookieService,
         provideClientHydration(
             withHttpTransferCacheOptions({
-                includePostRequests: false
+                includePostRequests: true
             }),
         ),
         provideHttpClient(withFetch())

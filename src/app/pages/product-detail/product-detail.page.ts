@@ -17,6 +17,51 @@ import { SendOrderPage } from 'src/app/modals/send-order/send-order.page';
 import { DCompExtension } from 'src/app/fw/extensions/dcomp';
 import { CartComponent } from 'src/app/components/cart/cart.component';
 
+const getSEOJSONLD = function (product: any, images: string[]) {
+  return `{
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "sku": "${product.idno}",
+    "image": ${JSON.stringify(images)},
+    "name": "${product.Name}",
+    "description": "${product.Detail}",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://fasunidy.com/it/prodotto/${product.id}/${product.idno}",
+      "availability": "https://schema.org/${!product.EnableStock || product.Stock ? "InStock" : "SoldOut"}",
+      "price": ${(product.Price * (1 - product.Discount)).toFixed(2)},
+      "priceCurrency": "EUR",
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": "EUR"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "IT"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 1,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 2,
+            "maxValue": 5,
+            "unitCode": "DAY"
+          }
+        }
+      }
+    }
+  }`
+}
+
 const IMAGE_LIST_WIDTH = 80;
 const IMAGE_THUMB_NUM = 6.5;
 
@@ -93,6 +138,8 @@ export class ProductDetailPage extends CompBase implements OnInit, AfterViewInit
       this.imageWidth = this.imageHeight;
       this.showThumbDirBtn = this.data.ImageCount! > IMAGE_THUMB_NUM;
 
+      this.routerLinkExt.generateSEOJSONLD(getSEOJSONLD(this.data, this.thumbImgPaths));
+
       this.visible = true;
       this.cdRef.detectChanges();
 
@@ -107,7 +154,6 @@ export class ProductDetailPage extends CompBase implements OnInit, AfterViewInit
     this.subscription.add(this.resizeExt.resize$.subscribe(() => {
       this.cdRef.detectChanges();
     }));
-
 
     this.subscription.add(this.cartService.update$.subscribe(({ product }) => {
       if (product?.uniqueKey == this.lastCart.uniqueKey) {

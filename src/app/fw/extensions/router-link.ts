@@ -254,4 +254,39 @@ export class RouterLinkExtension {
         }
     }
 
+    generateSEOJSONLD(json: string) {
+        const head = this.document.head;
+        let script = head.querySelector("script[type=\"application/ld+json\"]");
+        if (script) {
+            script.innerHTML = json;
+        }
+        else {
+            const renderer = this.rendererFactory.createRenderer(this.document, {
+                id: '-1',
+                encapsulation: ViewEncapsulation.None,
+                styles: [],
+                data: {}
+            });
+
+            const script = renderer.createElement('script');
+            script.setAttribute('type', 'application/ld+json');
+            script.innerHTML = json;
+            renderer.appendChild(head, script);
+        }
+    }
+
+    removeSEOJSONLD() {
+        const head = this.document.head;
+        let script = head.querySelector("script[type=\"application/ld+json\"]");
+        if (script) {
+            const renderer = this.rendererFactory.createRenderer(this.document, {
+                id: '-1',
+                encapsulation: ViewEncapsulation.None,
+                styles: [],
+                data: {}
+            });
+            renderer.removeChild(head, script);
+        }
+    }
+
 }

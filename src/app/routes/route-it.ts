@@ -130,7 +130,8 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
         path: 'it/prodotto/:id/:idno',
         data: {
           refererId: "product",
-          refererParam: "id"
+          refererParam: "id",
+          includeJsonLD: true
         },
         canActivate: [SeoGuard],
         loadChildren: () => import('../pages/product-detail/product-detail.module').then(m => m.ProductDetailPageModule)
@@ -206,6 +207,7 @@ export function getRoutes(mobile: boolean): ITranslateRoute[] {
         path: 'it/faq',
         data: {
           title: "FAQ | fasunidy.com",
+          includeJsonLD: true
         },
         canActivate: [SeoGuard],
         loadChildren: () => import('../pages/faq/faq.module').then(m => m.FaqPageModule)

@@ -121,6 +121,13 @@ export interface ICart extends IProduct {
   Note: string;
 }
 
+export interface ISimpleCart {
+    idno: string;
+    PropIdno: string;
+    Quantity: number;
+    Timestamp: number;
+}
+
 export interface ICartRef {
   [key: string]: {
     idno: string,

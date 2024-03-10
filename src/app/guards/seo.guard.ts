@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { RouterLinkExtension } from '../fw/extensions/router-link';
 import { SeoService } from '../services/seo.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SeoGuard implements CanActivate {
+export class SeoGuard {
 
   constructor(
     private _routerLinkExt: RouterLinkExtension,
@@ -21,6 +21,7 @@ export class SeoGuard implements CanActivate {
 
     const refererId = data["refererId"];
     const index = data["index"];
+    const includeJsonLD = data["includeJsonLD"];
 
     if (refererId) {
       const refererParam = data["refererParam"];
@@ -46,6 +47,9 @@ export class SeoGuard implements CanActivate {
 
     if (index)
       this._routerLinkExt.generateRobots(!index);
+
+    if (!includeJsonLD)
+      this._routerLinkExt.removeSEOJSONLD();
 
     return true;
   }

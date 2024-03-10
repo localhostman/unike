@@ -139,7 +139,8 @@ export class InitializerService {
   }
   private async initSome() {
     return new Promise<boolean>(async (resolve) => {
-      let res: IRes = await this.ajaxService.get(Utility.generateQueryString(this.apiUrl + "&init&opr=web&code=ujson"));
+      const carts = await this.cartService.getDataFromStorage();
+      const res: IRes = await this.ajaxService.post(Utility.generateQueryString(this.apiUrl + "&init&opr=web&code=ujson&debug=1"), carts);
       const token = res?.token ?? "";
 
       if (this.envExt.token == "" || this.envExt.token != token) {

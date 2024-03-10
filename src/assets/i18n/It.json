@@ -272,5 +272,6 @@
     "Acquista N prendi uno gratis": "Acquista {{n}} prendi uno gratis",
     "Stai eliminando l'omaggio \"N\"": "Stai eliminando l'omaggio \"{{n}}\"",
     "Omaggi selezionati: N1 su N2": "Omaggi selezionati: {{n1}} su {{n2}}",
-    "Mancano N omaggi": "Mancano {{n}} omaggi"
+    "Mancano N omaggi": "Mancano {{n}} omaggi",
+    "Sale out": "Sold out"
 }

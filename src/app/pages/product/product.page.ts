@@ -130,7 +130,6 @@ export class ProductPage extends PageBase implements AfterViewInit {
         }
       });
 
-
       this.relativeCategoryRef = relativeFilter.CategoryIdnoRef ?? {};
       this.minPrice = relativeFilter.MinPrice ?? 0;
       this.maxPrice = relativeFilter.MaxPrice ?? 10;
@@ -166,6 +165,8 @@ export class ProductPage extends PageBase implements AfterViewInit {
         await this.reload(true);
       });
 
+      await this.content.scrollToTop(0);
+
       this.cdRef.detectChanges();
     }));
   }
@@ -180,7 +181,7 @@ export class ProductPage extends PageBase implements AfterViewInit {
   }
 
   async onSelectCategory(categoryIdno: string) {
-    this.updateUrl({ category: categoryIdno });
+    this.updateUrl({ category: categoryIdno, page: 1 });
   }
 
   async onSort() {
